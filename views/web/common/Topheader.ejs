@@ -1,0 +1,267 @@
+<header>
+    <%if(session.users){%>
+        <div class="top_header d-flex">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6"></div>
+                    <div class="col-sm-6 text-right">
+                        <div class="right">
+                            <ul class="d-flex">
+                                <li class="nav-item dropdown">
+
+                                    <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        <%if(session.users.image){%> <img src="/images/<%=session.users.image%>" class="user_top_img" alt="">
+                                            <%}else{%>
+                                                <img src="/unknown/person.png" class="user_top_img" alt="">
+
+                                                <%}%>
+                                                    <h5 class="mx-2">
+                                                        <%=session.users.name %> <br>
+                                                            <span>Profile</span>
+                                                    </h5>
+                                    </a>
+                                    <ul class="dropdown-menu">
+
+                                        <li>
+                                            <%if(session.users.role=="1" ){%>
+                                                <a class="dropdown-item" href="/myaccount">Player Profile</a>
+                                                <%}else{%>
+                                                    <a class="dropdown-item" href="/myaccount">Instructor Profile</a>
+                                                    <%}%>
+
+                                        </li>
+                                        <!-- <li><a class="dropdown-item" href="/message">Message</a></li> -->
+                                        <li style="cursor: pointer;">
+                                            <a class="dropdown-item" id="v-pills-logout-tab" data-bs-toggle="modal"
+                                                data-bs-target="#logout">Logout</a>
+                                        </li>
+
+                                    </ul>
+                                </li>
+
+                                <li><a href=""><img src="/webassets/images/fb.png" alt=""></a></li>
+                                <li><a href=""><img src="/webassets/images/in.png" alt=""></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%}%>
+            <%if(!session.users){%>
+                <div class="top_header d-flex">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-6"></div>
+                            <div class="col-sm-6 text-right">
+                                <div class="right">
+                                    <ul>
+                                        <li><a href="#" data-bs-toggle="modal" data-bs-target="#login">
+                                                Login</a></li>
+                                        <li> | </li>
+                                        <li><a href="/register">Register</a></li>
+                                        <li><a href=""><img src="/webassets/images/fb.png" alt=""></a></li>
+                                        <li><a href=""><img src="/webassets/images/in.png" alt=""></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <%}%>
+                    <nav class="navbar navbar-expand-xl bg-light">
+                        <div class="container">
+                            <a class="navbar-brand logo" href="/home"> <img src="/webassets/images/logo.png" alt=""></a>
+                            <button class="navbar-toggler shadow-0 border-0" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+                                aria-expanded="false" aria-label="Toggle navigation">
+                                <i class="fa-solid fa-bars-staggered"></i>
+                            </button>
+                            <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+                                <ul class="nav nav-pills justify-content-start">
+                                    <li class="nav-item"><a href="/home" class="<%=(title == 'home' )? 'nav-item active' : '' %>"
+                                            aria-current="page">Home</a>
+                                    </li>
+                                    <li class="nav-item"><a href="/about" class="<%=(title == 'about' )? 'nav-item active' : '' %>" id="activeAbout">About Us</a>
+                                    </li>
+                                    <li class="nav-item"><a href="/store" class="<%=(title == 'store' )? 'nav-item active' : '' %> " id="activestore">Store </a>
+                                    </li>
+                                    <%if(session.users?.role == 1){%>
+                                        <li class="nav-item"><a href="/buddy" class="<%=(title == 'buddy' )? 'nav-item active' : '' %>" id="activestore">Buddy
+                                                List </a>
+                                        </li>
+                                        <%}%>
+
+                                            <li class="nav-item"><a href="/myaccount" class="<%=(title == 'myaccount' )? 'nav-item active' : '' %>"
+                                                    id="activeMyaccount">My Profile</a></li>
+
+                                            <li class="nav-item"><a href="/Sportsoffered" class="<%=(title == 'sportsoffered' )? 'nav-item active' : '' %>"
+                                                    id="activeSportsoffered">Sports Offered</a></li>
+                                            <li class="nav-item"><a href="/contactinstructor" class="<%=(title == 'contactinstructor' )? 'nav-item active' : '' %>"
+                                                    id="activeContact">Contact
+                                                    Instructor</a>
+                                            </li>
+                                            <li class="nav-item"><a href="/videos"
+                                                    class="nav-link top_videos">Videos</a></li>
+                                            <!-- <li class="nav-item"><a href="#" class="nav-link"><img
+                                                        src="/webassets/images/search.png" alt=""></a></li> -->
+                                </ul>
+                                <div class="rite_email">
+                                    <%if(session.users){%>
+                                        <img src="/webassets/images/email.png" alt="" />
+                                        <div class="right_email">
+
+                                            <span>Email</span>
+                                            <strong>
+                                                <%= session.users.email %>
+                                            </strong>
+
+                                        </div>
+                                        <%}%>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+
+</header>
+<!-- 
+LOGIN MODAL -->
+<div class="modal fade login_model" id="login" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true"><i class="fa fa-close"></i></span>
+                        </button>
+                        <div class="row">
+                            <div class="col-md-6 signin">
+                                <img src="/webassets/images/signin.jpg" alt="">
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form_login text-center">
+                                    <h3>Player Wanted</h3>
+                                    <h6>Sign in</h6>
+
+
+                                    <form method="post" action="javascript:void(0);" id="signinForm" class="text-left">
+                                        <div class="form-group">
+                                            <label for="recipient-name" class="col-form-label">Email</label>
+                                            <input type="text" class="form-control" name="email" id="recipient-email"
+                                                placeholder="Enter Email">
+                                        </div>
+                                        <div class="form-group password_eye">
+                                            <label for="message-text" class="col-form-label">Password</label>
+                                            <input type="text" class="form-control" name="password"
+                                                id="loginpassword" placeholder="Enter Password">
+                                            <i class="bi bi-eye-slash" id="logintogglePassword"></i>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="row mt-2 mb-2">
+                                                <div class="col-7">
+                                                    <div class="remember">
+                                                        <input type="checkbox">
+                                                        Remember Me
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-5 text-right">
+                                                    <div class="remember">
+                                                        <h5><a href="" data-bs-toggle="modal" data-bs-target="#forgot"
+                                                                data-dismiss="modal">
+                                                                Forgot Password? </a></h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <button type="submit" id="signin_data" class="btn_blue">Login</button>
+                                        </div>
+                                        <div class="or">Or</div>
+                                        <div class="form-group mt-1 not_account text-center ">
+                                            <span class="w-100 ">Not a member <a href="">Create Account</a></span>
+                                        </div>
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+<!-- 
+FORGOT MODEL -->
+<div class="modal fade login_model" id="forgot" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true"><i class="fa fa-close"></i></span>
+                        </button>
+                        <div class="row">
+                            <div class="col-md-6 signin">
+                                <img src="/webassets/images/signin.jpg" alt="">
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form_login text-center">
+                                    <h3>Player Wanted</h3>
+                                    <h6>Forgot Password</h6>
+                                    <form method="post" action="javascript:void(0);" id="forgotForm" class="text-left">
+                                        <div class="form-group">
+                                            <label for="recipient-name" class="col-form-label">Email</label>
+                                            <input type="text" class="form-control" name="email" id="recipient-name"
+                                                placeholder="Enter Email">
+                                        </div>
+                                        <div class="form-group">
+                                            <button type="submit" id="forgot_data" class="btn_blue">Send</button>
+                                        </div>
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+<!-- LOGOUT MODAL -->
+<div class="modal fade login_model delete_modal" id="logout" data-bs-backdrop="static" data-bs-keyboard="false"
+    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog d-flex align-items-center h-100" role="document">
+        <div class="modal-content bg-transparent border-0">
+            <div class="modal-body p-0">
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fa fa-close"></i></span>
+                </button>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="cards text-center py-5 bg-white">
+                            <img src="/webassets/images/logout.png" alt="">
+                            <h2>Logout</h2>
+                            <p>Are you sure you want to <br> logout.</p>
+                            <div class="del_btn d-flex justify-content-center">
+                                <a href="#" class="btn text-decoration-none text-white me-3"
+                                    data-bs-dismiss="modal">No</a>
+                                <a href="./index.html" id="confirmLogout"
+                                    class="btn text-decoration-none text-white">Yes</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+

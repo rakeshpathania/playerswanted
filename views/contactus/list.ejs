@@ -1,0 +1,154 @@
+<%- include("../partials/header")%>
+<style>
+    a.btn.btn-success {
+        margin-top: 5px;
+     
+    }
+    input:checked+.slider {
+
+background-color: #6b2272;
+
+}
+
+.toast-message{
+            font-size: 16px;
+        }
+        .toast:before{
+            display: none;
+        }
+
+        table.dataTable tbody th, table.dataTable tbody td {
+    padding: 5px 20px;
+}
+</style>
+
+<%- include("../partials/sidebar")%>
+<%- include("../partials/navbar")%>
+<div class="main-content">
+    <section class="section">
+        <div class="section-header">
+            <h1>Contactus list</h1>
+            <div class="section-header-breadcrumb">
+                <div class="breadcrumb-item active"><a href="/admin/dashboard">Dashboard</a>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-flat">
+            <div class="panel-body">
+             
+
+                <div class="table-responsive">
+                    <table id="table_id" class="text-center">
+                    <thead>
+                        <tr>
+                            <th scope="col">Sr.No</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Message</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% view.forEach((contactus,i)=>{%>
+                        <tr>
+                                <td>
+                                    <%= i+1 %>
+                                </td>
+                                <td>
+                                    <%= contactus.name%>
+                                </td>
+                                <td>
+                                    <%= contactus.email%>
+                                </td>
+                                <td>
+                                    <%= contactus.message%>
+                                </td>
+                                <td>
+
+                                    <label class="switch">
+                                        <% if(contactus.type==0) { %>
+                                            <input type="checkbox" class="sliders"
+                                                data-id="<%=contactus.id%>" value="1" >
+                                            <% } else { %>
+                                                <input type="checkbox" class="sliders"
+                                                    data-id="<%=contactus.id%>" value="0" checked>
+                                                <% } %>
+                                                    <span class="slider round"></span>
+                                    </label>
+
+
+
+                                </td>
+                           
+                                <td>
+
+
+                                    <a href="/admin/viewcontact/<%=contactus.id%>"
+                                        class="btn btn-outline-primary"><i
+                                            class="glyphicon glyphicon-eye-open"></i></a>
+                                </td>
+                        </tr>
+                        <%})%>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        </div>
+</div>
+<%- include('../partials/footer')%>
+</body>
+
+</html>
+
+<script>
+    // $(document).ready(() => {
+    console.log('====================script==========================');
+    $('.sliders').click(function () {
+        // alert('clicked') 
+        var id = $(this).attr('data-id')
+        var value = $(this).attr('value')
+
+        console.log(value, id, "<<<<<<<<<<<<<<<,,")
+        // alert(id)
+        $.ajax({
+            type: "post",
+            url: "/admin/contactstatus",
+            data: {
+
+                id: id,
+                value: value
+            },
+            success: function (data) {
+                                        const swalWithBootstrapButtons = Swal.mixin({
+                                            customClass: {
+                                                confirmButton: 'btn btn-success',
+                                                cancelButton: 'btn btn-danger'
+                                            },
+                                            buttonsStyling: false
+                                        })
+                                        swalWithBootstrapButtons.fire(
+                                            'Status!',
+                                            'Status changed successfully!!',
+                                            'success'
+                                        ).then(() => {
+                                            // location.reload();
+                                        })
+                                        // alert('hi')
+                                        // console.log(data,"<<<<<<<<<,");
+                                        // window.location.reload();
+                                        // toastr.success('Status changed successfully!!')
+
+                                        // document.getElementById('flash_messsage').innerHTML = 'Status changed successfully@!'
+                                    }
+                                });
+                            });
+// });
+</script>
+
+<script>
+// $(function () {
+$("#table_id").dataTable();
+        // });
+</script>
+ 

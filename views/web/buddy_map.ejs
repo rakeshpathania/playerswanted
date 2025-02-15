@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("common/header")%>
+<!-- script -->
+<%- include("common/script")%>
+<!-- script -->
+
+<body>
+  <!-- Header -->
+  <%- include("common/Topheader")%>
+  <!-- Header -->
+  <!-- inner_banner -->
+  <section class="inner_benner">
+    <h2>Buddy Map View</h2>
+    <p>Home / Buddy Map View</p>
+    <div class="top_arr inner_benner1">
+      <a href="#buddy_list"><img src="./images/top_arro.png" alt="" /></a>
+    </div>
+  </section>
+  <!-- inner_banner -->
+
+  <div class="container">
+    <div class="row">
+      <section class="map">
+        <div class="map_btns">
+          <a href="/buddy_map" class="btn active">Map View</a>
+          <a href="/buddy" class="btn">List View</a>
+        </div>
+      </section>
+    </div>
+  </div>
+  <div id="map" class="map_view mt-4">
+
+  </div>
+
+  <!-- Footer -->
+  <footer><%- include("common/footer")%></footer>
+  <!-- Footer -->
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxACBGU07tn2sg_nEmNVcw4Z6lQoe2BHQ&callback=initMap&v=weekly" defer></script>
+</body>
+
+<script>
+ function initMap() {
+
+const center = new google.maps.LatLng(
+  "<%=session.users?.latitude%>",
+  "<%=session.users?.longitude%>"
+);
+
+const map = new google.maps.Map(document.getElementById("map"), {
+  zoom: 9,
+  center: center,
+});
+
+console.log(map);
+const svgMarker = {
+  path: "M-1.547 12l6.563-6.609-1.406-1.406-5.156 5.203-2.063-2.109-1.406 1.406zM0 0q2.906 0 4.945 2.039t2.039 4.945q0 1.453-0.727 3.328t-1.758 3.516-2.039 3.070-1.711 2.273l-0.75 0.797q-0.281-0.328-0.75-0.867t-1.688-2.156-2.133-3.141-1.664-3.445-0.75-3.375q0-2.906 2.039-4.945t4.945-2.039z",
+  fillColor: "blue",
+  fillOpacity: 0.6,
+  strokeWeight: 0,
+  rotation: 0,
+  scale: 2,
+  anchor: new google.maps.Point(0, 20),
+};
+
+let marker;
+"<%nearBy.forEach((val)=>{%>"
+marker =  new google.maps.Marker({
+  position: new google.maps.LatLng("<%=val.latitude%>", "<%=val.longitude%>"),
+  map: map,
+  label: {
+    fontSize: "8pt",
+    text: "<%=val.name%>"
+  },
+
+  url: '/message/?id=<%=val.id%>'
+});
+google.maps.event.addListener(marker, 'click', function() {
+  window.location.href = this.url;
+});
+"<%})%>"
+
+}
+
+window.initMap = initMap;
+</script>
+
+</html>
+<style>
+  #map {
+    height: 100%;
+  }
+
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+</style>

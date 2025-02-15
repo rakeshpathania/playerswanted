@@ -1,0 +1,101 @@
+<div class="main-sidebar">
+    <aside id="sidebar-wrapper">
+        <div class="sidebar-brand">
+            <a href="/admin/dashboard"> <img src="/logo/12.png" /></a>
+        </div>
+        <div class="sidebar-brand sidebar-brand-sm">
+            <a href="/admin/dashboard"> <img src="/logo/13.png"  style="width: 40px;"/></a>
+        </div>
+        <ul class="sidebar-menu">
+            <li class="menu-header"></li>
+            <li class="<%=(title == 'dashboard' )? 'active' : '' %>  ">
+                <a href="/admin/dashboard"><i class="fa fa-fire"></i><span>Dashboard</span></a>
+            </li>
+            <li class="<%=(title == 'users_u_l_active' )? 'active' : '' %>  ">
+                <a href="/admin/users" ><i class="fa fa-users"></i> <span>Users</span></a>
+            </li>
+            <li class="<%=(title == 'shop_s_p_active' )? 'active' : '' %>">
+                <a href="/admin/listshop"><i class="fa fa-shopping-bag"></i><span>Shop </span></a>
+            </li>
+            <li class="<%=(title == 'sports_s_p_active' )? 'active' : '' %>">
+                <a href="/admin/listsports"><i class="fa fa-life-ring"></i><span>Sports </span></a>
+            </li>
+            <li class="<%=(title == 'lesson_l_s_active' )? 'active' : '' %>">
+                <a href="/admin/listlesson"><i class="fa fa-book"></i><span>Lesson </span></a>
+            </li>
+            <li class="<%=(title == 'game_g_e_active' )? 'active' : '' %>">
+                <a href="/admin/listgame"><i class="fa fa-gamepad"></i><span>Game </span></a>
+            </li>
+            <li class="<%=(title == 'contact_c_l_active' )? 'active' : '' %>">
+                <a href="/admin/listcontact"><i class="fa fa-phone"></i><span>Contact us </span></a>
+            </li>
+            <li class="<%=(title == 'video' )? 'active' : '' %>">
+                <a href="/admin/videolist"><i class="fa fa-video"></i> <span>Video</span></a>
+            </li>
+            <ul class="sidebar-menu">
+                <li class="<%=(main == 'cms' )? 'active' : '' %>">
+                    <a href="#" class="nav-link has-dropdown"><i class=" fa fa-id-badge"></i><span>CMS </span></a>
+                    <ul class="dropdown-menu">
+                        <li class="<%=(title == 'cms_a_active' )? 'active' : '' %>"><a href="/admin/aboutus">About Us</a></li>
+                        <li class="<%=(title == 'cms_t_c_active' )? 'active' : '' %>"><a href="/admin/condition">Terms &  Conditions</a></li>
+                        <li class="<%=(title == 'cms_p_p_active' )? 'active' : '' %>"><a href="/admin/privacypolicy">Privacy   Policy </a></li>
+                        <li class="<%=(title == 'cms_h_p_active' )? 'active' : '' %>"><a href="/admin/help">Help & Support</a></li>
+
+
+                    </ul>
+            </ul>
+        </ul>
+    </aside>
+</div>
+<script>
+
+    function confirmLogout() {
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-danger',
+                cancelButton: 'btn btn-success'
+            },
+            buttonsStyling: false
+        })
+        // console.log("------------------------------result------", id);
+
+        swalWithBootstrapButtons.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, Logout it!',
+            cancelButtonText: 'No, cancel!',
+            reverseButtons: true
+        }).then((isConfirm) => {
+            // console.log(isConfirm)
+            // return
+            if (isConfirm.isConfirmed) {
+                // alert('isConfirmed')
+                $.ajax({
+
+                    url: "/log_out",
+                    type: 'get',
+
+                    success: function (result) {
+
+                    }
+                });
+                swalWithBootstrapButtons.fire(
+                    'Logout!',
+                    'You has been Logout.',
+                    'success'
+                ).then(() => {
+                    location.reload();
+                })
+            } else {
+                swalWithBootstrapButtons.fire(
+                    'Cancelled',
+                    'Your Session is safe :)',
+                    'error'
+                )
+            }
+        })
+
+    }
+</script>

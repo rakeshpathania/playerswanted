@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include("../partials/header")%>
+<script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
+
+
+<!-- head -->
+<style>
+  element.style {
+    margin-left: 378px
+  }
+</style>
+
+<body>
+  <div id="app">
+
+    <div class="main-wrapper">
+      <!-- navbar -->
+      <%- include("../partials/navbar")%>
+
+      <!--End navbar -->
+      <!-- Sidebar -->
+      <%- include("../partials/sidebar")%>
+      <!--End Sidebar -->
+      <!-- Main Content -->
+      <div class="main-content" style="min-height: 637px;">
+        <section class="section">
+          <div class="section-header">
+            <h1 id="imgInp"> Edit shop</h1>
+            <div class="section-header-breadcrumb">
+              <div class="breadcrumb-item active"><a href="/admin/dashboard">Dashboard</a>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-md-6 col-lg-12">
+              <div class="card">
+                <form method="post" id="editVideoForm" action="javascript:void(0);">
+                  <fieldset class="content-group">
+
+                    <!-- Basic text input -->
+                    <div class="form-group mb-0">
+                      <div class="col-md-12">
+                        <label class="form-label">Select Game <span class="text-danger">*</span></label>
+                      </div>
+                    </div>
+                    <div class="form-group mb-0">
+                      <div class="col-lg-12">
+                        <select id="selectedGame" name="game">
+                          <option value="<%=selected_game.id%>"><%=selected_game.name%></option>
+                          <%allgames.forEach((val)=>{%>
+                          <option value="<%=val.id%>">
+                            <%=val?.name%>
+                          </option>
+                          <%})%>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="form-group mb-0">
+                      <div class="col-md-12">
+                        <label class="form-label">Title <span class="text-danger">*</span></label>
+                      </div>
+                    </div>
+                    <div class="form-group mb-0">
+                      <div class="col-lg-12">
+                        <input type="text" name="title" class="form-control" value="<%=summary.title%>" placeholder=" Enter Title Of Video " aria-required="true">
+                      </div>
+                    </div>
+                    <div class="form-group mb-0">
+                      <div class="col-md-12">
+                        <label class="form-label">Description <span class="text-danger">*</span></label>
+                      </div>
+                    </div>
+                    <div class="form-group mb-0">
+                      <div class="col-lg-12">
+                        <input type="text" name="description" class="form-control" placeholder=" Enter your description" value="<%=summary.description%>" aria-required="true">
+                      </div>
+                    </div>
+
+                    <div>
+
+                      <div id="oldUrl" style="display: block;">
+                        <div id="urlLink" class="form-group mb-0">
+                          <div class="col-md-12">
+                            <label class="form-label">Url <span class="text-danger">*</span></label>
+                            <button id="editUrl" type="button">Edit Url</button>
+                          </div>
+                        </div>
+                        <div id="urlInput" class="form-group mb-0">
+                          <div class="col-lg-12">
+                            <input type="text" readonly name="url" id="videoUrl" value="<%=summary.url%>" onfocusout="getUrl()" class="form-control" placeholder=" Enter your video's url" aria-required="true">
+                          </div>
+                        </div>
+
+                        <div id="videShow" class="form-group mb-0">
+                          <div class="col-lg-12">
+                            <%if(summary.type == 1){%>
+                            <iframe width="320" height="240" src="<%=summary.url%>" title="12K HDR 120fps Dolby Vision with Calming Music (Color Life)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                            <%}else{%>
+                            <video id="myVideo" width="320" height="240" controls src="<%=summary.url%>" type="video/mp4">
+                              <%}%>
+                        
+                        </video>
+                      </div>
+                    </div>
+                    </div>
+            
+                    <div id="newUrl" style="display: none;" class="px-3">
+                        <div class="form-group mb-0 px-2">
+                            <p>Which type of video you want to upload</p>
+                            <input type="radio" id="selected_type" name="fav_language" onchange="showVideo('1')" value="1">
+                            <label for="html">Youtube</label><br>
+                            <input type="radio" id="selected_type" name="fav_language" onchange="showVideo('2')" value="2">
+                            <label for="css">Other</label><br>
+                          </div>
+      
+                          <div id="youtube-lable" style="display: none;" class="form-group mb-0 px-2">
+                            <div class="col-md-12 px-0">
+                              <label class="form-label">Youtube <span class="text-danger">*</span></label>
+                            </div>
+                            <div class="col-lg-12 px-0">
+                              <input type="text" name="yturl" id="ytvideoUrl" onfocusout="getytUrl()" class="form-control" placeholder=" Enter your video's url  " aria-required="true">
+                            </div>
+      
+                            <div id="playYT" class="form-group mb-0">
+                          </div>
+                          </div>
+      
+                         
+      
+                          <div id="video-lable" style="display: none;" class="form-group mb-0">
+                            <div class="col-md-12 px-0">
+                              <label class="form-label">Url <span class="text-danger">*</span></label>
+                            </div>
+                            <div class="col-lg-12 px-0">
+                              <input type="text" name="url" id="newvideoUrl" onfocusout="getnewUrl()" class="form-control" placeholder=" Enter your video's url  " aria-required="true">
+                            </div>
+      
+                            <div id="playV" class="form-group mb-0">
+                              <video style="display: none;" id="mynewVideo" width="320" height="240" controls type="video/youtube" type="video/mp4"></video>
+                            </div>
+                          </div>
+                    </div>
+
+                    <div class="text-right">
+                      <button type="submit" class="btn btn-primary">Submit <i class="icon-arrow-right14 position-right"></i></button>
+                    </div>
+
+                    <!-- Minimum characters -->
+
+                  </fieldset>
+
+                </form>
+              </div>
+        </section>
+      </div>
+    </div>
+    <div class="text-right">
+
+      <!-- Main content -->
+      <div class="content-wrapper">
+        <!-- Content area -->
+        <!--  End Main Content -->
+        <!-- footer -->
+        <%- include("../partials/footer")%>
+                              <!--End  footer -->
+                          </div>
+</body>
+
+
+<script>
+  $("#editUrl").on('click', () => {
+
+    console.log("enter");
+    document.getElementById('oldUrl').style.display = 'none';
+    document.getElementById('newUrl').style.display = 'block';
+
+
+  })
+
+  function showVideo(type) {
+
+    if (type == "1") {
+      let ele = document.getElementById('youtube-lable');
+      ele.style.display = 'block';
+      document.getElementById('video-lable').style.display = "none"
+    } else {
+      let ele = document.getElementById('video-lable');
+      ele.style.display = 'block';
+      document.getElementById('youtube-lable').style.display = "none"
+
+    }
+  }
+
+
+
+  function getytUrl() {
+    let yturl = $("#ytvideoUrl").val();
+    document.getElementById("playYT").innerHTML = `<iframe width="320" height="240" src=${yturl} title="12K HDR 120fps Dolby Vision with Calming Music (Color Life)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
+
+  }
+
+  function getnewUrl() {
+    let url = $("#newvideoUrl").val();
+    let video_ele = document.getElementById("mynewVideo");
+    video_ele.src = url;
+    video_ele.style.display = "block"
+
+  }
+
+  function getUrl() {
+    let url = $("#videoUrl").val();
+    let video_ele = document.getElementById("myVideo")
+    video_ele.src = url;
+  }
+
+
+  jQuery(document).ready(function() {
+
+    let rules = {
+      game: {
+        required: true
+      },
+      title: {
+        required: true
+      },
+      description: {
+        required: true,
+        maxlength: 255,
+      },
+      url: {
+        required: true,
+      },
+    };
+    let messages = {
+      game: {
+        required: "Please select the game",
+      },
+      title: {
+        required: "Please enter your video's title",
+      },
+      description: {
+        required: "Please enter your video's description",
+        maxlength: "Please enter description not more than 255 char",
+      },
+      url: {
+        required: "Please enter your video's url",
+      },
+
+    }
+
+    jQuery("#editVideoForm").validate({
+      rules,
+      messages,
+      submitHandler: function(form) {
+        editVideo();
+      }
+    });
+  });
+
+  function editVideo() {
+    let game_id = $("#selectedGame").val();
+    let title = $("#editVideoForm input[name='title']").val();
+    let description = $("#editVideoForm input[name='description']").val();
+    let type = $('#selected_type').val();
+
+    let url = "";
+    if (type == '1') {
+      url = $("#editVideoForm input[name='yturl']").val();
+    } else {
+      url = $("#editVideoForm input[name='url']").val();
+    }
+
+    let formdata = {
+      game_id,
+      title,
+      description,
+      url,
+      type
+    }
+
+    let id = "<%=id%>"
+    $.ajax({
+      url: `/admin/update-video/${id}`,
+      type: "POST",
+      data: formdata,
+      cache: false,
+      success: function(dataResult) {
+        if (dataResult.status_code == 1) {
+          // toastMsg("success", dataResult.message)
+          window.location.href = "/admin/videolist"
+        }
+        if (dataResult.status_code == 0) {
+          // toastMsg("error", dataResult.message)
+        }
+
+      }
+    });
+
+  }
+</script>
+<script>
+  setTimeout(function() {
+    $("div.msg").fadeOut();
+  }, 2000);
+</script>
+
+
+</html>

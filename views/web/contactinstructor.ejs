@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+
+<!-- <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Player</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link href="css/owl.carousel.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+
+</head> -->
+<%- include("common/header")%>
+
+<body>
+  <!-- Header -->
+  <%- include("common/Topheader")%>
+  <!-- Header -->
+  <!-- inner_banner -->
+  <section class="inner_benner">
+    <h2>Contact Instructor</h2>
+    <p>Home / Contact Instructor</p>
+    <div class="top_arr inner_benner1">
+      <a href="/web/contactinstructor"><img src="/webassets/images/top_arro.png" alt="" /></a>
+    </div>
+
+  </section>
+  <!-- inner_banner -->
+  <section class="contact_contractor" id="contact">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <h6 class="get_in">
+            Get in touch with us
+          </h6>
+          <div class="contact_data">
+            <ul>
+              <li>
+                <figure><img src="/webassets/images/phone1.png" alt=""></figure>
+                <div class="rite_content">
+                  <h4>Call Anytime</h4>
+                  <p>(+1) 123 45 678 - 987 650 4321</p>
+                </div>
+              </li>
+              <li>
+                <figure><img src="/webassets/images/email2.png" alt=""></figure>
+                <div class="rite_content">
+                  <h4>Write Email</h4>
+                  <p>info@example.com</p>
+                </div>
+              </li>
+              <li>
+                <figure><img src="/webassets/images/location1.png" alt=""></figure>
+                <div class="rite_content">
+                  <h4>Visit Office</h4>
+                  <p>9907 Salford road, east London Uk 2807</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <form method="post" id="contactForm" action="javascript:void(0);" class="contact">
+            <div class="form-group">
+              <label for="">
+                Instructor
+              </label>
+              <select name="selectinstructor" id="selectedInstructor" class="form-select">
+                <option value="">Select Instructor</option>
+                <%instructors.forEach((val)=>{%>
+                <option value="<%= val.id %>">
+                  <%= val.name %>
+                </option>
+                <%})%>
+              </select>
+            </div>
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label for="">
+                    Your Name*
+                  </label>
+                  <input type="text" placeholder="Your Name*" name="yourname" class="form-control" onkeypress="return /^[A-Za-z\s]*$/i.test(event.key)">
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label for="">
+                    Your Email*
+                  </label>
+                  <input type="text" placeholder="Your Email*" name="youremail" class="form-control">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label for="">
+                    Phone Number*
+                  </label>
+                  <input type="text" placeholder="Phone Number*" name="phonenumber" class="form-control">
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label for="">
+                    Subject*
+                  </label>
+                  <input type="text" placeholder="Subject*" name="subject" class="form-control">
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="">
+                Messages
+              </label>
+              <textarea name="message" id="enterQuery" cols="30" rows="10" placeholder="Type"> </textarea>
+            </div>
+            <div class="form-group">
+              <input type="submit" value="Submit" class="submit_button" />
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- map -->
+  <!-- map -->
+  <%if(session.users){%>
+  <div id="map" class="map_view mt-4">
+  </div>
+  <%}%>
+   
+      <!-- map -->
+            <!-- map -->
+
+            <!-- Footer -->
+            <footer>
+                <%- include("common/footer")%>
+  </footer>
+  <!-- Footer -->
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxACBGU07tn2sg_nEmNVcw4Z6lQoe2BHQ&callback=initMap&v=weekly" defer></script>
+
+</body>
+<div class="modal fade login_model" id="login" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true"><i class="fa fa-close"></i></span>
+        </button>
+        <div class="row">
+          <div class="col-md-6 signin">
+            <img src="/webassets/images/signin.png" alt="">
+          </div>
+          <div class="col-md-6">
+            <div class="form_login text-center">
+              <h3>Player Wanted</h3>
+              <h6>Sign in</h6>
+
+
+              <form class="text-left">
+                <div class="form-group">
+                  <label for="recipient-name" class="col-form-label">Email</label>
+                  <input type="text" class="form-control" id="recipient-name" placeholder="Enter Email">
+                </div>
+                <div class="form-group password_eye">
+                  <label for="message-text" class="col-form-label">Password</label>
+                  <input type="password" class="form-control" id="recipient-name" placeholder="Enter Password">
+                  <i class="icofont-eye"></i>
+                </div>
+
+                <div class="form-group">
+                  <div class="row mt-2 mb-2">
+                    <div class="col-7">
+                      <div class="remember">
+                        <input type="checkbox">
+                        Remember Me
+
+                      </div>
+                    </div>
+                    <div class="col-5 text-right">
+                      <div class="remember">
+                        <h5><a href="" data-bs-toggle="modal" data-bs-target="#forgot" data-dismiss="modal">
+                            Forgot Password? </a></h5>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <a href="index_login.html" class="btn_blue w-100 text-center mb-5">
+                    Login</a>
+                </div>
+                <div class="or">Or</div>
+                <div class="form-group mt-1 not_account text-center ">
+                  <span class="w-100 ">Not a member <a href="">Create
+                      Account</a></span>
+                </div>
+
+
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="modal fade login_model" id="forgot" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true"><i class="fa fa-close"></i></span>
+        </button>
+        <div class="row">
+          <div class="col-md-6 signin">
+            <img src="/webassets/images/signin.png" alt="">
+          </div>
+          <div class="col-md-6">
+            <div class="form_login text-center">
+              <h3>Player Wanted</h3>
+              <h6>Forgot Password</h6>
+
+
+              <form class="text-left">
+                <div class="form-group">
+                  <label for="recipient-name" class="col-form-label">Email</label>
+                  <input type="text" class="form-control" id="recipient-name" placeholder="Enter Email">
+                </div>
+
+                <div class="form-group">
+                  <a href="index_login.html" class="btn_blue w-100 text-center mb-5">
+                    Send</a>
+                </div>
+
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- script -->
+<%- include("common/script")%>
+<!-- script -->
+
+</html>
+
+
+<!-- MAP SCRIPT -->
+
+<Script>
+  function initMap() {
+
+    const center = new google.maps.LatLng(
+      "<%=session.users?.latitude%>",
+      "<%=session.users?.longitude%>"
+    );
+
+    const map = new google.maps.Map(document.getElementById("map"), {
+      zoom: 9,
+      center: center,
+    });
+
+    console.log(map);
+    const svgMarker = {
+      path: "M-1.547 12l6.563-6.609-1.406-1.406-5.156 5.203-2.063-2.109-1.406 1.406zM0 0q2.906 0 4.945 2.039t2.039 4.945q0 1.453-0.727 3.328t-1.758 3.516-2.039 3.070-1.711 2.273l-0.75 0.797q-0.281-0.328-0.75-0.867t-1.688-2.156-2.133-3.141-1.664-3.445-0.75-3.375q0-2.906 2.039-4.945t4.945-2.039z",
+      fillColor: "blue",
+      fillOpacity: 0.6,
+      strokeWeight: 0,
+      rotation: 0,
+      scale: 2,
+      anchor: new google.maps.Point(0, 20),
+    };
+
+    let marker;
+    "<%nearBy.forEach((val)=>{%>"
+    marker = new google.maps.Marker({
+      position: new google.maps.LatLng("<%=val.latitude%>", "<%=val.longitude%>"),
+      map: map,
+      label: {
+        fontSize: "8pt",
+        text: "<%=val.name%>"
+      },
+      url: '/message/?id=<%=val.id%>'
+    });
+    google.maps.event.addListener(marker, 'click', function() {
+      window.location.href = this.url;
+    });
+    "<%})%>"
+
+  }
+
+  window.initMap = initMap;
+</Script>
+
+
+
+<!-- MAP SCRIPT -->
+<style>
+  .error {
+    color: #ff0000;
+  }
+
+  #map {
+    height: 100%;
+  }
+
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+</style>

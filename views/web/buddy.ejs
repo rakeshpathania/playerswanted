@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("common/header")%>
+
+  <!-- script -->
+  <%- include("common/script")%>
+  <!-- script -->
+
+  <body>
+    <!-- Header -->
+    <%- include("common/Topheader")%>
+
+    <!-- Header -->
+    <!-- inner_banner -->
+    <section class="inner_benner">
+      <h2>Buddy List</h2>
+      <p>Home / Buddy List</p>
+      <div class="top_arr inner_benner1">
+        <a href="#"><img src="/webassets/images/top_arro.png" alt="" /></a>
+      </div>
+    </section>
+    <div class="container">
+      <div class="row align-items-center mt-5">
+        <div class="col-sm-8">
+          <!-- <div class="serch_me">
+                    <div class="search">
+                        <select>
+                           <option> Select a catagories</option>
+                        </select>
+                        <input type="text" placeholder="Search Location">
+                        <button>Search</button>
+                     </div>
+                </div> -->
+        </div>
+        <div class="col-md-4 text-end">
+          <div class="map">
+            <div class="map_btns">
+              <a href="/buddy_map" class="btn">Map View</a>
+              <a href="/buddy" class="btn active">List View</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 mt-5">
+          <div class="serch_me">
+            <div class="search">
+              <select id="selectedGame">
+                <option value="">Select Sports</option>
+                <%allgames.forEach((val)=>{%>
+                <option value="<%=val.id%>"><%=val?.name%></option>
+                <%})%>
+              </select>
+              <input
+                type="text"
+                id="searchLocation"
+                placeholder="Search Location"
+              />
+              <button type="button" onclick="homeFilter()">Search</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 mb-3">
+          <div
+            class="py-1 px-3 rounded-2 d-flex justify-content-end align-items-center"
+          >
+            <div class="btn-group filter_drop">
+              <a
+                class="dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+                data-bs-auto-close="outside"
+                aria-expanded="false"
+              >
+                Filter<i class="fa-solid fa-sliders"></i>
+              </a>
+              <div class="dropdown-menu p-0">
+                <div class="card">
+                  <h4>By Expertise</h4>
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      value="beginner"
+                      type="radio"
+                      name="flexRadioDefault"
+                      id="flexRadioDefault1"
+                    />
+                    <label class="form-check-label" for="flexRadioDefault1">
+                      Beginner
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      value="intermediate"
+                      type="radio"
+                      name="flexRadioDefault"
+                      id="flexRadioDefault2"
+                    />
+                    <label class="form-check-label" for="flexRadioDefault2">
+                      Intermediate
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      value="expert"
+                      type="radio"
+                      name="flexRadioDefault"
+                      id="flexRadioDefault3"
+                    />
+                    <label class="form-check-label" for="flexRadioDefault3">
+                      Expert
+                    </label>
+                  </div>
+
+                  <h4>By Rating</h4>
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      name="rate"
+                      type="checkbox"
+                      value="4"
+                      id="flex"
+                    />
+                    <label class="form-check-label" for="flex">
+                      4 Star &amp; above</label
+                    >
+                  </div>
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      name="rate"
+                      type="checkbox"
+                      value="3"
+                      id="flex1"
+                    />
+                    <label class="form-check-label" for="flex1">
+                      3 Star &amp; above</label
+                    >
+                  </div>
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      name="rate"
+                      type="checkbox"
+                      value="2"
+                      id="flex2"
+                    />
+                    <label class="form-check-label" for="flex2">
+                      2 Star &amp; above</label
+                    >
+                  </div>
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      name="rate"
+                      type="checkbox"
+                      value="1"
+                      id="flex3"
+                    />
+                    <label class="form-check-label" for="flex3">
+                      1 Star &amp; above</label
+                    >
+                  </div>
+                  <h4>Gender</h4>
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      name="gender"
+                      type="radio"
+                      value="male"
+                      id="selectGender"
+                    />
+                    <label class="form-check-label" for="selectGender">
+                      Male</label
+                    >
+                  </div>
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      name="gender"
+                      type="radio"
+                      value="female"
+                      id="selectGender1"
+                    />
+                    <label class="form-check-label" for="selectGender1">
+                      Female</label
+                    >
+                  </div>
+
+                  <h4>Age</h4>
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      name="age"
+                      type="radio"
+                      value="16,25"
+                      id="selectage1"
+                    />
+                    <label class="form-check-label" for="selectage1">
+                      16yrs to 25yrs</label
+                    >
+                  </div>
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      name="age"
+                      type="radio"
+                      value="26,40"
+                      id="selectage2"
+                    />
+                    <label class="form-check-label" for="selectage2">
+                      26yrs to 40yrs</label
+                    >
+                  </div>
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      name="age"
+                      type="radio"
+                      value="41,55"
+                      id="selectage3"
+                    />
+                    <label class="form-check-label" for="selectage3">
+                      41yrs to 55yrs</label
+                    >
+                  </div>
+                  <div
+                    class="form-group d-flex justify-content-between align-items-center mt-3"
+                  >
+                    <button type="button" onclick="homeFilter()">Apply</button>
+                    <button type="button" onclick="rmvFilter()">Clear</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- inner_banner -->
+
+    <!-- buddy_list -->
+    <section id="buddy_list">
+      <div class="container">
+        <div class="row gy-3">
+          <%users.forEach((val,index)=>{%>
+          <div class="col-12">
+            <div class="cards">
+              <div class="card_img">
+                <%if(val.image!=""){%>
+                <img src="/images/<%=val.image%>" alt="" />
+                <%}else{%>
+                <img src="/unknown/person.png" alt="" />
+                <%}%>
+              </div>
+
+              <div class="card_body">
+                <h3><%=val.name%></h3>
+                <div class="star_read">
+                  <span id="stars<%=index %>"></span>
+                  <%if(val.averagerate?.rate){%>
+                  <h6 class="mb-0 ms-1">
+                    <%=parseFloat(val?.averagerate?.rate).toFixed(1)%>/5
+                  </h6>
+                  <%}else{%>
+                  <h6 class="mb-0 ms-1">0/5</h6>
+                  <%}%>
+                </div>
+                <div class="d-flex justify-content-start align-items-center">
+                  <a
+                    href="/message/?id=<%=val.id%>"
+                    class="text-white text-decoration-none me-2"
+                  >
+                    <img src="/webassets/images/chat_icon.png" alt="" />
+                    Chat
+                  </a>
+                  <a
+                    href="/getdirection/?id=<%=val.id%>"
+                    class="text-white text-decoration-none"
+                  >
+                    <i class="fa-solid fa-map-location-dot text-white me-2"></i>
+                    Get Direction
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <%})%> <%if(users.length==0){%>
+          <div class="container">
+            <p>No User Found</p>
+          </div>
+          <%}%>
+        </div>
+      </div>
+    </section>
+    <!-- buddy_list -->
+
+    <!-- Footer -->
+    <footer><%- include("common/footer")%></footer>
+    <!-- Footer -->
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script
+      src="https://kit.fontawesome.com/e61166a028.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="js/owl.carousel.js"></script>
+  </body>
+
+  <script>
+    "<% users.forEach(function(val,index){ %>";
+    document.getElementById("stars<%= index %>").innerHTML = getStars(
+      "<%=val?.averagerate?.rate%>"
+    );
+
+    function getStars(rating) {
+      // Round to nearest half
+      rating = Math.round(rating * 2) / 2;
+
+      let output = [];
+
+      // Append all the filled whole stars
+      for (var i = rating; i >= 1; i--)
+        output.push('<i class=" fa fa-star" aria-hidden="true"  ></i>&nbsp;');
+
+      // If there is a half a star, append it
+      if (i == 0.5)
+        output.push(
+          '<i  class=" fa fa-star-half-o" aria-hidden="true" style="color: #ffbe00 !important; font-size: 13px;" ></i>&nbsp;'
+        );
+
+      // Fill the empty stars
+      for (let i = 5 - rating; i >= 1; i--)
+        output.push(
+          '<i class="ratings_stars fa fa-star" aria-hidden="true" ></i>&nbsp;'
+        );
+
+      return output.join("");
+    }
+    ("<% }); %>  ");
+  </script>
+
+  <script>
+    function rmvFilter() {
+      let rate_ele = document.getElementsByName("rate");
+      let exp_ele = document.getElementsByName("flexRadioDefault");
+      let gender_ele = document.getElementsByName("gender");
+      let age_ele = document.getElementsByName("age");
+
+      
+      for (let i = 0; i < rate_ele.length; i++) {
+        if (rate_ele[i].checked) {
+          rate_ele[i].checked = false;
+        }
+      }
+
+      for (let l = 0; l < exp_ele.length; l++) {
+        if (exp_ele[l].checked) {
+          exp_ele[l].checked = false;
+        }
+      }
+      for (let j = 0; j < gender_ele.length; j++) {
+        if (gender_ele[j].checked) {
+          gender_ele[j].checked = false;
+        }
+      }
+
+      for (let k = 0; k < age_ele.length; k++) {
+        if (age_ele[k].checked) {
+          age_ele[k].checked = false;
+        }
+      }
+    }
+
+    function homeFilter() {
+      let search_loc = $("#searchLocation").val();
+      let sel_game = $("#selectedGame").val();
+
+      let rate_ele = document.getElementsByName("rate");
+      let exp_ele = document.getElementsByName("flexRadioDefault");
+      let gender_ele = document.getElementsByName("gender");
+      let age_ele = document.getElementsByName("age");
+
+      let rate = "";
+      let exp = "";
+      let gender = "";
+      let age = "";
+
+      for (let i = 0; i < rate_ele.length; i++) {
+        if (rate_ele[i].checked) {
+          rate = rate_ele[i].value;
+        }
+      }
+
+      for (let l = 0; l < exp_ele.length; l++) {
+        if (exp_ele[l].checked) {
+          exp = exp_ele[l].value;
+        }
+      }
+
+      for (let j = 0; j < gender_ele.length; j++) {
+        if (gender_ele[j].checked) {
+          gender = gender_ele[j].value;
+        }
+      }
+
+      for (let k = 0; k < age_ele.length; k++) {
+        if (age_ele[k].checked) {
+          age = age_ele[k].value;
+        }
+      }
+
+      let query_url = "";
+
+      if (search_loc != "") {
+        query_url = `/buddy/?loc=${search_loc}`;
+      }
+      if (sel_game != "") {
+        query_url = `/buddy/?loc=${search_loc}&game=${sel_game}`;
+      }
+      if (exp != "") {
+        query_url = `/buddy/?loc=${search_loc}&game=${sel_game}&exp=${exp}`;
+      }
+      if (rate != "") {
+        query_url = `/buddy/?loc=${search_loc}&game=${sel_game}&exp=${exp}&rate=${rate}`;
+      }
+      if (gender != "") {
+        query_url = `/buddy/?loc=${search_loc}&game=${sel_game}&exp=${exp}&rate=${rate}&gender=${gender}`;
+      }
+      if (age != "") {
+        query_url = `/buddy/?loc=${search_loc}&game=${sel_game}&exp=${exp}&rate=${rate}&gender=${gender}&age=${age}`;
+      }
+
+      if (
+        sel_game != "" ||
+        search_loc != "" ||
+        rate != "" ||
+        exp != "" ||
+        gender != "" ||
+        age != ""
+      ) {
+        window.location.href = query_url;
+      }
+    }
+  </script>
+</html>
+
+<style>
+  .ratings_stars {
+    color: rgba(112, 111, 111, 0.856) !important;
+  }
+</style>

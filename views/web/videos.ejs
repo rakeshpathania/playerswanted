@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("common/header")%>
+
+  <!-- script -->
+  <%- include("common/script")%>
+    <!-- script -->
+
+    <body>
+      <!-- Header -->
+      <%- include("common/Topheader")%>
+        <!-- Header -->
+        <!-- inner_banner -->
+        <section class="inner_benner">
+          <h2>Videos</h2>
+          <p>Home / Videos</p>
+          <div class="top_arr inner_benner1">
+            <a href="#"><img src="/webassets/images/top_arro.png" alt="" /></a>
+          </div>
+        </section>
+        <!-- inner_banner -->
+
+        <!-- VIDEOS -->
+        <section id="videos">
+          <div class="container">
+            <div class="row gy-4">
+              <%if(videos.length==0){%>
+                <div class="col-lg-4 col-md-6">
+
+
+                  <p>No Data Found</p>
+
+
+                </div>
+                <%}else{%>
+                  <%videos.forEach((val)=>{%>
+                    <div class="col-lg-4 col-md-6">
+                      <div class="card_img">
+                        <%if(val.type==1){%>
+                          <iframe src="<%=val.url%>" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen></iframe>
+                          <%}else{%>
+                            <video id="myVideo" controls src="<%=val.url%>" type="video/mp4">
+                              <%}%>
+                      </div>
+                    </div>
+                    <%})%>
+                      <%}%>
+            </div>
+          </div>
+        </section>
+        <!-- VIDEOS -->
+
+        <!-- Footer -->
+        <footer><%- include("common/footer")%></footer>
+        <!-- Footer -->
+    </body>
+
+    <!-- Package Modal -->
+
+    <div class="modal fade login_model packages h-100" id="pack" data-bs-backdrop="static" data-bs-keyboard="false"
+      tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog d-flex align-items-center" role="document">
+        <div class="modal-content bg-transparent border-0">
+          <div class="modal-body p-0">
+            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true"><i class="fa fa-close"></i></span>
+            </button>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="cards text-center py-5 bg-white">
+                  <h3>Footbal Package</h3>
+                  <span>$200</span>
+                  <p>
+                    Up to 1 Expots <br />
+                    2 Days Validity <br />
+                    5 Leasson <br />
+                    24/7 Support
+                  </p>
+                  <a href="./book_now.html" class="text-white text-decoration-none mx-auto mt-5">
+                    Buy Now
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+</html>

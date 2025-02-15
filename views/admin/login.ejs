@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+    <title>Login &mdash; Players Wanted</title>
+    <link rel="icon" type="image/x-icon" href="/logo/12.png"> 
+    <!-- General CSS Files -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+    <!-- CSS Libraries -->
+    <link rel="stylesheet" href="../node_modules/bootstrap-social/bootstrap-social.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/components.css">
+    <style>
+        body {
+            background-image: url(../logo/image_2022_12_01T06_58_42_270Z.png);
+            background-size: cover;
+            background-color: black;
+        }
+        button.btn.btn-primary.btn-lg.btn-block {
+    border-radius: 40px;
+    background-color: red;
+}
+.brn .card.card-primary {
+    border-top: 0;
+    background: no-repeat;
+}
+.brn .card-header {
+   
+    border: none;
+}
+.brn {
+    background: rgba(265,265,265,0.1);
+    padding: 20px;
+}
+.brn .login-brand {
+    margin: 0;
+}
+.brn .card .card-header h4 {
+    text-align: center;
+    float: none;
+    width: 100%;
+    font-size: 29px;
+    color: #fff;
+    
+}
+.brn .card .card-body {
+    padding-top: 20px;
+    padding-bottom: 0;
+}
+.form-group.ss {
+    margin: 0;
+}
+.brn .form-group {
+    margin-bottom: 15px;
+}
+.brn .form-group label {
+    font-weight: 600;
+    color: #fff;
+    font-size: 15px;
+    letter-spacing: .5px;
+}
+.brn .form-group input {
+    border-radius: 50px;
+}
+.brn button.btn.btn-primary.btn-lg.btn-block {
+    border-radius: 40px;
+    background-color: #1c6322; 
+
+    color: #000;
+    font-size: 18px;
+    border: none;
+    box-shadow: none;
+    margin: 30px 0 0;
+}
+
+
+        .error {
+            color: red !important;
+            font-size: 12px !important;
+        }
+    
+    </style>
+</head>
+<% if(msg !='' ) { %>
+    <div class="alert alert-success msg"
+        style="position: absolute; z-index: 9999; color:white; background-color: rgb(231, 90, 90); right: 10px; top: 10px;">
+        <span style="font-size: 16px;">
+            <%= msg %>
+        </span>
+    </div>
+    <% } %>
+        <body>
+            <div id="app">
+                <section class="section">
+                    <div class="container mt-5">
+                        <div class="row">
+                            <div
+                                class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
+                                <div class="brn">
+                                <div class="login-brand">
+                                    <img src="/logo/12.png" alt="logo" width="150" class="">
+                                </div>
+                                <div class="card card-primary">
+                                    <div class="card-header">
+                                        <h4>Login</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <form method="POST" action="/admin/in_login" class="needs-validation" novalidate="">
+                                            <div class="form-group">
+                                                <label for="email">Email</label>
+                                                <input id="email" type="email" placeholder="Enter Your Email" class="form-control" name="email"
+                                                    tabindex="1" required autofocus>
+                                                <div class="invalid-feedback">
+                                                    Please enter  your email
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="d-block">
+                                                    <label for="password" class="control-label">Password</label>
+                                                    <div class="float-right">
+                                                    </div>
+                                                </div>
+                                                <input id="password" type="password" class="form-control"
+                                                    name="password" tabindex="2"placeholder="Enter Your Password" required>
+                                                <div class="invalid-feedback">
+                                                    Please enter  your password
+                                                </div>
+                                            </div>
+                                            <div class="form-group ss">
+                                                <button type="submit" class="btn btn-primary btn-lg btn-block"
+                                                    tabindex="4">
+                                                    Login
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                            <!-- General JS Scripts -->
+                                            <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+                                                integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+                                                crossorigin="anonymous"></script>
+                                            <script
+                                                src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+                                                integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+                                                crossorigin="anonymous"></script>
+                                            <script
+                                                src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+                                                integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+                                                crossorigin="anonymous"></script>
+                                            <script
+                                                src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
+                                            <script
+                                                src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+                                            <script src="../assets/js/stisla.js"></script>
+
+                                            <!-- JS Libraies -->
+                                            <!-- Template JS File -->
+                                            <script src="../assets/js/scripts.js"></script>
+                                            <script src="../assets/js/custom.js"></script>
+                                            <!-- Page Specific JS File -->
+
+        </body>
+
+</html>
+<script>
+    setTimeout(function () {
+        $("div.msg").fadeOut();
+    }, 2000);
+</script>

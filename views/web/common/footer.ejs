@@ -1,0 +1,187 @@
+<div class="footerin">
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-4 col-md-6">
+        <div class="foot">
+          <div class="footerlogo">
+            <img src="/webassets/images/logo.png" width="150px" alt="" />
+          </div>
+          <p>
+            Lorem Ipsum is simply dummy text of the printing and <br />
+            typesetting industry. Lorem Ipsum has been the industry's <br />
+            standard dummy.
+          </p>
+          <div class="social_icon">
+            <ul>
+              <li>
+                <a href="">
+                  <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
+                  <span>Facebook</span>
+                </a>
+              </li>
+              <li>
+                <a href="">
+                  <i class="fa fa-twitter" aria-hidden="true"></i>
+                  <span>Twitter</span>
+                </a>
+              </li>
+              <li>
+                <a href="">
+                  <i class="fa fa-google-plus" aria-hidden="true"></i>
+                  <span>google +</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="adress">
+            <figure>
+              <img src="/webassets/images/location.png" alt="" />
+            </figure>
+            <span>9907 Salford road, east London Uk 2807</span>
+            <img src="/webassets/images/ls.png" class="ls" alt="" />
+          </div>
+          <div class="adress cl">
+            <figure>
+              <img src="/webassets/images/phone.png" alt="" />
+            </figure>
+            <span>(+92) 123 45 678 - 987 65 432</span>
+            <img src="/webassets/images/ls.png" class="ls" alt="" />
+          </div>
+          <div class="adress em">
+            <figure>
+              <img src="/webassets/images/email1.png" alt="" />
+            </figure>
+            <span>info@example.com</span>
+            <img src="/webassets/images/ls.png" class="ls" alt="" />
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-2 col-md-4 menu_list">
+        <h6>Sports Offered</h6>
+        <ul>
+          <%allgames.forEach((val)=>{%>
+          <li>
+            <a href="/Sportsofferedtwo/?id=<%=val?.id%>"><%=val.name%> </a>
+          </li>
+          <%})%>
+          <li>
+            <a href="/Sportsoffered">More...</a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-xl-2 col-md-4 menu_list">
+        <h6>Quick Links</h6>
+        <ul>
+          <li>
+            <a href="/about">About Us </a>
+          </li>
+          <li>
+            <a href="/terms_of_user">Terms of Use</a>
+          </li>
+          <li>
+            <a href="/privacy_policy">Privacy Policy</a>
+          </li>
+          <li>
+            <a href="/Sportsoffered">Sports Offered</a>
+          </li>
+          <li>
+            <a href="/contactinstructor">Contact Us</a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-xl-4 col-md-6 menu_list">
+        <h6>Contact Instructor</h6>
+        <form
+          method="post"
+          id="contactForm"
+          action="javascript:void(0);"
+          class="contact"
+        >
+          <div class="form-group">
+            <label for=""> Instructor </label>
+            <select
+              name="selectinstructor"
+              id="selectedInstructor"
+              class="form-select"
+            >
+              <option value="">Select Instructor</option>
+              <%instructors.forEach((val)=>{%>
+              <option value="<%= val.id %>"><%= val.name %></option>
+              <%})%>
+            </select>
+          </div>
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label for=""> Your Name* </label>
+                <input
+                  type="text"
+                  placeholder="Your Name*"
+                  name="yourname"
+                  class="form-control"
+                />
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label for=""> Your Email* </label>
+                <input
+                  type="text"
+                  placeholder="Your Email*"
+                  name="youremail"
+                  class="form-control"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label for=""> Phone Number* </label>
+                <input
+                  type="text"
+                  placeholder="Phone Number*"
+                  name="phonenumber"
+                  class="form-control"
+                />
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label for=""> Subject* </label>
+                <input
+                  type="text"
+                  placeholder="Subject*"
+                  name="subject"
+                  class="form-control"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for=""> Messages </label>
+            <textarea
+              name="message"
+              id="enterQuery"
+              cols="30"
+              rows="10"
+              placeholder="Type"
+            >
+            </textarea>
+          </div>
+          <div class="form-group">
+            <input type="submit" value="Submit" class="submit_button" />
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="copy">
+  <a href="#">
+    <img src="/webassets/images/botm_arrow.png" alt="" />
+  </a>
+  © 2023 Playerswanted LLC. All Rights Reserved.
+</div>

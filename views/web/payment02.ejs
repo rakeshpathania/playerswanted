@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="en">
+
+<%- include("common/header")%>
+
+<!-- script -->
+<%- include("common/script")%>
+<!-- script -->
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="top_header d-flex">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">Welcome to the Players Wanted Website</div>
+                    <div class="col-sm-6 text-right">
+                        <div class="right">
+                            <ul class="d-flex">
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        <img src="/webassets/images/top_porfile.png" alt="">
+                                        <h5 class="mx-2">
+                                            John Marker <br>
+                                            <span>Profile</span>
+                                        </h5>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#">Action</a></li>
+                                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                    </ul>
+                                </li>
+
+                                <li><a href=""><img src="/webassets/images/fb.png" alt=""></a></li>
+                                <li><a href=""><img src="/webassets/images/in.png" alt=""></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="navbar navbar-expand-xl bg-light">
+            <div class="container">
+                <a class="navbar-brand logo" href="#"> <img src="/webassets/images/logo.png" alt=""></a>
+               <button class="navbar-toggler shadow-0 border-0" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <i class="fa-solid fa-bars-staggered"></i>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+                    <ul class="nav nav-pills justify-content-start">
+                        <li class="nav-item"><a href="/web/home" class="nav-link"
+                                aria-current="page">Home</a>
+                        </li>
+                        <li class="nav-item"><a href="/web/about" class="nav-link">About Us</a></li>
+                        <li class="nav-item"><a href="/web/store" class="nav-link">Store </a></li>
+                        <li class="nav-item"><a href="/web/myaccount" class="nav-link">Player Profile</a></li>
+                        <li class="nav-item"><a href="/web/Sportsoffered" class="nav-link">Sports Offered</a></li>
+                        <li class="nav-item"><a href="/web/contactinstructor" class="nav-link">Contact Instructor</a>
+                        </li>
+                        <li class="nav-item"><a href="/web/videos" class="nav-link top_videos">Videos</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link"><img src="/webassets/images/search.png" alt=""></a></li>
+                    </ul>
+                    <div class="rite_email">
+                        <img src="/webassets/images/email.png" alt="" />
+                        <div class="right_email">
+                            <span>Email</span>
+                            <strong>david@playerswanted.net</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- Header -->
+    <!-- inner_banner -->
+    <section class="inner_benner">
+        <h2>Payment</h2>
+        <p>Home / Payment</p>
+        <div class="top_arr inner_benner1">
+            <a href="/web/payment02"><img src="/webassets/images/top_arro.png" alt="" /></a>
+        </div>
+
+    </section>
+    <!-- inner_banner -->
+    <!-- Payment  -->
+
+    <section id="payment" class="payments">
+        <div class="container">
+            <div class="row gy-3">
+                <div class="col-md-6">
+                    <div class="cards rounded saved_cards h-100 px-3 py-5">
+                        <h3>
+                            Saved Cards
+                        </h3>
+                        <form action="#">
+                            <ul class="cards py-4 px-2">
+                                <li>
+                                    <div class="row align-items-center w-100">
+                                        <div class="col-6 d-flex align-items-center">
+                                            <p> John Marker</p>
+                                        </div>
+                                        <div class="col-6 d-flex align-items-center justify-content-end">
+                                            <label class="radio-button m-0">
+                                                <input type="radio" class="radio-button__input" checked id="choice1-1"
+                                                    name="choice1">
+                                                <span class="radio-button__control"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <p>XXXX-XXXX-XXXX-4567</p>
+                                </li>
+                                <li>
+                                    <div class="row  w-100">
+                                        <div class="col-sm-6 col-12">
+                                            <p>
+                                                Expiry: Apr 2020
+                                            </p>
+                                        </div>
+                                        <div class="col-sm-6 col-12 d-flex align-items-center justify-content-end">
+                                            <a href="#" class="edit_btn me-3 " data-bs-toggle="modal"
+                                                data-bs-target="#edit">
+                                                <img src="/webassets/images/edit_btn.png" alt="">
+                                            </a>
+                                            <a href="#" class="delete_btn" data-bs-toggle="modal" data-bs-target="#del">
+                                                <img src="/webassets/images/delete_btn.png" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <ul class="cards py-4 px-2">
+                                <li>
+                                    <div class="row align-items-center w-100">
+                                        <div class="col-6 d-flex align-items-center">
+                                            <p> John Marker</p>
+                                        </div>
+                                        <div class="col-6 d-flex align-items-center justify-content-end">
+                                            <label class="radio-button m-0">
+                                                <input type="radio" class="radio-button__input" id="choice1-1"
+                                                    name="choice1">
+                                                <span class="radio-button__control"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <p>XXXX-XXXX-XXXX-4567</p>
+                                </li>
+                                <li>
+                                    <div class="row  w-100">
+                                        <div class="col-6">
+                                            <p>
+                                                Expiry: Apr 2020
+                                            </p>
+                                        </div>
+                                        <div class="col-6 d-flex align-items-center justify-content-end">
+                                            <a class="edit_btn me-3 " data-bs-toggle="modal" data-bs-target="#edit">
+                                                <img src="/webassets/images/edit_btn.png" alt="">
+                                            </a>
+                                            <a href="#" class="delete_btn" data-bs-toggle="modal" data-bs-target="#del">
+                                                <img src="/webassets/images/delete_btn.png" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+
+                            <a href="#" class="submit text-decoration-none text-white mt-3 mb-5">
+                                Continue
+                            </a>
+
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="cards rounded px-5 py-5">
+                        <div class="add_cart">
+                            <h3>
+                                Add Card
+                            </h3>
+                            <form action="">
+                                <div class="form-group">
+                                    <label for="">
+                                        Name On Card
+                                    </label>
+                                    <input type="text" placeholder="Enter Name" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="">
+                                        Card Number
+                                    </label>
+                                    <input type="text" placeholder="Enter Card Number" class="form-control">
+                                </div>
+
+                                <div class="row mt-3 gy-2">
+                                    <div class="col-9 d-flex justify-content-between align-items-center">
+                                        <label for="text" class="m-0"> Expiry </label>
+
+                                    </div>
+                                    <div class="col-3">
+                                        <label for="text" class="m-0 m"> CVV </label>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="input-group  ">
+                                            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                                aria-expanded="false">MM</button>
+                                            <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                                <li><a class="dropdown-item" href="#">Separated link</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="input-group ">
+                                            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                                aria-expanded="false">YY</button>
+                                            <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                                <li><a class="dropdown-item" href="#">Separated link</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-3 ms-auto">
+                                        <input type="text" placeholder="XXX" class="form-control">
+                                    </div>
+                                </div>
+
+                                <a href="#" class="submit text-decoration-none text-white mb-5 mt-3">
+                                    Add Card
+                                </a>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Payment  -->
+
+
+    <!-- Footer -->
+    <footer>
+        <%- include("common/footer")%>
+
+    </footer>
+    <!-- Footer -->
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/e61166a028.js" crossorigin="anonymous"></script>
+    <script src="js/owl.carousel.js"></script>
+
+</body>
+
+<!-- delete Modal -->
+
+<div class="modal fade login_model delete_modal" id="del" data-bs-backdrop="static" data-bs-keyboard="false"
+    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog d-flex align-items-center h-100" role="document">
+        <div class="modal-content bg-transparent mx-auto border-0">
+            <div class="modal-body p-0">
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fa fa-close"></i></span>
+                </button>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="cards text-center py-5 bg-white">
+                            <img src="/webassets/images/delete_img.png" alt="">
+                            <p>Are you sure you want to <br> remove this card?</p>
+                            <div class="del_btn d-flex justify-content-center">
+                                <a href="#" class="btn text-decoration-none text-white me-3"
+                                    data-bs-dismiss="modal">No</a>
+                                <a href="#" class="btn text-decoration-none text-white" data-bs-dismiss="modal">Yes</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- delete Modal -->
+<!-- edit Modal -->
+
+<div class="modal fade login_model payments" id="edit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog d-flex align-items-center h-100" role="document">
+        <div class="modal-content bg-transparent mx-auto border-0">
+            <div class="modal-body p-0">
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fa fa-close"></i></span>
+                </button>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="cards rounded-3 bg-white px-4 py-5">
+                            <div class="add_cart">
+                                <h3>
+                                    Add Card
+                                </h3>
+                                <form action="">
+                                    <div class="form-group p-0">
+                                        <label for="">
+                                            Name On Card
+                                        </label>
+                                        <input type="text" placeholder="Enter Name" class="form-control">
+                                    </div>
+                                    <div class="form-group p-0">
+                                        <label for="">
+                                            Your Name*
+                                        </label>
+                                        <input type="text" placeholder="Your Name*" class="form-control">
+                                    </div>
+
+                                    <div class="row mt-3 gy-2">
+                                        <div class="col-9 d-flex justify-content-between align-items-center">
+                                            <label for="text" class="m-0"> Expiry </label>
+
+                                        </div>
+                                        <div class="col-3">
+                                            <label for="text" class="m-0 m"> CVV </label>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="input-group  ">
+                                                <button class="btn dropdown-toggle" type="button"
+                                                    data-bs-toggle="dropdown" aria-expanded="false">MM</button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                                    <li><a class="dropdown-item" href="#">Separated link</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="input-group ">
+                                                <button class="btn dropdown-toggle" type="button"
+                                                    data-bs-toggle="dropdown" aria-expanded="false">YY</button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                                    <li><a class="dropdown-item" href="#">Separated link</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-3 ms-auto">
+                                            <input type="text" placeholder="XXX" class="form-control">
+                                        </div>
+                                    </div>
+
+                                    <a href="#" class="submit text-decoration-none text-white mt-3"
+                                        data-bs-toggle="modal" data-bs-target="#deno">
+                                        Update
+                                    </a>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- edit Modal -->
+<!-- done Modal -->
+<div class="modal fade login_model done_modal" id="deno" data-bs-backdrop="static" data-bs-keyboard="false"
+    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog d-flex align-items-center h-100" role="document">
+        <div class="modal-content bg-transparent mx-auto border-0">
+            <div class="modal-body p-0">
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fa fa-close"></i></span>
+                </button>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="cards text-center py-5 bg-white">
+                            <img src="/webassets/images/done.png" alt="">
+
+                            <h3 class="mt-4">Thanks!</h3>
+                            <p>Your $200 payment has been <br> processed successfully</p>
+                            <button class="btn text-decoration-none text-white mx-auto mb-4" data-bs-dismiss="modal" >
+                                OK
+                            </button>
+                            <a href="/rate" class="text-dark">Rate Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- done Modal -->
+
+
+</html>

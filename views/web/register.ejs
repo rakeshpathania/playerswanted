@@ -1,0 +1,633 @@
+<!doctype html>
+<html lang="en">
+
+<%- include("common/header")%>
+<!-- script -->
+<%- include("common/script")%>
+<!-- script -->
+
+<body>
+  <!-- Header -->   
+  <%- include("common/Topheader")%>
+  <!-- Header -->
+  <!-- inner_banner -->
+  <section class="inner_benner">
+    <h2>Register</h2>
+    <p>Home / Register</p>
+    <div class="top_arr inner_benner1">
+      <a href="/register"><img src="/webassets/images/top_arro.png" alt="" /></a>
+    </div>
+
+  </section>
+  <!-- inner_banner -->
+  <!-- Register -->
+  <section class="registeration_form" id="registeration_form">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-8 md-offset-2">
+          <form method="post" id="signupForm" action="javascript:void(0);" class="registeration">
+            <h2>Registration</h2>
+            <p>Enter Below</p>
+            <div class="form-group">
+              <div class="form-check p-0 selected-image">
+                <input class="form-check-input d-none" type="file" value="" name="userProfilePhoto" id="imgInp">
+                <label class="form-check-label upload_img" for="imgInp">
+                  <img style="display: none;" src="" id="blah" class="player_profile " alt="">
+                  <i id="camera01" class="fa-solid fa-camera fs-2 text-muted"></i>
+                </label>
+              </div>
+
+            </div>
+
+            <div class="form-group mb-3">
+              <select name="role" id="UserPlayer" class="form-select">
+                <option value="">Role</option>
+                <option value="1">Player</option>
+                <option value="2">Instructor</option>
+              </select>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group mb-3">
+                  <input type="text" class="form-control" name="name" placeholder=" Name*" onkeypress="return /^[A-Za-z\s]*$/i.test(event.key)">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group mb-3">
+                  <input type="text" class="form-control" name="email" id="registerEmail" placeholder=" Email*">
+                  <!-- <span id="emailExist">This email id is already exist</span> -->
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group mb-3">
+                  <input type="text" class="form-control" name="phone_number" id="registerPhone" placeholder=" Phone Number*" onkeypress="return /[0-9]/i.test(event.key)">
+
+                </div>
+              </div>
+              <div class="col-md-6">
+
+                <div class="form-group mb-3">
+                  <input type="text" class="form-control" name="username" placeholder="User Name*">
+
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group mb-3">
+                  <input type="text" class="form-control" name="password" id="password" placeholder="Enter Password">
+                  <i class="bi bi-eye-slash" id="togglePassword"></i>
+                </div>
+
+
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group mb-3">
+                  <input type="text" class="form-control" name='address' id="addressline" onfocusout="getLocation(value)" placeholder="Addredd Line*">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group mb-3">
+                  <input type="text" class="form-control" name='location' placeholder=" Location (Zip Code)*" onkeypress="return /[0-9]/i.test(event.key)">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group mb-3">
+                  <select name="gender" id="selected_gender" class="form-select">
+                    <option value=""> Gender*</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group mb-3">
+                  <input type="text" class="form-control" name="age" id="selected-age" placeholder="age" onkeypress="return /[0-9]/i.test(event.key)">
+                  <p>age limit is 16 year</p>
+                </div>
+
+              </div>
+            </div>
+            <div class="botm_option row add_sports abc">
+              <h4>Add Sports, Skills Level and Certification <a href="#" data-bs-toggle="modal" data-bs-target="#add_sport" class="add_btn">+
+                  Add</a></h4>
+              <div class="row ">
+                <div class="col">
+                  <small>Sport</small>
+                </div>
+                <div class="col">
+                  <small>Expert</small>
+                </div>
+                <div id="cert" style="display: none;" class="col">
+                  <small>Certification</small>
+                </div>
+                <div class="col-1">
+                  &nbsp;
+                </div>
+              </div>
+              <div class="row  add_skills">
+                <!-- password -->
+              </div>
+            </div>
+
+        </div>
+
+        <div class="col-md-12 submit" style="display: none" id="loadregister" >
+          <button  class="submit text-decoration-none text-white mt-3 mb-5" id="loaderbutton" type="button"  disabled>
+            <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+            Loading...
+          </button>
+        </div>
+
+
+        <div class="col-md-12 submit" style="display: block" id="submitregister">
+          <input type="submit" id="signup_data" value="Submit">
+          <p> <a href="" data-bs-toggle="modal" data-bs-target="#login"> Already a member? Sign In
+            </a></p>
+        </div>
+        </form>
+      </div>
+    </div>
+    </div>
+  </section> <!-- Register -->
+
+  <!-- Footer -->
+  <footer>
+    <%- include("common/footer")%>
+  </footer>
+  <!-- Footer -->
+  <script
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKVAuYaQwAAK5Qxo-C4yjWo4QE1fCUa3M=3.exp&sensor=false&callback=initMap&v=weekly"
+  defer
+></script>
+
+
+</body>
+
+<!-- Add Modal -->
+<div class="modal fade add_sport_modal" id="add_sport" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="text-end">
+          <button type="button" class="btn-close ms-auto" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal_heading">
+          Add Sport, Skills Level and Certification
+        </div>
+        <form method="post" class="row" id="updatesportform" action="javascript:void(0);">
+          <div class=" form-group mt-2">
+            <select name="selectedgame" id="selectedGame" class="form-select">
+              <option value="">Select Game</option>
+              <%allgames.forEach((val)=>{%>
+              <option value="<%=val.id%>" game_name="<%=val.name%>">
+                <%=val.name%>
+              </option>
+              <%})%>
+            </select>
+          </div>
+          <div class="form-group mt-2">
+            <select name="level" id="selectedLevel" class="form-select">
+              <option value="">Skill Level</option>
+              <option value="beginner">Beginner</option>
+              <option value="intermediate">Intermediate</option>
+              <option value="expert">Expert</option>
+
+            </select>
+          </div>
+          <div class="form-group">
+            <!-- <div class="form-check p-0">
+                                            <input class="form-check-input d-none" type="file" value="" id="flexCheckDefault">
+                                            <label class="form-check-label form-control" for="flexCheckDefault">
+                                                Upload Certificate
+                                                <img src="./icon/upload_icon.png" alt="">
+                                            </label>
+                                        </div> -->
+            <div id="uploadCert" style="display: none;" class="mb-3">
+              <label for="flexCheckDefault" class="form-label"> Upload
+                Certificate</label>
+              <input class="form-control h-auto text-dark" name="certificate" type="file" value="" id="flexCheckDefault">
+            </div>
+          </div>
+          <div class="form-group">
+            <button type="submit" class="form-control" id="SaveModal">
+              Save
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Add Modal -->
+
+
+<script>
+  imgInp.onchange = evt => {
+    const [file] = imgInp.files
+    console.log(file);
+    if (file) {
+      blah.src = URL.createObjectURL(file)
+      blah.style.display = 'block'
+      camera01.style.display = 'none'
+
+    }
+  }
+
+  $(document).ready(function() {
+    $("#UserPlayer").on("change", function() {
+      let selectedOption = $(this).val();
+      if (selectedOption == '2') {
+        cert.style.display = "block"
+        uploadCert.style.display = "block"
+      } else {
+        cert.style.display = "none"
+        uploadCert.style.display = "none"
+
+
+      }
+    });
+  });
+
+  //// TOGGLE EYE FOR REGISTER PAGE ////
+  const togglePassword = document.querySelector("#togglePassword");
+  const password = document.querySelector("#password");
+
+  togglePassword.addEventListener("click", function() {
+
+    const type = password.getAttribute("type") === "password" ? "text" : "password";
+
+    password.setAttribute("type", type);
+
+    this.classList.toggle("bi-eye");
+  });
+
+  //// TOGGLE EYE FOR LOGIN PAGE ////
+  const logintogglePassword = document.querySelector("#logintogglePassword");
+  const loginpassword = document.querySelector("#loginpassword");
+  logintogglePassword.addEventListener("click", function() {
+
+    const logintype = loginpassword.getAttribute("type") === "password" ? "text" : "password";
+
+
+    loginpassword.setAttribute("type", logintype);
+
+    this.classList.toggle("bi-eye");
+  });
+</script>
+
+</html>
+
+<script>
+  ///////////UPDATE SPORT////////////
+  jQuery(document).ready(function() {
+
+    let rules = {
+      selectedgame: {
+        required: true
+      },
+      level: {
+        required: true,
+      },
+      certificate: {
+        required: true
+      },
+
+    };
+    let messages = {
+      selectedgame: {
+        required: "Please enter your game",
+      },
+      level: {
+        required: "Please enter your level",
+      },
+      certificate: {
+        required: "Please upload your certificate",
+      }
+
+    }
+
+    jQuery("#updatesportform").validate({
+      rules,
+      messages,
+      submitHandler: function(form) {
+        updateSport();
+        $('#add_sport').on('hidden.bs.modal', function(e) {
+          $(this)
+            .find("input,select")
+            .val('')
+            .end()
+        })
+        $("#add_sport").modal('hide');
+      }
+    });
+  });
+
+  function updateSport() {
+
+    let game_id = $("#selectedGame").val();
+    let level = $("#selectedLevel").val();
+    let certificate = $('#flexCheckDefault')[0].files[0];
+
+    let formdata = new FormData();
+
+    formdata.append("game_id", game_id);
+    formdata.append("level", level);
+    formdata.append("certificate", certificate);
+
+    if (game_id != '' && level != '' && certificate != '') {
+      $.ajax({
+        url: "/users/updatesport",
+        type: "POST",
+        data: formdata,
+        dataType: 'json',
+        contentType: false,
+        enctype: 'multipart/form-data',
+        processData: false,
+        cache: false,
+        success: async function(dataResult) {
+          if (dataResult.status_code == 1) {
+            console.log(dataResult);
+          }
+          if (dataResult.status_code == 0) {
+            await toastMsg("error", dataResult.message)
+
+          }
+
+        }
+      });
+    }
+
+  }
+
+
+  let bulkData = [];
+  let latitude= "";
+  let longitude = "";
+
+  var getLocation = function (address) {
+      var geocoder = new google.maps.Geocoder();
+      geocoder.geocode({ address: address }, function (results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+           latitude = results[0].geometry.location.lat();
+           longitude = results[0].geometry.location.lng();
+          console.log(latitude, longitude);
+        }
+      });
+    };
+
+  /////////////////////USER REGISTER/////////////////////////
+  jQuery(document).ready(function() {
+
+
+    $('#SaveModal').on('click', function() {
+      let game_name = $("#selectedGame option:selected").text();
+      let game_id = $("#selectedGame").val();
+      let levels = $("#selectedLevel").val();
+      let certificate = $('#flexCheckDefault')[0].files[0]?.name;
+
+      let obj = {
+        game_name,
+        game_id,
+        levels,
+        certificate
+      }
+      let arr = [];
+      arr.push(obj);
+      bulkData.push(obj);
+
+      if (arr[0].game != "" && arr[0].level != "") {
+        arr.forEach((val) => {
+          $(".add_skills").append(`<div class='row mt-3'>`);
+          $(".add_skills").append(`<div class='col'><span>${val.game_name}</span></div>`);
+          $(".add_skills").append(`<div class='col'><span>${val.levels}</span></div>`);
+          if (val.certificate) {
+            $(".add_skills").append(`<div class='col'><span>${val.certificate}</span></div>`);
+
+          }
+          // $(".add_skills").append(`<div class="col-1 d-flex justify-content-center align-items-center text-danger"><i class="fa-solid fa-trash-can"></i></div>`);
+          $(".add_skills").append(`</div>`);
+        })
+
+        arr = [];
+
+      }
+      $('#add_sport').on('hidden.bs.modal', function(e) {
+        $(this)
+          .find("input,select")
+          .val('')
+          .end()
+      })
+
+    });
+
+    let value = $("#signupForm input[name='password']").val();
+
+    $.validator.addMethod("checklower", function(value) {
+      return /[a-z]/.test(value);
+    });
+    $.validator.addMethod("checkupper", function(value) {
+      return /[A-Z]/.test(value);
+    });
+    $.validator.addMethod("checkdigit", function(value) {
+      return /[0-9]/.test(value);
+    });
+    $.validator.addMethod("pwcheck", function(value) {
+      return /[#?!@$%^&*-]/.test(value);
+    });
+    $.validator.addMethod("onlynumber", function(value) {
+      return /^\d+$/.test(value);
+    });
+    $.validator.addMethod("onlyalphabet", function(value) {
+      return /[#?!@$%^&*-]/.test(value);
+    });
+
+    let rules = {
+      userProfilePhoto: 'required',
+      name: 'required',
+      phone_number: {
+        required: true,
+        maxlength: 10,
+        onlynumber: true,
+        remote: "/users/getuserPhone"
+      },
+      username: 'required',
+      role: 'required',
+      location: 'required',
+      address: 'required',
+      password: {
+        required: "Please enter your password",
+        minlength: 8,
+        checklower: true,
+        checkupper: true,
+        checkdigit: true,
+        pwcheck: true
+
+
+      },
+      gender: 'required',
+      age: {
+        required: true,
+        min: 16
+      },
+      email: {
+        required: true,
+        email: true,
+        maxlength: 255,
+        remote: "/users/getuserEmail"
+      },
+    };
+    let messages = {
+      userProfilePhoto: "Please upload your profile photo",
+      name: "Please enter your name",
+      phone_number: {
+        required: "Please enter your phone number",
+        maxlength: "Please enter valid phone number",
+        remote: "This phone number is already exist",
+        onlynumber: "Please enter valid phone number"
+      },
+      gender: "Please enter your gender",
+      role: "Please enter your role",
+      age: {
+        required: "Please enter your age",
+        min: "Please enter the age greater than age limit"
+      },
+      location: "Please enter your location",
+      address: "Please enter your address",
+      username: "Please enter your username",
+      password: {
+        required: "Please provide a password",
+        minlength: "Your password must be at least 8 characters long",
+        pwcheck: "Need atleast 1 special character",
+        checklower: "Need atleast 1 lowercase alphabet",
+        checkupper: "Need atleast 1 uppercase alphabet",
+        checkdigit: "Need atleast 1 digit"
+      },
+      email: {
+        required: "Please enter your email",
+        email: "Please enter valid email address",
+        maxlength: "please enter valid email address",
+        remote: "This mail is already exist"
+      }
+    }
+
+    $("#UserPlayer").on("change", function() {
+      let selectedOption = $(this).val();
+      if (selectedOption == '2') {
+        rules.game = "required",
+          rules.level = "required",
+          messages.game = "Please enter your game",
+          messages.level = "Please enter your skill level"
+      }
+    });
+
+    jQuery("#signupForm").validate({
+      rules,
+      messages,
+      submitHandler: function(form) {
+        userRegister();
+        form.submit();
+      }
+    });
+  });
+
+  function userRegister() {
+    let name = $("#signupForm input[name='name']").val();
+    let role = $("#UserPlayer").val();
+    let email = $("#signupForm input[name='email']").val();
+    let phone_number = $("#signupForm input[name='phone_number']").val();
+    let username = $("#signupForm input[name='username']").val();
+    let gender = $("#selected_gender").val()
+    let age = $("#signupForm input[name='age']").val();
+    let location = $("#signupForm input[name='location']").val();
+    let adress = $("#signupForm input[name='address']").val();
+    let password = $("#signupForm input[name='password']").val();
+    let image = $('#imgInp')[0].files[0];
+    let address = $("#signupForm input[name='address']").val();
+    
+
+    let formdata = new FormData();
+
+
+    formdata.append("name", name);
+    formdata.append("role", role);
+    formdata.append("email", email);
+    formdata.append("password", password);
+    formdata.append("phone_number", phone_number);
+    formdata.append("username", username);
+    formdata.append("gender", gender);
+    formdata.append("age", age);
+    formdata.append("location", location);
+    formdata.append("address", address);
+    formdata.append("image", image);
+    formdata.append("latitude", latitude);
+    formdata.append("longitude", longitude);
+    formdata.append("sportData", JSON.stringify(bulkData));
+
+
+    console.log(bulkData);
+
+
+    if (address.trim() != "" && name.trim() != '' && email.trim() != '' && password != '' && phone_number != '' && username != '' && gender != '' && age != '' && location != '') {
+      loadregister.style.display = "block";
+      submitregister.style.display = "none";
+      $.ajax({
+        url: "/users/usersignup",
+        type: "POST",
+        data: formdata,
+        dataType: 'json',
+        contentType: false,
+        enctype: 'multipart/form-data',
+        processData: false,
+        cache: false,
+        success: async function(dataResult) {
+
+          console.log(dataResult, '==========');
+          if (dataResult.status_code == 1) {
+            await toastMsg("success", dataResult.message)
+            loadregister.style.display = "none";
+            submitregister.style.display = "block";
+            window.location.href = "/home"
+
+          }
+          if (dataResult.status_code == 0) {
+            await toastMsg("error", dataResult.message)
+
+          }
+        }
+      });
+    }
+  }
+
+
+  function addBulkSport() {
+    console.log(bulkData);
+    $.ajax({
+      url: "/users/addbulksport",
+      type: "POST",
+      data: bulkData,
+      dataType: 'json',
+      contentType: false,
+      enctype: 'multipart/form-data',
+      processData: false,
+      cache: false,
+      success: async function(dataResult) {
+        if (dataResult.status_code == 1) {
+          console.log(dataResult);
+        }
+        if (dataResult.status_code == 0) {
+          await toastMsg("error", dataResult.message)
+
+        }
+
+      }
+    });
+  }
+
+
+  ////////////////////////////////////// check email ////////////////////////////////////////////
+</script>

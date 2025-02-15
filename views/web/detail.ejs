@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<%- include("common/header")%>
+    <!-- script -->
+    <%- include("common/script")%>
+        <!-- script -->
+
+
+        <body>
+            <!-- Header -->
+            <%- include("common/Topheader")%>
+
+                <!-- Header -->
+                <!-- detail_banner -->
+                <!-- <section class="detail_banner py-0">
+        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+            <div class="carousel-indicators justify-content-start">
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                    aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="./images/detail_banner.png" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="./images/detail_banner.png" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="./images/detail_banner.png" class="d-block w-100" alt="...">
+                </div>
+            </div>
+        </div>
+
+    </section> -->
+                <!-- detail_banner -->
+
+                <!-- Offer detail -->
+                <section class="offer_detail border-bottom pt-3">
+                    <div class="container">
+                        <!-- <h2 class="offer_name">
+                Basketball
+            </h2>
+            <p class="sport_info">
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy
+                text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and
+                typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+                Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of
+                the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+            </p> -->
+                        <div class="row mt-5 border-bottom pb-5">
+                            <div class="col-md-6 d-flex justify-content-start align-items-center">
+                                <%if(user?.image){%>
+                                    <img src="/images/<%=user?.image%>" class="sport_teacher" alt="">
+                                    <%}else{%>
+                                        <img src="/unknown/person.png" class="sport_teacher" alt="">
+
+                                        <%}%>
+                                            <div class="teacher_name">
+                                                <h3>
+                                                    <%=user?.name%>
+                                                </h3>
+                                                <!-- <h4><i class="fa-solid fa-location-dot"></i> New York</h4> -->
+                                            </div>
+                            </div>
+                            <div class="col-md-6 text-md-end">
+                                <!-- <h5 class="subscription_fee">
+                                    Subscription Fee:
+                                    <span>$300</span>
+                                    <small>/month</small>
+                                </h5> -->
+                                <a href="/booknow/?user_id=<%=user?.id%>&game_id=<%=game_id%>" class="book_now text-white text-decoration-none ms-md-auto">
+                                    Book Now
+                                </a>
+                            </div>
+                        </div>
+                        <div class="lessons_detail pt-5">
+                            <div class="row gy-3">
+                                <div class="col-md-12 pb-4">
+                                    <h2 class="lessons_heading">
+                                        Lessons
+                                    </h2>
+                                </div>
+                                <%lesson?.forEach((val)=>{%>
+                                <div class="col-md-3">
+                                    <div class="cards text-center px-3 py-2 mb-2 videos_les ">
+                                        <%if(val.type == 1){%>
+                                            <iframe width="" height="" src="<%=val.url%>" title="12K HDR 120fps Dolby Vision with Calming Music (Color Life)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                            <%}else{%>
+                                            <video id="myVideo" width="" height="" controls src="<%=val   .url%>" type="video/mp4">
+                                              <%}%>
+                                        <h3>
+                                           <%=val.title%>
+                                        </h3>
+                                        <p>
+                                            <%=val.description%>
+                                        </p>
+                                    </div>
+                                </div>
+                                <%})%>
+                                <%if(lesson.length == 0 && not_subscribed == false){%>
+                                <div class="col">
+                                    There Is No Any Lesson Posted By Intructor
+                                </div>
+                               <%}else{%>
+                                <div class="col">
+                                    You Have To Buy The Package To Get Access To the lessons
+                                </div>
+                                <%}%>
+                            </div>
+                        </div>
+
+
+
+                </section>
+                <!-- Offer detail -->
+
+                <!-- Footer -->
+                <footer>
+                    <%- include("common/footer")%>
+                </footer>
+                <!-- Footer -->
+
+               
+        </body>
+
+</html>

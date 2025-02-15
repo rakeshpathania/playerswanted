@@ -1,0 +1,1779 @@
+<!doctype html>
+<html lang="en">
+
+<%- include("common/header")%>
+
+<!-- script -->
+<%- include("common/script")%>
+<!-- script -->
+
+<body>
+  <!-- Header -->
+  <%- include("common/Topheader")%>
+  <!-- Header -->
+  <!-- inner_banner -->
+  <section class="inner_benner">
+    <h2>My Account</h2>
+    <p>Home / My Account</p>
+    <div class="top_arr inner_benner1">
+      <a href="#my_acc"><img src="/webassets/images/top_arro.png" alt="" /></a>
+    </div>
+
+  </section>
+  <!-- inner_banner -->
+
+  <!-- my account -->
+  <section class="my_account " id="my_acc">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3  col-sm-12">
+          <div class="tab_shadow tab_menu rounded-4">
+            <div class="user_image w-100 text-center">
+              <%if(user.image!=""){%>
+              <img src="/images/<%=user.image %>" width="197.16" height="197.16" class="rounded-circle mb-4" alt="">
+
+              <%} else{%>
+              <img src="/unknown/person.png" width="197.16" height="197.16" class="rounded-circle mb-4" alt="">
+
+              <%}%>
+                                                    <i style="font-size:24px; cursor: pointer;" data-bs-toggle="modal"
+                                                        data-bs-target="#editphoto"
+                                                        class="fa-solid fa-pen-to-square"></i>
+                                                    <h2>
+                                                        <%=user.name%>
+              </h2>
+              <p>
+                <%=user.email%>
+              </p>
+            </div>
+
+            <div class="nav d-md-flex flex-wrap justify-content-lg-start justify-content-center d-block text-start nav-pills " id="v-pills-tab" role="tablist" aria-orientation="vertical">
+              <a href="#" class="nav-link  active" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="true"> <span class="tab_icon "><i class="fa-solid fa-user text-white"></i> </span>
+                Instructor Profile</a>
+              <a href="#" class="nav-link" id="v-pills-edit_profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-edit_profile" role="tab" aria-controls="v-pills-edit_profile" aria-selected="false"> <span class="tab_icon"> <img class="" src="/webassets/icon/user_icon02.png" alt=""> </span>Edit Profile</a>
+              <a href="#" class="nav-link" id="v-pills-change_password-tab" data-bs-toggle="pill" data-bs-target="#v-pills-change_password" role="tab" aria-controls="v-pills-change_password" aria-selected="false"> <span class="tab_icon">
+                  <img class="" src="/webassets/icon/flower_icon.png" alt="">
+                </span>Sports</a>
+              <a href="#" class="nav-link" id="v-pills-delivery_addresses-tab" data-bs-toggle="pill" data-bs-target="#v-pills-delivery_addresses" role="tab" aria-controls="v-pills-delivery_addresses" aria-selected="false">
+                <span class="tab_icon"> <img class="" src="/webassets/icon/pack_icon.png" alt="">
+                </span>Lessons</a>
+              <a href="#" class="nav-link" id="v-pills-payment_methods-tab" data-bs-toggle="pill" data-bs-target="#v-pills-payment_methods" role="tab" aria-controls="v-pills-payment_methods" aria-selected="false"> <span class="tab_icon">
+                  <img class="" src="/webassets/icon/lock_icon.png" alt=""> </span> Change
+                Password</a>
+              <a class="nav-link" id="v-pills-switch-tab" data-bs-toggle="modal" data-bs-target="#switchProfile">
+                <span class="tab_icon">
+                  <img class="" src="./icon/logout_icon.png" alt="" />
+                </span>
+                Become Player</a>
+              <!-- <a class="nav-link" id="v-pills-logout-tab" data-bs-toggle="modal" data-bs-target="#logout">
+                                <span class="tab_icon"> <img class="" src="/webassets/icon/logout_icon.png" alt="">
+                                </span> Logout</a> -->
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-9 col-sm-12 mt-lg-0 mt-4 ">
+          <div class="tab-content tab_shadow rounded-4 h-100" id="v-pills-tabContent">
+
+            <!-- Profile Tab -->
+
+            <div class="tab-pane fade show active" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab" tabindex="0">
+
+              <div class="row">
+                <div class="col-md-5 col-sm-12">
+                  <h2 class="mb-4">Instructor Profile</h2>
+                  <h4>Name</h4>
+                  <p>
+                    <%=user.name%>
+                  </p>
+                  <h4>Email</h4>
+                  <p>
+                    <%=user.email%>
+                  </p>
+                  <h4>Phone Number</h4>
+                  <p>
+                    <%=user.phone_number%>
+                  </p>
+                  <h4>User Name</h4>
+                  <p>
+                    <%=user.username%>
+                  </p>
+                  <h4>Gender</h4>
+                  <p>
+                    <%=user.gender%>
+                  </p>
+                  <h4>Age</h4>
+                  <p>
+                    <%=user.age%>years
+                  </p>
+
+
+                </div>
+                <div class="col-md-7 col-sm-12">
+                  <img src="/webassets/images/user_profile_sideimg01.png" class="w-100 h-100" alt="">
+                </div>
+                <div class="col-md-7 col-12 add_sports">
+                  <h4>Location</h4>
+                  <p>
+                    <%=user.location%>
+                  </p>
+                  <h4>Expertise</h4>
+                  <div class="row">
+                    <div class="col-4">
+                      <small>Sport</small>
+                    </div>
+                    <div class="col-4">
+                      <small>Expert</small>
+                    </div>
+                    <div class="col-4">
+                      <small>Certification</small>
+                    </div>
+                  </div>
+                  <%games.forEach((val)=>{%>
+                  <div class="row">
+                    <div class="col-4">
+                      <span>
+                        <%=val.game?.name%>
+                      </span>
+                    </div>
+                    <div class="col-4">
+                      <span>
+                        <%=val?.levels%>
+                      </span>
+                    </div>
+                    <%if(val.certificate !="" ){%>
+                    <div class="col-4">
+                      <span data-bs-toggle="modal" onclick='imgSrc("<%=val.certificate%>")' data-bs-target="#certificate_modal">
+                        <%=val?.certificate%> <img width="18px" src="/webassets/icon/eye_icon.png" alt="">
+                      </span>
+                    </div>
+                    <%}%>
+
+                                                    </div>
+                                                    <%})%>
+
+                  </div>
+                </div>
+              </div>
+
+              <!-- Edit Profile tab -->
+              <div class="tab-pane fade" id="v-pills-edit_profile" role="tabpanel" aria-labelledby="v-pills-edit_profile-tab" tabindex="0">
+                <div class="row">
+                  <div class="col-md-8 col-sm-12">
+                    <h2 class="mb-4">Instructor Edit Profile</h2>
+
+                    <form method="post" class="row" id="updateProfileForm" action="javascript:void(0);">
+
+
+                      <div class="form-group mt-2 col-md-6 col-12">
+                        <input type="text" name="name" id="text" value="<%=user.name %>" class="form-control" onkeypress="return /^[A-Za-z\s]*$/i.test(event.key)">
+                      </div>
+                      <div class="form-group mt-2 col-md-6 col-12">
+                        <input type="text" name="email" id="text" value="<%=user.email %>" class="form-control">
+                      </div>
+                      <div class="form-group mt-2 col-md-6 col-12 ">
+                        <div class="phone">
+                          <!-- <select name="" id="" class="form-select">
+                                                                <option value="">+1</option>
+                                                                <option value="">+23</option>
+                                                                <option value="">+56</option>
+                                                            </select> -->
+                          <input type="text" name="phone_number" class="form-control" value="<%=user.phone_number %>" placeholder="<%=user.phone_number %>">
+                        </div>
+                      </div>
+                      <div class="form-group mt-2 col-md-6 col-12">
+                        <input type="text" name="username" id="text" value="<%=user.username %>" class="form-control">
+                      </div>
+                      <div class="form-group mt-2 col-md-6 col-12">
+                        <select name="selected_gender" id="selectedGender" class="form-select">
+                          <option value=""> Gender*</option>
+                          <option value="" selected>Male</option>
+                          <option value="">Female</option>
+                        </select>
+                      </div>
+                      <div class="form-group mt-2 col-md-6 col-12">
+                        <input type="text" name="age" id="text" value="<%=user.age %>" class="form-control" onkeypress="return /[0-9]/i.test(event.key)">
+                      </div>
+                      <div class="col-12 text-end">
+                        <small>Age limit is 16 yrs old</small>
+                      </div>
+                      <div class="form-group mt-2 col-12">
+                        <input type="text" name="location" id="text" value="<%=user.location %>" class="form-control">
+                      </div>
+
+                      <div class="col-12 add_sports mt-3">
+                        <h4>Add Sports, Skills Level and Certification <a href="#" data-bs-toggle="modal" data-bs-target="#add_sport" class="add_btn">+
+                            Add</a></h4>
+                        <div class="row">
+                          <div class="col">
+                            <small>Sport</small>
+                          </div>
+                          <div class="col">
+                            <small>Expert</small>
+                          </div>
+                          <div class="col">
+                            <small>Certification</small>
+                          </div>
+                          <div class="col-1">
+                            &nbsp;
+                          </div>
+                        </div>
+                        <%games.forEach((val)=>{%>
+                        <div class="row">
+                          <div class="col-4">
+                            <span>
+                              <%=val.game?.name%>
+                            </span>
+                          </div>
+                          <div class="col-4">
+                            <span>
+                              <%=val?.levels%>
+                            </span>
+                          </div>
+                          <%if(val.certificate !="" ){%>
+                          <div class="col-4">
+                            <span data-bs-toggle="modal" onclick='imgSrc("<%=val.certificate%>")' data-bs-target="#certificate_modal">
+                              <%=val?.certificate%> <img width="18px" src="/webassets/icon/eye_icon.png" alt="">
+                            </span>
+                          </div>
+                          <%}%>
+
+                                                            </div>
+                                                            <%})%>
+                          <div class="row add_skills mt-2 mb-4">
+                            <!-- <div class="col">
+                                                                <span>Tennis</span>
+                                                            </div>
+                                                            <div class="col">
+                                                                <span>Pro</span>
+                                                            </div>
+                                                            <div class="col">
+                                                                <span>Certificate 1 <img
+                                                                        src="/webassets/icon/eye_icon.png"
+                                                                        alt=""></span>
+                                                            </div>
+                                                            <div
+                                                                class="col-1 d-flex align-items-center justify-content-center">
+                                                                <i class="fa-solid fa-pen"></i>
+                                                            </div> -->
+                          </div>
+                          <button type="submit" id="updateData" class="tab_btn mt-3">Update</button>
+                        </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Player Profile tab -->
+              <div class="tab-pane fade  sport_d_edit" id="v-pills-change_password" role="tabpanel" aria-labelledby="v-pills-change_password-tab" tabindex="0">
+                <div class="row gy-3">
+                  <div class="col-12">
+                    <h2 class="mb-4">Sports <a href="#" class="add_btn" data-bs-toggle="modal" data-bs-target="#add_sport_two">Add</a>
+                    </h2>
+                  </div>
+                  <%games.forEach((val)=>{%>
+                  <div class="col-lg-4 col-md-6">
+                    <div class="col_in">
+                      <div class="col_img">
+                        <img src="/games/<%=val.game?.image%>" alt="">
+                      </div>
+                      <div class="col_content">
+                        <div class="d-flex align-items-center justify-content-between">
+                          <h1>
+                            <%=val.game?.name%>
+                          </h1>
+                          <div class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                              <i class="fa-solid fa-ellipsis-vertical"></i>
+                            </a>
+                            <ul class="dropdown-menu">
+                              <li>
+                                <a class="dropdown-item" onclick='editsportpkg("<%=val?.game?.name%>", "<%=val?.game?.id%>", "<%=val.package?.per_month%>", "<%=val.package?.per_halfyear%>", "<%=val.package?.per_year%>","<%=val.package?.experience%>");' href="#" data-bs-toggle="modal" data-bs-target="#edit_sport_two">Edit
+
+                                </a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item" href="#" id="dltsport" onclick="dltsportpkg('<%=val?.id %>');">Delete</a>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                        <%if(val?.package){%>
+                        <span>
+                          $<%=val.package?.per_month%>/month
+                        </span>
+                        <span>
+                          $<%=val.package?.per_halfyear%>/6months
+                        </span>
+                        <span>
+                          $<%=val.package?.per_year%>/year
+                        </span>
+                        <%}%>
+                                                                    <p>Experience: <small>
+                                                                            <%=val?.levels%>
+                        </small></p>
+                        <!-- <p>Specialization: <small>
+                                                                    <%=val.game?.name%>
+                                                                </small></p> -->
+                      </div>
+                    </div>
+                  </div>
+                  <%})%>
+                  <%if(games.length == 0){%>
+                  <div class="col-lg-4 col-md-6">
+                    There Is No Any Sport Added By You
+                  </div>
+                  <%}%>
+
+
+                </div>
+              </div>
+
+              <!-- Packages -->
+              <div class="tab-pane fade lessons" id="v-pills-delivery_addresses" role="tabpanel" aria-labelledby="v-pills-delivery_addresses-tab" tabindex="0">
+                <div class="row">
+                  <div class="col-12">
+                    <%if(instSub){%>
+                  <h2 class="mb-4">Lessons <a href="#" class="add_btn" data-bs-toggle="modal" data-bs-target="#add_lesson">Add</a></h2>
+                  <%}else if(!stripe_detail){%>
+                  <h2 class="mb-4">Lessons <a href="#" class="add_btn" data-bs-toggle="modal" data-bs-target="#edit">Add</a></h2>
+                  <%}else{%>
+                  <h2 class="mb-4">Lessons <a href="#" class="add_btn" data-bs-toggle="modal" data-bs-target="#add_sub">Add</a></h2>
+                  <%}%>
+                    
+                  </div>
+                  <%lessons.forEach((val)=>{%>
+                  <div class="col-lg-4 col-md-6">
+                    <div id="moreDiv" class="col_in p-3">
+                      <div class="col_img">
+                        <img src="/games/<%=val.game?.image%>" alt="">
+                      </div>
+                      <div class="col_content p-0 pt-3">
+                        <div class="d-flex align-items-center justify-content-between">
+                          <h1>
+                            <%=val.title%>
+                          </h1>
+                          <div class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                              <i class="fa-solid fa-ellipsis-vertical"></i>
+                            </a>
+                            <ul class="dropdown-menu">
+                              <!-- <li><a class="dropdown-item" href="#"
+                                                                                data-bs-toggle="modal"
+                                                                                data-bs-target="#edit_lesson">Edit</a>
+                                                                        </li> -->
+                              <li><a class="dropdown-item" href="#" onclick="dltLesson('<%=val.id%>')">Delete</a>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                        <p>
+                          <%=val.description%>
+                        </p>
+                        <a id="moreLesson" onclick="readMore()" style="cursor: pointer;" class="text-decoration-none more_btn">More...</a>
+                      </div>
+                    </div>
+                  </div>
+                  <%})%>
+                  <%if(lessons.length == 0){%>
+                  <div class="col-lg-4 col-md-6">
+                    <p>No Any Lesson Posted By You</p>
+                  </div>
+                  <%}%>
+                </div>
+              </div>
+              <!-- Change Password tab -->
+              <div class="tab-pane fade change_pin" id="v-pills-payment_methods" role="tabpanel" aria-labelledby="v-pills-payment_methods-tab" tabindex="0">
+
+                <div class="row pay_method">
+                  <div class="col-md-12">
+                    <h2>Change Password</h2>
+                  </div>
+                  <div class="col-lg-5 col-md-6">
+                    <form method="post" action="javascript:void(0);" id="passwordUpdateForm">
+
+                      <div class="form-group">
+                        <label for="text">Old Password</label>
+                        <input type="password" name="oldpassword" id="oldPass" placeholder="Abc@123" class="form-control" />
+                        <i class="bi bi-eye-slash" id="oldPassword"></i>
+
+                      </div>
+
+                      <div class="form-group">
+
+                        <label for="text">New Password</label>
+                        <input type="password" id="newPass" name="newpassword" placeholder="Abc@123" class="form-control" />
+                        <i class="bi bi-eye-slash" id="newPassword"></i>
+                      </div>
+                      <div class="form-group">
+                        <label for="text">Confirm New Password</label>
+                        <input type="password" id="confirmPass" name="confirmpassword" placeholder="Abc@123" class="form-control" />
+                        <i class="bi bi-eye-slash" id="confirmPassword"></i>
+                      </div>
+                      <div class="form-group">
+                        <button type="submit" id="updatepass" class="tab_btn mt-3">
+                          Update
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                  <div class="col-lg-7 col-md-6 overflow-hidden">
+                    <img src="/webassets/images/./change_password.png" alt="">
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <!-- Logout tab
+                        <div class="tab-pane fade" id="v-pills-logout" role="tabpanel"
+                            aria-labelledby="v-pills-logout-tab" tabindex="0">...</div> -->
+      </div>
+    </div>
+    </div>
+    </div>
+  </section>
+
+    <!-- switch profile modal -->
+    <div class="modal fade login_model delete_modal" id="switchProfile" data-bs-backdrop="static" data-bs-keyboard="false"
+    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog d-flex align-items-center h-100" role="document">
+      <div class="modal-content bg-transparent border-0">
+        <div class="modal-body p-0">
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true"><i class="fa fa-close"></i></span>
+          </button>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="cards text-center py-5 bg-white">
+                <img src="/webassets/images/logout.png" alt="">
+                <h4>Switch To Instructor</h4>
+                <p>Are you sure you want to switch your profile as Player.</p>
+                <div class="del_btn d-flex justify-content-center">
+                  <a href="#" class="btn text-decoration-none text-white me-3" data-bs-dismiss="modal">No</a>
+                  <a href="./index.html" id="confirmSwitch" class="btn text-decoration-none text-white">Yes</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!-- my account -->
+
+
+  <!-- Footer -->
+  <footer>
+    <%- include("common/footer")%>
+
+
+                  <!-- certificate_modal img -->
+                  <!-- Modal -->
+                  <div class="modal fade login_model" id="certificate_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content bg-transparent border-0">
+                        <div class="modal-body p-0">
+                          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true"><i class="fa fa-close"></i></span>
+                          </button>
+                          <div class="row">
+                            <div class="col-md-12">
+                              <div class="cards text-center bg-white">
+                                <img id="certImage" src="certificates/69c63f6e-73c5-4e77-8105-c9de79c0d148.png" class="w-100" alt="">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <!-- delete Modal -->
+
+                  <div class="modal fade login_model delete_modal" id="del" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog d-flex align-items-center h-100" role="document">
+                      <div class="modal-content bg-transparent mx-auto border-0">
+                        <div class="modal-body p-0">
+                          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true"><i class="fa fa-close"></i></span>
+                          </button>
+                          <div class="row">
+                            <div class="col-md-12">
+                              <div class="cards text-center py-5 bg-white">
+                                <img src=".
+                                        /webassets/images/delete_img.png" alt="">
+                                <p>Are you sure you want to <br> remove this card?</p>
+                                <div class="del_btn d-flex justify-content-center">
+                                  <a href="#" class="btn text-decoration-none text-white me-3" data-bs-dismiss="modal">No</a>
+                                  <a href="#" id="delete_card_url" class="btn text-decoration-none text-white">Yes</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                  <!-- delete Modal -->
+                  <!-- edit Modal -->
+
+                  <div class="modal fade login_model payments" id="edit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog d-flex align-items-center h-100" role="document">
+                      <div class="modal-content bg-transparent mx-auto border-0">
+                        <div class="modal-body p-0">
+                          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true"><i class="fa fa-close"></i></span>
+                          </button>
+                          <div class="row">
+                            <div class="col-md-12">
+                              <div class="cards rounded-3 bg-white px-4 py-5">
+                                <div class="add_cart">
+                                  <h3>
+                                    Connect Stripe Account
+                                  </h3>
+
+                                  <p><a href="<%=connectUri%>">Click Here</a> to connect your stripe account</p>
+
+                                </div>
+
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+                <!-- edit Modal -->
+
+
+                <!-- done Modal -->
+                <!-- <div class="modal fade login_model done_modal" id="done" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog d-flex align-items-center h-100" role="document">
+        <div class="modal-content bg-transparent mx-auto border-0">
+          <div class="modal-body p-0">
+            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true"><i class="fa fa-close"></i></span>
+            </button>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="cards text-center py-5 bg-white">
+                  <img src="/webassets/images/done.png" alt="">
+
+                  <h3 class="mt-4">Thanks!</h3>
+                  <p>Your Bank Account has been <br> Add successfully</p>
+                  <button class="btn text-decoration-none text-white mx-auto mb-4" data-bs-dismiss="modal">
+                    OK
+                  </button>
+             
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div> -->
+
+                <!-- done Modal -->
+
+                <!---EDIT PHOTO MODAL-->
+                <%- include("common/photoupload")%>
+
+                <!---EDIT PHOTO MODAL-->
+
+                <!-- Add Modal -->
+                <div class="modal fade add_sport_modal" id="add_sport" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-sm modal-dialog-centered">
+                    <div class="modal-content">
+                      <div class="modal-body">
+                        <div class="text-end">
+                          <button type="button" class="btn-close ms-auto" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal_heading">
+                          Add Sport, Skills Level and Certification
+                        </div>
+                        <form method="post" class="" id="updatesportform" action="javascript:void(0);">
+                          <div class=" form-group mt-2">
+                            <select name="selectedgame" id="selectedGame" class="form-select">
+                              <option value="">Select Game</option>
+                              <%game.forEach((val)=>{%>
+                              <option value="<%=val.id%>" game_name="<%=val.name%>">
+                                <%=val.name%>
+                              </option>
+                              <%})%>
+                            </select>
+                          </div>
+                          <div class="form-group mt-2">
+                            <select name="level" id="selectedLevel" class="form-select">
+                              <option value="">Skill Level</option>
+                              <option value="beginner">Beginner</option>
+                              <option value="intermediate">Intermediate</option>
+                              <option value="expert">Expert</option>
+                            </select>
+                          </div>
+                          <div class="form-group">
+
+                            <div class="mb-3">
+                              <label for="flexCheckDefault" class="form-label"> Upload
+                                Certificate</label>
+                              <input class="form-control h-auto text-dark" type="file" value="" id="flexCheckDefault">
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <button type="submit" class="form-control" id="SaveModal">
+                              Save
+                            </button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Add Modal -->
+                <!-- Add sport Modal -->
+                <div class="modal fade add_sport_modal" id="add_sport_two" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-sm modal-dialog-centered">
+                    <div class="modal-content">
+                      <div class="modal-body">
+                        <div class="text-end">
+                          <button type="button" class="btn-close ms-auto" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal_heading">
+                          Add SportsClic
+                        </div>
+                        <form method="post" class="row" id="addSportForm" action="javascript:void(0);">
+                          <div class="form-group mt-2">
+                            <select name="selectedgame" id="selectedGamePack" class="form-select">
+                              <option value="">Select Game</option>
+                              <%game.forEach((val)=>{%>
+                              <option value="<%=val.id%>" game_name="<%=val.name%>">
+                                <%=val.name%>
+                              </option>
+                              <%})%>
+                            </select>
+                          </div>
+                          <div class="form-group mt-2">
+                            <input type="text" class="form-control" name="permonth" id="perMonth" value="" placeholder="Enter Fee Charge Per Month">
+                          </div>
+                          <div class="form-group mt-2">
+                            <input type="text" class="form-control" name="perhalfyear" id="perHalfYear" value="" placeholder="Enter Fee Charge For 6months">
+                          </div>
+                          <div class="form-group mt-2">
+                            <input type="text" class="form-control" name="peryear" id="perYear" value="" placeholder="Enter Fee Charge Per Year">
+                          </div>
+                          <!-- <div class="form-group mt-2">
+                                                <input type="text" class="form-control" name="experience"
+                                                    id="Experience" value="" placeholder="Enter Your Experience">
+
+                                            </div> -->
+                          <div class="form-group mt-2">
+                            <select name="experience" id="Experience" class="form-select">
+                              <option value="">Select Specialization</option>
+                              <option value="beginner">Beginner</option>
+                              <option value="intermediate">Intermediate</option>
+                              <option value="expert">Expert</option>
+                            </select>
+                          </div>
+                          <div class="form-group mt-2">
+                            <button type="submit" class="form-control">
+                              Save
+                            </button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Add sport Modal -->
+
+                <!-- Edit sport Modal -->
+                <div class="modal fade add_sport_modal" id="edit_sport_two" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-sm modal-dialog-centered">
+                    <div class="modal-content">
+                      <div class="modal-body">
+                        <div class="text-end">
+                          <button type="button" class="btn-close ms-auto" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal_heading">
+                          Edit Sport Packages
+                        </div>
+                        <form method="post" class="row" id="editSportForm" action="javascript:void(0);">
+                          <div class="form-group mt-2">
+                            <input type="text" readonly class="form-control" name="game" id="gamePack" placeholder="">
+                          </div>
+                          <div class="form-group mt-2">
+                            <input type="text" class="form-control" name="permonth" id="perMonth2" placeholder="enter your per month fees">
+                          </div>
+                          <div class="form-group mt-2">
+                            <input type="text" class="form-control" name="perhalfyear" id="perHalfYear2" placeholder="enter your per 6 months fees">
+                          </div>
+                          <div class="form-group mt-2">
+                            <input type="text" class="form-control" name="peryear" id="perYear2" placeholder="enter your per year fees">
+                          </div>
+                          <!-- <div class="form-group mt-2">
+                                                <input type="text" class="form-control" name="experience"
+                                                    id="Experience" value="" placeholder="Enter Your Experience">
+
+                                            </div> -->
+                          <div class="form-group mt-2">
+                            <select name="experience" id="Experience2" class="form-select">
+                              <option value="">Select Specialization</option>
+                              <option value="beginner">Beginner</option>
+                              <option value="intermediate">Intermediate</option>
+                              <option value="expert">Expert</option>
+                            </select>
+                          </div>
+                          <div class="form-group mt-2">
+                            <button type="submit" class="form-control">
+                              Save
+                            </button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Edit sport Modal -->
+
+
+
+
+                <!-- delete_sport Modal -->
+
+                <div class="modal fade login_model delete_modal" id="delete_sport" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <div class="modal-body">
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true"><i class="fa fa-close"></i></span>
+                        </button>
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="cards text-center shadow-none">
+                              <img src="/webassets/images/delete_img02.png" alt="">
+                              <p>Are you sure you want to delete this sport.</p>
+                              <div class="del_btn d-flex justify-content-center">
+                                <a href="#" id="dltsportbtn" class="btn text-decoration-none text-white me-3" data-bs-dismiss="modal">Ok</a>
+                                <a href="#" class="btn text-decoration-none text-white" data-bs-dismiss="modal">Cancel</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+                <!-- delete_sport Modal -->
+
+                <!-- Add Lesson Modal -->
+                <!-- Add Lesson Modal -->
+                <div class="modal fade add_sport_modal" id="add_lesson" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-lg modal-dialog-centered">
+                    <div class="modal-content">
+                      <div class="modal-body">
+                        <div class="text-end">
+                          <button type="button" class="btn-close ms-auto" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal_heading">
+                          Add Lessons
+                        </div>
+
+                        <form method="post" class="row" id="addLesssonForm" action="javascript:void(0);">
+
+                          <div class="col-md-6">
+
+                            <div class="form-group mt-2">
+                              <select name="lessongame" id="lessonGame" class="form-select">
+                                <option value="">Select Game</option>
+                                <%lessonGame.forEach((val)=>{%>
+                                <option value="<%=val.id%>" game_name="<%=val.name%>">
+                                  <%=val.name%>
+                                </option>
+                                <%})%>
+                            </div>
+                            <div class="form-group mt-2">
+                              <input type="text" class="form-control mt-2" name="title" id="lessontitle" value="" placeholder="Title">
+                            </div>
+                            <div class="form-group mt-2">
+                              <textarea name="description" class="form-control" id="lessondescription" rows="5" placeholder="Description..."></textarea>
+                              <!-- <input type="text" class="form-control" name="description" id="lessondescription" value="" placeholder="Description"> -->
+                            </div>
+
+
+                          </div>
+                          <div class="col-md-6">
+
+
+                            <div class="form-group mt-2">
+                              <p>Which type of video you want to upload</p>
+
+                              <input type="radio" id="selected_type_1" name="fav_language" onchange="showVideo('1')" value="1">
+                              <label for="html">Youtube</label><br>
+                              <input type="radio" id="selected_type_2" name="fav_language" onchange="showVideo('2')" value="2">
+                              <label for="css">Other</label><br>
+                            </div>
+                            <div class="form-group mt-2">
+                              <div id="youtube-lable" style="display: none;" class="form-group mb-0">
+                                <div class="col-md-12">
+                                  <label class="form-label">Youtube <span class="text-danger">*</span></label>
+                                </div>
+                                <div class="col-lg-12">
+                                  <input type="text" name="yturl" id="ytvideoUrl" onfocusout="getytUrl()" class="form-control" placeholder=" Enter your video's url  " aria-required="true">
+                                </div>
+
+                                <div id="playYT" class="form-group mb-0">
+                                </div>
+                              </div>
+
+
+
+                              <div id="video-lable" style="display: none;" class="form-group mb-0">
+                                <div class="col-md-12">
+                                  <label class="form-label">Url <span class="text-danger">*</span></label>
+                                </div>
+                                <div class="col-lg-12">
+                                  <input type="text" name="url" id="videoUrl" onfocusout="getUrl()" class="form-control" placeholder=" Enter your video's url  " aria-required="true">
+                                </div>
+
+                                <div id="playV" class="form-group mb-0">
+                                  <video style="display: none;" id="myVideo" class="w-100" height="240" controls type="video/youtube" type="video/mp4"></video>
+                                </div>
+                              </div>
+
+                            </div>
+                          </div>
+
+                          <div class="form-group mt-2 text-center">
+                            <button type="submit" class="form-control w-50 mx-auto">
+                              Save
+                            </button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Add Lesson Modal -->
+
+                <!-- Add subscription Modal -->
+
+                <div class="modal fade add_sport_modal" id="add_sub" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                      <div class="modal-body packages">
+                        <div class="text-end">
+                          <button type="button" class="btn-close ms-auto" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="row">
+                          <div class="col-12">
+                            <div class="cards shadow-none text-center py-2 px-4">
+                              <h3>
+                                1 Month Package
+                              </h3>
+                              <span>$9.99</span>
+                              <p>You have to buy subscription to add your lesson</p>
+                              <a href="/payment01/?user_id=<%=session.users.id%>&amount=99" class="text-white text-decoration-none mx-auto mt-3">
+                                Buy
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Add subscription Modal -->
+
+
+                <!-- delete_Lesson Modal -->
+
+
+                <div class="modal fade login_model delete_modal" id="delete_lesson" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <div class="modal-body">
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true"><i class="fa fa-close"></i></span>
+                        </button>
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="cards text-center shadow-none">
+                              <img src="./images/delete_img02.png" alt="">
+                              <p>Are you sure you want to delete this Lesson.</p>
+                              <div class="del_btn d-flex justify-content-center">
+                                <a href="#" class="btn text-decoration-none text-white me-3" id="dltlessonbtn" data-bs-dismiss="modal">Ok</a>
+                                <a href="#" class="btn text-decoration-none text-white" data-bs-dismiss="modal">Cancel</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+                </footer>
+                <!-- Footer -->
+            
+                
+</body>
+
+</html>
+
+<script>
+  $(document).ready(function() {
+    $('#confirmSwitch').click(function(e) {
+      e.preventDefault();
+      $.ajax({
+        url: '/users/switch-profile',
+        type: 'POST',
+        cache: false,
+        success: async function(dataResult) {
+          if (dataResult.status_code == 1) {
+            await toastMsg("success", dataResult.message)
+            window.location.href = "/myaccount"
+          }
+          if (dataResult.status_code == 0) {
+            await toastMsg("error", dataResult.message)
+          }
+
+        }
+      })
+    });
+  });
+
+  function getytUrl() {
+    let yturl = $("#ytvideoUrl").val();
+    document.getElementById("playYT").innerHTML = `<iframe class="w-100" height="200" src=${yturl} title="12K HDR 120fps Dolby Vision with Calming Music (Color Life)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
+
+  }
+
+  function getUrl() {
+    let url = $("#videoUrl").val();
+    let video_ele = document.getElementById("myVideo");
+    video_ele.src = url;
+    video_ele.style.display = "block"
+
+
+  }
+
+  function showVideo(type) {
+
+    if (type == "1") {
+      let ele = document.getElementById('youtube-lable');
+      ele.style.display = 'block';
+      document.getElementById('video-lable').style.display = "none"
+    } else {
+      let ele = document.getElementById('video-lable');
+      ele.style.display = 'block';
+      document.getElementById('youtube-lable').style.display = "none"
+
+    }
+  }
+
+  const oldpassword = document.querySelector("#oldPassword");
+  const newpassword = document.querySelector("#newPassword");
+  const confirmpassword = document.querySelector("#confirmPassword");
+
+  oldpassword.addEventListener("click", function() {
+    const type =
+      oldPass.getAttribute("type") === "password" ? "text" : "password";
+    oldPass.setAttribute("type", type);
+    this.classList.toggle("bi-eye");
+  });
+  newpassword.addEventListener("click", function() {
+    const type =
+      newPass.getAttribute("type") === "password" ? "text" : "password";
+    newPass.setAttribute("type", type);
+    this.classList.toggle("bi-eye");
+  });
+  confirmpassword.addEventListener("click", function() {
+    const type =
+      confirmPass.getAttribute("type") === "password" ? "text" : "password";
+    confirmPass.setAttribute("type", type);
+    this.classList.toggle("bi-eye");
+  });
+
+
+  let unique_game_id = "";
+
+  imgInp.onchange = evt => {
+    const [file] = imgInp.files
+    console.log(file);
+    if (file) {
+      blah.src = URL.createObjectURL(file)
+      blah.style.display = 'block'
+    }
+  }
+
+  function imgSrc(img) {
+    let image = document.getElementById('certImage');
+    image.src = `certificates/${img}`;
+    console.log(image.src);
+
+  }
+
+  function dltsportpkg(id) {
+    let sport_id = id;
+    $("#delete_sport").modal('show');
+    $("#dltsportbtn").on("click", function() {
+      $.ajax({
+        url: "/users/dltsport",
+        type: "POST",
+        data: {
+          id: sport_id
+        },
+        cache: false,
+        success: async function(dataResult) {
+          if (dataResult.status_code == 1) {
+            await toastMsg("success", dataResult.message)
+            window.location.href = "/myaccount"
+          }
+          if (dataResult.status_code == 0) {
+            await toastMsg("error", dataResult.message)
+          }
+
+        }
+      });
+    })
+  }
+
+  function dltCard(id) {
+    let card_id = id;
+    $("#del").modal('show');
+    $("#delete_card_url").on("click", function() {
+      $.ajax({
+        url: "/users/deletecard",
+        type: "POST",
+        data: {
+          id: card_id
+        },
+        cache: false,
+        success: async function(dataResult) {
+          if (dataResult.status_code == 1) {
+            await toastMsg("success", dataResult.message)
+            window.location.href = "/myaccount"
+          }
+          if (dataResult.status_code == 0) {
+            await toastMsg("error", dataResult.message)
+
+          }
+
+        }
+      });
+    })
+
+  }
+
+  function editsportpkg(name, id, month, halfyear, year, exp) {
+    $('#gamePack').val(name);
+    $('#perMonth2').val(month);
+    $('#perHalfYear2').val(halfyear);
+    $('#perYear2').val(year);
+    $('#Experience2').val(exp);
+    unique_game_id = id;
+  }
+
+
+  ////////// EDIT SPORT PACKAGE /////////////
+  jQuery(document).ready(function() {
+
+    let rules = {
+
+      permonth: {
+        required: true
+      },
+      perhalfyear: {
+        required: true,
+
+      },
+      peryear: {
+        required: true,
+
+      },
+      experience: {
+        required: true,
+      }
+    };
+    let messages = {
+      permonth: {
+        required: "Please enter the price for your one month fee"
+      },
+      perhalfyear: {
+        required: "Please enter the price for your six month fee",
+      },
+      peryear: {
+        required: "Please enter the price for your one year fee",
+      },
+      experience: {
+        required: "Please select your experience level",
+      },
+
+
+    }
+
+    jQuery("#editSportForm").validate({
+      rules,
+      messages,
+      submitHandler: async function(form) {
+        await editSport();
+        $('#edit_sport_two').on('hidden.bs.modal', function(e) {
+          $(this)
+            .find("input,select")
+            .val('')
+            .end()
+        })
+        $("#edit_sport_two").modal('hide');
+      }
+    });
+  });
+
+  async function editSport() {
+
+    let game_id = unique_game_id;
+    let per_month = $('#perMonth2').val();
+    let per_halfyear = $("#perHalfYear2").val();
+    let per_year = $("#perYear2").val();
+    let experience = $('#Experience2').val();
+
+
+    let formdata = new FormData();
+
+    formdata.append("game_id", game_id);
+    formdata.append("per_month", per_month);
+    formdata.append("per_halfyear", per_halfyear);
+    formdata.append("per_year", per_year);
+    formdata.append("experience", experience);
+
+
+
+    if (game_id != '' && per_month != '' && per_year != '' && per_halfyear != '' && experience != "") {
+      $.ajax({
+        url: "/users/editsport",
+        type: "POST",
+        data: formdata,
+        dataType: 'json',
+        contentType: false,
+        enctype: 'multipart/form-data',
+        processData: false,
+        cache: false,
+        success: async function(dataResult) {
+          if (dataResult.status_code == 1) {
+            await toastMsg("success", dataResult.message)
+            window.location.href = "/myaccount"
+          }
+          if (dataResult.status_code == 0) {
+            await toastMsg("error", dataResult.message)
+
+          }
+
+        }
+      });
+    }
+
+  }
+
+  function dltLesson(id) {
+    let lesson_id = id;
+    $("#delete_lesson").modal('show');
+    $("#dltlessonbtn").on("click", function() {
+      $.ajax({
+        url: "/users/dltlesson",
+        type: "POST",
+        data: {
+          id: lesson_id
+        },
+        cache: false,
+        success: async function(dataResult) {
+          if (dataResult.status_code == 1) {
+            await toastMsg("success", dataResult.message)
+            window.location.href = "/myaccount"
+          }
+          if (dataResult.status_code == 0) {
+            await toastMsg("error", dataResult.message)
+
+          }
+
+        }
+      });
+    })
+
+  }
+
+
+  $('#SaveModal').on('click', function() {
+    let game_name = $("#selectedGame option:selected").text();
+    let level = $("#selectedLevel").val();
+    let certificate = $('#flexCheckDefault')[0].files[0]?.name;
+
+    let obj = {
+      game_name,
+      level,
+      certificate
+    }
+    let arr = [];
+    arr.push(obj);
+
+    if (arr[0].game != "" && arr[0].certificate != undefined) {
+      arr.forEach((val) => {
+        $(".add_skills").append(`<div class='row mt-3'>`);
+        $(".add_skills").append(`<div class='col'><span>${val.game_name}</span></div>`);
+        $(".add_skills").append(`<div class='col'><span>${val.level}</span></div>`);
+        $(".add_skills").append(`<div class='col'><span>${val.certificate}</span></div>`);
+        $(".add_skills").append(`</div>`);
+      })
+
+      arr = [];
+
+    }
+
+  });
+
+  ////////// ADD SPORT /////////////
+  jQuery(document).ready(function() {
+
+    let rules = {
+      selectedgame: {
+        required: true
+      },
+      permonth: {
+        required: true
+      },
+      perhalfyear: {
+        required: true,
+
+      },
+      peryear: {
+        required: true,
+
+      },
+      experience: {
+        required: true,
+
+      },
+    };
+    let messages = {
+      selectedgame: {
+        required: "Please select any game",
+      },
+      permonth: {
+        required: "Please enter the price for your one month fee"
+      },
+      perhalfyear: {
+        required: "Please enter the price for your six month fee",
+      },
+      peryear: {
+        required: "Please enter the price for your one year fee",
+      },
+      experience: {
+        required: "Please enter your relevent experience",
+      },
+
+
+    }
+
+    jQuery("#addSportForm").validate({
+      rules,
+      messages,
+      submitHandler: function(form) {
+        addSport();
+        $('#add_sport_two').on('hidden.bs.modal', function(e) {
+          $(this)
+            .find("input,select")
+            .val('')
+            .end()
+        })
+        $("#add_sport_two").modal('hide');
+      }
+    });
+  });
+
+  function addSport() {
+
+    let game_id = $("#selectedGamePack").val();
+    let per_month = $("#perMonth").val();
+    let per_halfyear = $("#perHalfYear").val();
+    let per_year = $("#perYear").val();
+    let experience = $("#Experience").val();
+
+    let formdata = new FormData();
+
+    formdata.append("game_id", game_id);
+    formdata.append("per_month", per_month);
+    formdata.append("per_halfyear", per_halfyear);
+    formdata.append("per_year", per_year);
+    formdata.append("experience", experience);
+
+
+    if (game_id != '' && per_month != '' && per_year != '' && per_halfyear != '' && experience != '') {
+      $.ajax({
+        url: "/users/addsport",
+        type: "POST",
+        data: formdata,
+        dataType: 'json',
+        contentType: false,
+        enctype: 'multipart/form-data',
+        processData: false,
+        cache: false,
+        success: async function(dataResult) {
+          if (dataResult.status_code == 1) {
+            await toastMsg("success", dataResult.message)
+            window.location.href = "/myaccount"
+          }
+          if (dataResult.status_code == 0) {
+            await toastMsg("error", dataResult.message)
+
+          }
+
+        }
+      });
+    }
+
+  }
+
+  ////////// ADD LESSONS /////////////
+  jQuery(document).ready(function() {
+
+    let rules = {
+      title: {
+        required: true
+      },
+      lessongame: {
+        required: true
+      },
+      description: {
+        required: true,
+        maxlength: 255,
+      },
+      url: {
+        required: true,
+      },
+      type: {
+        required: true
+      }
+    };
+    let messages = {
+      title: {
+        required: "Please enter your lesson's title",
+      },
+      lessongame: {
+        required: "Please select any game"
+      },
+      description: {
+        required: "Please enter your lesson's description",
+      },
+      url: {
+        required: "Please enter your lesson's video url",
+      },
+      type: {
+        required: "Please select your lesson's video type",
+      }
+
+
+    }
+
+    jQuery("#addLesssonForm").validate({
+      rules,
+      messages,
+      submitHandler: function(form) {
+        addLesson();
+        $('#add_lesson').on('hidden.bs.modal', function(e) {
+          $(this)
+            .find("input,select")
+            .val('')
+            .end()
+        })
+        $("#add_lesson").modal('hide');
+      }
+    });
+  });
+
+  function addLesson() {
+
+    let title = $("#lessontitle").val();
+    let description = $("#lessondescription").val();
+    let game = $("#lessonGame").val();
+    let type = document.querySelector('input[name="fav_language"]:checked').value;
+
+    let url = "";
+    if (type == '1') {
+      url = $("#ytvideoUrl").val();
+    } else {
+      url = $("#videoUrl").val();
+    }
+
+    let formdata = new FormData();
+
+    formdata.append("title", title);
+    formdata.append("description", description);
+    formdata.append("game", game);
+    formdata.append("type", type);
+    formdata.append("url", url);
+
+
+
+    if (title != '' && description != '') {
+      $.ajax({
+        url: "/users/addlesson",
+        type: "POST",
+        data: formdata,
+        dataType: 'json',
+        contentType: false,
+        enctype: 'multipart/form-data',
+        processData: false,
+        cache: false,
+        success: async function(dataResult) {
+          if (dataResult.status_code == 1) {
+            await toastMsg("success", dataResult.message)
+            window.location.href = "/myaccount"
+          }
+          if (dataResult.status_code == 0) {
+            await toastMsg("error", dataResult.message)
+
+          }
+
+        }
+      });
+    }
+
+  }
+
+  function readMore() {
+    moreDiv.style.height = 'auto'
+    moreLesson.style.display = 'none'
+  }
+
+
+  ///////////UPDATE SPORT////////////
+  jQuery(document).ready(function() {
+
+    let rules = {
+      selectedgame: {
+        required: true
+      },
+      level: {
+        required: true,
+      },
+      certificate: {
+        required: true
+      },
+
+    };
+    let messages = {
+      selectedgame: {
+        required: "Please enter your game",
+      },
+      level: {
+        required: "Please enter your level",
+      },
+      certificate: {
+        required: "Please enter your certificate",
+      }
+
+    }
+
+    jQuery("#updatesportform").validate({
+      rules,
+      messages,
+      submitHandler: function(form) {
+        updateSport();
+        $('#add_sport').on('hidden.bs.modal', function(e) {
+          $(this)
+            .find("input,select")
+            .val('')
+            .end()
+        })
+        $("#add_sport").modal('hide');
+      }
+    });
+  });
+
+  function updateSport() {
+
+    let game_id = $("#selectedGame").val();
+    let level = $("#selectedLevel").val();
+    let certificate = $('#flexCheckDefault')[0].files[0];
+
+    let formdata = new FormData();
+
+    formdata.append("game_id", game_id);
+    formdata.append("level", level);
+    formdata.append("certificate", certificate);
+
+    if (game_id != '' && level != '' && certificate != '') {
+      $.ajax({
+        url: "/users/updatesport",
+        type: "POST",
+        data: formdata,
+        dataType: 'json',
+        contentType: false,
+        enctype: 'multipart/form-data',
+        processData: false,
+        cache: false,
+        success: async function(dataResult) {
+          if (dataResult.status_code == 1) {
+            await toastMsg("success", dataResult.message)
+            window.location.href = "/myaccount"
+
+          }
+          if (dataResult.status_code == 0) {
+            await toastMsg("error", dataResult.message)
+
+          }
+
+        }
+      });
+    }
+
+  }
+
+  ///////////UPDATE PROFILE////////////
+  jQuery(document).ready(function() {
+
+    let rules = {
+      name: {
+        required: true
+      },
+      phone_number: {
+        required: true,
+        maxlength: 10,
+      },
+      user_name: {
+        required: true
+      },
+      location: {
+        required: true
+      },
+      age: {
+        required: true,
+        min: 16
+      },
+    };
+    let messages = {
+      name: {
+        required: "Please enter your name",
+      },
+      phone_number: {
+        required: "Please enter your phone number",
+        maxlength: "Please enter valid phone number",
+      },
+      user_name: {
+        required: "Please enter your name",
+      },
+      location: {
+        required: "Please enter your location pincode",
+      },
+      age: {
+        required: "Please enter your age",
+        min: "Please enter the age greater than age limit"
+      },
+    }
+
+    jQuery("#updateProfileForm").validate({
+      rules,
+      messages,
+      submitHandler: function(form) {
+        updateProfile();
+      }
+    });
+  });
+
+  function updateProfile() {
+    let name = $("#updateProfileForm input[name='name']").val();
+    let phone_number = $("#updateProfileForm input[name='phone_number']").val();
+    let username = $("#updateProfileForm input[name='username']").val();
+    let location = $("#updateProfileForm input[name='location']").val();
+
+    let formdata = new FormData();
+
+    formdata.append("name", name);
+    formdata.append("phone_number", phone_number);
+    formdata.append("username", username);
+    formdata.append("location", location);
+
+    if (name.trim() != '' && phone_number != '' && username != '' && location != '') {
+      $.ajax({
+        url: "/users/updateinstructorprofile",
+        type: "POST",
+        data: formdata,
+        dataType: 'json',
+        contentType: false,
+        enctype: 'multipart/form-data',
+        processData: false,
+        cache: false,
+        success: async function(dataResult) {
+          if (dataResult.status_code == 1) {
+            await toastMsg("success", dataResult.message)
+            window.location.href = "/myaccount"
+          }
+          if (dataResult.status_code == 0) {
+            await toastMsg("error", dataResult.message)
+
+          }
+
+        }
+      });
+    }
+
+  }
+
+  // update password
+  jQuery(document).ready(function() {
+
+    let value = $("#passwordUpdateForm input[name='newpassword']").val();
+
+    $.validator.addMethod("checklower", function(value) {
+      return /[a-z]/.test(value);
+    });
+    $.validator.addMethod("checkupper", function(value) {
+      return /[A-Z]/.test(value);
+    });
+    $.validator.addMethod("checkdigit", function(value) {
+      return /[0-9]/.test(value);
+    });
+    $.validator.addMethod("pwcheck", function(value) {
+      return /[#?!@$%^&*-]/.test(value);
+    });
+
+    let rules = {
+      oldpassword: {
+        required: true,
+        remote: "/users/passwordcompare"
+
+      },
+      newpassword: {
+        required: true,
+        minlength: 8,
+        checklower: true,
+        checkupper: true,
+        checkdigit: true,
+        pwcheck: true
+
+      },
+      confirmpassword: {
+        required: true,
+        equalTo: "#newPass"
+
+      },
+
+    };
+    let messages = {
+      oldpassword: {
+        required: "Please provide a old password",
+        remote: "You entered the wrong password"
+
+      },
+      newpassword: {
+        required: "Please provide a new password",
+        minlength: "Your password must be at least 8 characters long",
+        pwcheck: "Need atleast 1 special character",
+        checklower: "Need atleast 1 lowercase alphabet",
+        checkupper: "Need atleast 1 uppercase alphabet",
+        checkdigit: "Need atleast 1 digit"
+      },
+      confirmpassword: {
+        required: "Please provide a confirm password",
+        equalTo: "Your confirm password should be same as your new password"
+
+      },
+    }
+
+    jQuery("#passwordUpdateForm").validate({
+      rules,
+      messages,
+      submitHandler: function(form) {
+        updatePassword();
+      }
+    });
+  });
+
+  function updatePassword() {
+    let old_password = $("#passwordUpdateForm input[name='oldpassword']").val();
+    let new_password = $("#passwordUpdateForm input[name='newpassword']").val();
+    let confirm_password = $("#passwordUpdateForm input[name='confirmpassword']").val();
+
+
+    let formdata = {
+      old_password,
+      new_password,
+      confirm_password
+    }
+
+    $.ajax({
+      url: "/users/updatepassword",
+      type: "POST",
+      data: formdata,
+      cache: false,
+      success: async function(dataResult) {
+        if (dataResult.status_code == 1) {
+          await toastMsg("success", dataResult.message)
+          window.location.href = "/myaccount"
+        }
+        if (dataResult.status_code == 0) {
+          await toastMsg("error", dataResult.message)
+        }
+      }
+    });
+
+  };
+
+  /////////ADD CARD DETAILS//////////
+  jQuery(document).ready(function() {
+
+    let rules = {
+      stripeKey: {
+        required: true
+      }
+    };
+    let messages = {
+      stripeKey: {
+        required: "Please enter your stripe secret key",
+      }
+    }
+
+    jQuery("#addCard").validate({
+      rules,
+      messages,
+      submitHandler: function(form) {
+        addCardDetails();
+      }
+    });
+  });
+
+  function addCardDetails() {
+    let stripe_key = $("#addCard input[name='stripeKey']").val();
+
+    let formdata = {
+      stripe_key
+    }
+
+    $.ajax({
+      url: "/users/addstripekey",
+      type: "POST",
+      data: formdata,
+      cache: false,
+      success: async function(dataResult) {
+        if (dataResult.status_code == 1) {
+          await toastMsg("success", dataResult.message)
+          window.location.href = "/myaccount"
+        }
+        if (dataResult.status_code == 0) {
+          await toastMsg("error", dataResult.message)
+        }
+
+      }
+    });
+
+  }
+</script>

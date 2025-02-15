@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("common/header")%> <%- include("common/script")%>
+
+<body>
+  <!-- Header -->
+  <%- include("common/Topheader")%>
+  <!-- Header -->
+  <!-- inner_banner -->
+  <section class="inner_benner">
+    <h2>Rate Now</h2>
+    <p>Home / Rate Now</p>
+    <div class="top_arr inner_benner1">
+      <a href="#rate_now"><img src="./images/top_arro.png" alt="" /></a>
+    </div>
+  </section>
+  <!-- inner_banner -->
+
+  <!-- Rate Now -->
+
+  <section class="player_rateing">
+    <div class="container">
+      <div class="d-flex align-items-center">
+        <div class="img_card">
+          <%if(user.image){%>
+          <img src="/images/<%=user.image%>" alt="" />
+          <%}else{%>
+          <img src="/unknown/person.png" alt="" />
+          <%}%>
+          </div>
+          <div class="card_body ps-3">
+            <h3><%=user.name%></h3>
+          <div class="star_read mb-3">
+            <span id="stars"></span>
+            <h6 class="mb-0 ms-1"><%=user.averagerate?.rate?parseFloat(user.averagerate?.rate).toFixed(1):0%>/5</h6>
+          </div>
+
+          <p>Age:<%=user?.age%></p>
+          <!-- <p>Experience: <%=user.age%>years</p> -->
+          <!-- <p>Specialization: Tennis </p> -->
+          <p>Location: <%=user.location%></p>
+        </div>
+        <div class="card_end ms-auto">
+          <!-- <h2>$300.00</h2> -->
+
+          <div class="social_icon h-100 d-flex justify-content-end align-items-end">
+            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="rate_now">
+    <%if(!already_rate){%>
+    <div class="container text-center">
+      <div class="row">
+        <div class="col-md-8 mx-auto">
+          <div class="rate_box">
+            <img src="./images/one_star.png" alt="" />
+            <h3>Rate your Experience!</h3>
+            <input type="hidden" id="rating" name="rating" value="-1" />
+            <div class="star_read justify-content-center">
+              <i class="ratings_stars fa-solid fa-star" data-rating="1"></i>
+              <i class="ratings_stars fa-solid fa-star" data-rating="2"></i>
+              <i class="ratings_stars fa-solid fa-star" data-rating="3"></i>
+              <i class="ratings_stars fa-solid fa-star" data-rating="4"></i>
+              <i class="ratings_stars fa-solid fa-star" data-rating="5"></i>
+            </div>
+            <form method="post" class="row" id="ratepost" action="javascript:void(0);">
+              <label for="text" class="mb-1">Add Review</label>
+              <textarea name="review" id="ratereview" rows="5" placeholder="Type..."></textarea>
+              <button type="submit" id="updateData" class="tab_btn mt-3">
+                Submit
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%}else{%>
+    <div class="container text-center">
+      <p>Thank You For Your Feedback</p>
+    </div>
+    <%}%>
+    </section>
+
+    <!-- Rate Now -->
+
+    <!-- Footer -->
+    <footer><%- include("common/footer")%></footer>
+
+    <!-- Footer -->
+</body>
+
+
+<script>
+     
+  
+  document.getElementById("stars").innerHTML = getStars("<%=user.averagerate?.rate%>");
+  
+  function getStars(rating) {
+
+    // Round to nearest half
+    rating = Math.round(rating * 2) / 2;
+ 
+    let output = [];
+  
+    // Append all the filled whole stars
+    for (var i = rating; i >= 1; i--)
+      output.push('<i class=" fa fa-star" aria-hidden="true"  ></i>&nbsp;');
+  
+    // If there is a half a star, append it
+    if (i == .5) output.push('<i  class=" fa fa-star-half-o" aria-hidden="true" style="color: #ffbe00 !important; font-size: 30px;" ></i>&nbsp;');
+  
+    // Fill the empty stars
+    for (let i = (5 - rating); i >= 1; i--)
+      output.push('<i class="ratings_stars_2 fa fa-star" aria-hidden="true" ></i>&nbsp;');
+   
+    return output.join('');
+    
+  }
+ </script>
+
+
+<script>
+  $(".ratings_stars").click(function() {
+    $(".ratings_stars").removeClass("selected");
+    $(this).prevAll().addBack().toggleClass("selected");
+    var rating = $(this).data("rating");
+    console.log(rating);
+    $("#rating").val(rating);
+  });
+
+  jQuery(document).ready(function() {
+    let rules = {
+      rating: {
+        required: true,
+      },
+      review: {
+        required: true,
+      },
+    };
+    let messages = {
+      rating: {
+        required: "Please rate the player",
+      },
+      review: {
+        required: "Please enter your feedback",
+      },
+    };
+
+    jQuery("#ratepost").validate({
+      rules,
+      messages,
+      submitHandler: function(form) {
+        ratePost();
+      },
+    });
+  });
+
+  function ratePost() {
+    let review = $("#ratereview").val();
+    let rate = $("#rating").val();
+    let rate_to = "<%=receiver_id%>"
+    let formdata = new FormData();
+
+    formdata.append("review", review);
+    formdata.append("rate", rate);
+    formdata.append("rate_to", rate_to)
+
+    if (rate != "" && review != "") {
+      $.ajax({
+        url: "/users/createrate",
+        type: "POST",
+        data: formdata,
+        dataType: "json",
+        contentType: false,
+        enctype: "multipart/form-data",
+        processData: false,
+        cache: false,
+        success: async function(dataResult) {
+          if (dataResult.status_code == 1) {
+            await toastMsg("success", dataResult.message);
+            window.location.href = "/rate/?id=<%=receiver_id%>";
+          }
+          if (dataResult.status_code == 0) {
+            await toastMsg("error", dataResult.message);
+          }
+        },
+      });
+    }
+  }
+</script>
+<style>
+  .ratings_stars {
+    color: rgba(112, 111, 111, 0.856) !important;
+  }
+
+  .ratings_stars_2{
+    color: rgba(112, 111, 111, 0.856) !important;
+    
+  }
+  .ratings_stars.selected {
+    color: #ffbe00 !important;
+  }
+</style>
+
+</html>
+

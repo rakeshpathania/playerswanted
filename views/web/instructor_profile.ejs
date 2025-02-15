@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+
+<%- include("common/header")%>
+
+<!-- script -->
+<%- include("common/script")%>
+<!-- script -->
+
+<body>
+  <!-- Header -->
+  <%- include("common/Topheader")%>
+  <!-- Header -->
+  <!-- inner_banner -->
+  <section class="inner_benner">
+    <h2>Instructor Profile</h2>
+    <p>Home / Instructor Profile</p>
+    <div class="top_arr inner_benner1">
+      <a href="#"><img src="/webassets/images/top_arro.png" alt="" /></a>
+    </div>
+
+  </section>
+  <!-- inner_banner -->
+  <section class="inst_profile">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="profile_img">
+              <%if(inst_acc.image){%>
+                <img src="/images/<%=inst_acc?.image%>" />
+                <%} else{%>
+                <img src="/unknown/person.png" />
+                <%}%>
+            </div>
+            <div class="detail">
+              <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link active" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Profile</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link " id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Sports</button>
+                </li>
+
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Lessons</button>
+                </li>
+              </ul>
+              <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane px-md-5  px-2 fade show active" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+
+                  <p class="info_box">
+                    <strong>Name</strong>
+                    <small><%=inst_acc.name%></small>
+                  </p>
+                  <p class="info_box">
+                    <strong>Email</strong>
+                    <small><%=inst_acc.email%></small>
+                  </p>
+                  <p class="info_box">
+                    <strong>Phone Number</strong>
+                    <small><%=inst_acc.phone_number%></small>
+                  </p>
+                  <p class="info_box">
+                    <strong>Location</strong>
+                    <small><%=inst_acc.location%></small>
+                  </p>
+                  <p class="info_box">
+                    <strong>Age</strong>
+                    <small><%=inst_acc.age%> Years</small>
+                  </p>
+
+                </div>
+
+                <div class="tab-pane fade sprot_info" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+
+                  <div class="table-responsive">
+                    <table class="table">
+                      <tr>
+                        <th>S.No</th>
+                        <th>Sport</th>
+                        <th>Expertise</th>
+                        <th>1 Month</th>
+                        <th>6 Month</th>
+                        <th>1 Year</th>
+                        <th>Certification</th>
+                      </tr>   
+                  
+                      <%sports.forEach((val, index)=>{%>
+                      <tr>
+                        <td><%=index + 1%></td>
+                        <td><%=val.game?.name%></td>
+                        <td><%=val.levels%></td>
+                        <td>$<%=val.package?.per_month%></td>
+                        <td>$<%=val.package?.per_halfyear%></td>
+                        <td>$<%=val.package?.per_year%></td>
+                        <td><i onclick='imgSrc("<%=val.certificate%>")' data-bs-toggle="modal" data-bs-target="#certificate_modal" class="fa-regular fa-eye"></i></td>
+                      </tr>
+                    <%})%>
+                
+                    </table>
+                  </div>
+
+                </div>
+                <div class="tab-pane fade lessons_info" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+                  <div class="table-responsive">
+                    <table class="table">
+                      <tr>
+                        <th>S.No</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Action</th>
+                      </tr>
+                      <%lessons.forEach((val, index)=>{%>
+                      <tr>
+                        <td><%=index+1%></td>
+                        <td><%=val.title%></td>
+                        <td><%=val.description%></td>
+                        <td>
+                          <%if(val.instructor_id == session.users.id){%>
+                            <a style="text-decoration: none;" href="/videos/?inst_id=<%=val.instructor_id%>&game_id=<%=val.game_id%>">
+                              <i class="fa-regular fa-eye"></i>
+                            </a>
+                          <%}else{%>
+                          <a style="text-decoration: none;" href="/subsribe/?inst_id=<%=val.instructor_id%>&game_id=<%=val.game_id%>">
+                            <i class="fa-regular fa-eye"></i>
+                          </a>
+                          <%}%>
+                        </td>
+                      </tr>
+                    <%})%>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Footer -->
+  <footer>
+    <%- include("common/footer")%>
+
+  </footer>
+  <!-- Footer -->
+
+
+  <div class="modal fade login_model" id="certificate_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content bg-transparent border-0">
+        <div class="modal-body p-0">
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true"><i class="fa fa-close"></i></span>
+          </button>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="cards text-center bg-white">
+                <img id="certimg" src="" class="w-100" alt="">
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+</body>
+
+  <script>
+    function imgSrc(img) {
+    let image = document.getElementById('certimg');
+    image.src = "/certificates/"+img;
+    console.log(image.src);
+  }
+  </script>
+
+
+
+</html>

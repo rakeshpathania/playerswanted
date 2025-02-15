@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include("../partials/header")%>
+<script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
+<% if(msg !='' ) { %>
+    <div class="'diet add successfully'"
+        style="position: absolute; z-index: 9999; color:black; background-color: #3aa95b; right: 10px; top: 10px;">
+        <span style="font-size: 16px;">
+            <%= msg%>
+        </span>
+    </div>
+    <% }%>
+    <!-- head -->
+    <style>
+        element.style {
+            margin-left: 378px
+        }
+
+        .error {
+    color: red;
+    background-color: #FFF;
+}
+    </style>
+    <body>
+        <div id="app">
+            <div class="main-wrapper">
+                <!-- navbar -->
+                <%- include("../partials/navbar")%>
+                    <!--End navbar -->
+                    <!-- Sidebar -->
+                    <%- include("../partials/sidebar")%>
+                        <!--End Sidebar -->
+                        <!-- Main Content -->
+                        <div class="main-content" style="min-height: 637px;">
+                            <section class="section">
+                                <div class="section-header">
+                                    <h1> Add Game </h1>
+                                    <div class="section-header-breadcrumb">
+                                        <div class="breadcrumb-item active"><a href="/admin/dashboard">Dashboard</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row"   >
+                                    <div class="col-12 col-md-6 col-lg-12">
+                                        <div class="card">
+                                            <form id="game" class="form-horizontal form-validate-jquery p-5" method="post" action="/admin/addgame" enctype="multipart/form-data">
+                                                <fieldset class="content-group">
+                                                 
+                                                <!-- Basic text input -->
+                                                <div class="form-group mb-0">
+                                                    <div class="col-md-12">
+                                                        <label class="form-label"> Game Name <span
+                                                                class="text-danger">*</span></label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-lg-12">
+                                                        <input type="text" name="name" class="form-control"
+                                                            placeholder=" Enter   game name  "
+                                                            aria-required="true">
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                    <input accept="image/*" name="image" type='file' style="margin-top: 10px;"
+                                                                id="imgInp" />
+                                                            <img id="blah" style="display: none;"
+                                                                src="" alt="your image"
+                                                                height="100px" mergin:right width="100px" required>
+                                                    </div>
+                                                </div>
+                                               
+
+                                                <div class="text-right">
+                                                    <button type="submit" class="btn btn-primary">Submit <i
+                                                        class="icon-arrow-right14 position-right"></i></button>
+                                                                </div>
+                                                
+                                                <!-- Minimum characters -->
+                                                
+                                                </fieldset>
+                                                
+                                                </form>
+                                                </div>
+                            </section>
+                        </div>
+            </div>
+            <div class="text-right">
+
+                <!-- Main content -->
+                <div class="content-wrapper">
+                    <!-- Content area -->
+                    <!--  End Main Content -->
+                    <!-- footer -->
+                    <%- include("../partials/footer")%>
+                        <!--End  footer -->
+                </div>
+    </body>
+    <script>
+        setTimeout(function () {
+            $("div.msg").fadeOut();
+        }, 2000);
+    </script>
+  
+ 
+</html>
+<script>
+
+    $('#imgInp').on('input', function () {
+        $("#blah").css('display', 'block') 
+          
+    });
+
+
+    $("#game").validate({
+        rules: {
+
+            name: {
+                required: true,
+
+            },
+            image: {
+                required: true,
+
+            },
+
+          
+        },
+        messages: {
+
+            name: {
+                required: " Please enter  game name",
+
+            },
+
+            image: {
+                required: " Please upload  game image",
+
+            },
+           
+           
+
+        }
+    });
+
+</script>
+
+    <!-- Space Not Allowed In Input Field Script-->
+    <script>
+        $("#name input").on("keypress", function (e) {
+            if (e.which === 32 && !this.value.length)
+                e.preventDefault();
+        }); jQuery.extend(jQuery.validator.messages, {
+            required: "Enter your name.",
+            remote: "Please fix this field.",
+            email: "Please enter a valid email address.",
+            url: "Please enter a valid URL.",
+            date: "Please enter a valid date.",
+            dateISO: "Please enter a valid date (ISO).",
+            number: "Please enter a valid number.",
+            digits: "Please enter only digits.",
+            creditcard: "Please enter a valid credit card number.",
+            equalTo: "Please enter the same value again.",
+            accept: "Please enter a value with a valid extension.",
+            maxlength: jQuery.validator.format("Please enter no more than {0} characters."),
+            minlength: jQuery.validator.format("This field accepts minimum {0} characters."),
+            rangelength: jQuery.validator.format("Please enter a value between {0} and {1} characters long."),
+            range: jQuery.validator.format("Please enter a value between {0} and {1}."),
+            max: jQuery.validator.format("Please enter a value less than or equal to {0}."),
+            min: jQuery.validator.format(" This field only accepts minimum {0} characters.")
+        });
+    </script>
+    <!-- End Space Not Allowed In Input Field Script -->

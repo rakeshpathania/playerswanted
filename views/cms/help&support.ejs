@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include("../partials/header")%>
+    <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
+    <% if(msg !=''  ) { %>
+        <div class="alert alert-success msg"
+            style="position: absolute; z-index: 9999; color:blanchedalmond; background-color: rgb(110, 180, 69); right: 10px; top: 10px;">
+            <span style="font-size: 16px;">
+                <%= msg %>
+            </span>
+        </div>
+        <% } %>
+
+    <!-- head -->
+    <style>
+        a.btn.btn-success {
+            margin-left: 892px;
+        }
+    </style>
+
+    <body>
+        <div id="app">
+            <div class="main-wrapper">
+                <!-- navbar -->
+                <%- include("../partials/navbar")%>
+
+                    <!--End navbar -->
+                    <!-- Sidebar -->
+                    <%- include("../partials/sidebar")%>
+                        <!--End Sidebar -->
+                        <!-- Main Content -->
+                        <div class="main-content" style="min-height: 637px;">
+                            <section class="section">
+                                <div class="section-header">
+                                    <h1> Help & Support</h1>
+                                    <div class="section-header-breadcrumb">
+                                        <div class="breadcrumb-item active"><a href="/admin/dashboard">Dashboard</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 col-md-6 col-lg-12">
+                                        <div class="card">
+                                            <form id="full-editor" class="form-horizontal form-validate-jquery p-5"
+                                                method="post" action="/admin/help/<%-help.id %>">
+                                                <fieldset class="content-group">
+                                                    <!-- Basic text input -->
+                                                    <div class="form-group">
+                                                        <div class="col-md-12">
+
+
+                                                            <label class="control-label">Title <span
+                                                                    class="text-danger">*</span></label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="col-lg-12">
+                                                            <input type="text" name="title" value="<%=help.title%>"
+                                                                class="form-control rounded" placeholder="Enter your title"
+                                                                aria-required="true">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <div class="col-md-12">
+                                                            <label class="control-label">Content<span
+                                                                class="text-danger">*</span></label>
+                                                        </div>
+
+                                                    </div>
+
+                                                       
+                                                                <div class="form-group">
+                                                        <div class="col-lg-12">
+
+                                                            <textarea name="content"
+                                                                id="summernote"><%=help.content%></textarea>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <div class="col-lg-12 text-right">
+                                                            <button type="submit" class="btn btn-primary text-right"
+                                                                style=""
+                                                                name="submit">Save</button>
+
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Minimum characters -->
+
+                                                </fieldset>
+
+                                            </form>
+                                        </div>
+                            </section>
+                        </div>
+            </div>
+            <div class="text-right">
+
+                <!-- Main content -->
+                <div class="content-wrapper">
+                    <!-- Content area -->
+                    <!--  End Main Content -->
+                    <!-- footer -->
+                    <%- include("../partials/footer")%>
+                        <!--End  footer -->
+                </div>
+    </body>
+    <script>
+        setTimeout(function () {
+            $("div.msg").fadeOut();
+        }, 2000);
+    </script>
+    <script>
+        CKEDITOR.replace('content');
+    </script>
+
+</html>

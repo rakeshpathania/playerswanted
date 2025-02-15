@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include("partials/header")%>
+    <!-- head -->
+   
+            <style>
+                .bg-dark2 {
+                    background-color: #a22fac !important;
+                }
+            </style>
+            <body>
+                <div id="app">
+                    <div class="main-wrapper">
+                        <!-- navbar -->
+                        <%- include("partials/navbar")%>
+                            <!--End navbar -->
+                            <!-- Sidebar -->
+                            <%- include("partials/sidebar")%>
+                                <!--End Sidebar -->
+                                <!-- Main Content -->
+                                <div class="main-content">
+                                    <section class="section">
+                                        <div class="section-header">
+                                            <h1>Dashboard</h1>
+                                        </div>
+                                        <div class="row"><a href="/admin/users">
+                                                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                                    <div class="card card-statistic-1">
+                                                        <div class="card-icon card_icon_size bg-primary">
+                                                            <i class="fa fa-users fa-3x"></i>
+                                                        </div>
+                                                        <div class="card-wrap">
+                                                            <div class="card-header">
+                                                                <h4>Users</h4>
+                                                            </div>
+                                                            <div class="card-body">
+                                                                <%=usercount%>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                            </a>
+                                        </div>
+                                       
+                                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                            <a href="/admin/listshop">
+                                                <div class="card card-statistic-1">
+                                                    <div class="card-icon card_icon_size bg-danger">
+                                                        <i class="fa fa-shopping-bag fa-3x" style="color:white"></i>
+                                                    </div>
+                                                    <div class="card-wrap">
+                                                        <div class="card-header">
+                                                            <h4>Shop</h4>
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <%=shopcount%>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                            <a href="/admin/listsports">
+                                                <div class="card card-statistic-1">
+                                                    <div class="card-icon card_icon_size bg-warning">
+                                                        <i class="fas fa-life-ring fa-2x"></i>
+                                                    </div>
+                                                    <div class="card-wrap">
+                                                        <div class="card-header">
+                                                            <h4>Sports</h4>
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <%=sportscount%>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+
+                                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                            <a href="/admin/listlesson">
+                                                <div class="card card-statistic-1">
+                                                    <div class="card-icon card_icon_size alert alert-dark">
+                                                        <i class="fas fa-book fa-2x"></i>
+                                                    </div>
+                                                    <div class="card-wrap">
+                                                        <div class="card-header">
+                                                            <h4>Lesson</h4>
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <%=lessoncount%>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                            <a href="/admin/listgame">
+                                                <div class="card card-statistic-1">
+                                                    <div class="card-icon card_icon_size alert alert-light">
+                                                        <i class="fas fa-gamepad fa-2x"></i>
+                                                    </div>
+                                                    <div class="card-wrap">
+                                                        <div class="card-header">
+                                                            <h4>Game</h4>
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <%=gamecount%>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+
+
+
+
+                                        
+                                        
+
+
+                                </div>
+                                </tbody>
+                                </table>
+                    </div>
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+                </section>
+                </div>
+                <!--  End Main Content -->
+                <!-- footer -->
+                
+
+                    <!--End  footer -->
+                    </div>
+                    </div>
+            </body>
+
+</html>

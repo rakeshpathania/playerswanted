@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+
+<%- include("common/header")%>
+
+    <!-- script -->
+    <%- include("common/script")%>
+        <!-- script -->
+
+
+        <body>
+            <!-- Header -->
+            <%- include("common/Topheader")%>
+                <!-- Header -->
+                <!-- inner_banner -->
+                <section class="inner_benner">
+                    <h2>About Us</h2>
+                    <p>Home / About Us</p>
+                    <div class="top_arr inner_benner1">
+                        <a href="#about_us"><img src="/webassets/images/top_arro.png" alt="" /></a>
+                    </div>
+
+                </section>
+                <!-- inner_banner -->
+                <!-- our instructors -->
+                <section class="ourinstructors ourinstructorsq" id="about_us">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2 class="heading">
+                                    <small>About</small>
+                                    Our Instructors
+                                    <figure><img src="/webassets/images/hnd.png" alt=""></figure>
+                                </h2>
+                            </div>
+                            <div class="col-md-12">
+                                <div id="Instructors" class="owl-carousel">
+                                    <%instructors.forEach((val,index)=>{%>
+                                        <div class="item">
+                                            <div class="item_in">
+                                                <div class="item_img">
+                                                    <a href="/inst_profile/?id=<%=val.id%>">
+                                                        <%if(val.image){%>
+                                                        <img src="/images/<%=val?.image%>" />
+                                                        <%} else{%>
+                                                        <img src="/unknown/person.png" />
+                                                        <%}%>
+                                                        </a>
+                                                </div>
+                                                <div class="item_cnt">
+                                                    <h1>
+                                                        <%=val?.name%>
+                                                    </h1>
+                                                    <div class="star_read my-3">
+                                                        <span id="stars<%=index %>"></span>
+                                                       
+                                                        <%if(val.averagerate?.rate){%>
+                                                            <h6 class="mb-0 ms-1">
+                                                                <%=val.averagerate?.rate%>/5
+                                                            </h6>
+                                                            <%}else{%>
+                                                                <h6 class="mb-0 ms-1">0/5</h6>
+                                                                <%}%>
+                                                    </div>
+                                                    <p>Age: <%=val?.age%>years%></p>
+                                                    <p>Experience: 8years</p>
+                                                    <p>Specialization: <%=val.sports[0]?.game?.name%>
+                                                    </p>
+                                                    <p>Location: <%=val?.location%>
+                                                    </p>
+                                                    <!-- <strong>$300.00</strong> -->
+                                                    <ul class="social">
+                                                        <li><a href=""><i class="fa fa-twitter"
+                                                                    aria-hidden="true"></i></a>
+                                                        </li>
+                                                        <li><a href=""><i class="fa-brands fa-facebook-f"></i></a></li>
+                                                        <li><a href=""><i class="fa fa-instagram"
+                                                                    aria-hidden="true"></i></a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <%})%>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- our instructors -->
+
+                <!-- our shop -->
+                <section class="ourinstructors shop">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2 class="heading">
+                                    <small> Our </small>
+                                    Shop
+                                    <figure><img src="/webassets/images/hnd.png" alt=""></figure>
+                                </h2>
+                            </div>
+                            <div class="col-md-12">
+                                <div id="shop" class="owl-carousel">
+                                    <div class="item">
+                                        <div class="item_in1">
+                                            <div class="item_img">
+                                                <img src="/webassets/images/p1.png">
+                                            </div>
+                                            <div class="item_cnt1">
+                                                <h4> <a href="">Product Name</a></h4>
+                                                <h5>$13.00 - 67.00</h5>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="item_in1">
+                                            <div class="item_img">
+                                                <img src="/webassets/images/p2.png">
+                                            </div>
+                                            <div class="item_cnt1">
+                                                <h4> <a href="">Product Name</a></h4>
+                                                <h5>$13.00 - 67.00</h5>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="item_in1">
+                                            <div class="item_img">
+                                                <img src="/webassets/images/p3.png">
+                                            </div>
+                                            <div class="item_cnt1">
+                                                <h4> <a href="">Product Name</a></h4>
+                                                <h5>$13.00 - 67.00</h5>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="item_in1">
+                                            <div class="item_img">
+                                                <img src="/webassets/images/p4.png">
+                                            </div>
+                                            <div class="item_cnt1">
+                                                <h4> <a href="">Product Name</a></h4>
+                                                <h5>$13.00 - 67.00</h5>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="item_in1">
+                                            <div class="item_img">
+                                                <img src="/webassets/images/p1.png">
+                                            </div>
+                                            <div class="item_cnt1">
+                                                <h4> <a href="">Product Name</a></h4>
+                                                <h5>$13.00 - 67.00</h5>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="item_in1">
+                                            <div class="item_img">
+                                                <img src="/webassets/images/p2.png">
+                                            </div>
+                                            <div class="item_cnt1">
+                                                <h4> <a href="">Product Name</a></h4>
+                                                <h5>$13.00 - 67.00</h5>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- our shop -->
+
+                <!-- Footer -->
+                <footer>
+
+                    <%- include("common/footer")%>
+
+                </footer>
+
+        </body>
+
+        <script>
+     
+            "<% instructors.forEach(function(val,index){ %>"
+            document.getElementById("stars<%= index %>").innerHTML = getStars("<%=val?.averagerate?.rate%>");
+            
+            function getStars(rating) {
+         
+              // Round to nearest half
+              rating = Math.round(rating * 2) / 2;
+           
+              let output = [];
+            
+              // Append all the filled whole stars
+              for (var i = rating; i >= 1; i--)
+                output.push('<i class=" fa fa-star" aria-hidden="true"  ></i>&nbsp;');
+            
+              // If there is a half a star, append it
+              if (i == .5) output.push('<i  class=" fa fa-star-half-o" aria-hidden="true" style="color: #ffbe00 !important" ></i>&nbsp;');
+            
+              // Fill the empty stars
+              for (let i = (5 - rating); i >= 1; i--)
+                output.push('<i class="ratings_stars fa fa-star" aria-hidden="true" ></i>&nbsp;');
+             
+              return output.join('');
+              
+            }
+            "<% }); %>  "
+          
+           </script>
+         
+
+
+</html>
+
+<style>
+    .ratings_stars {
+    color: rgba(112, 111, 111, 0.856) !important;
+  }
+</style>

@@ -1,0 +1,585 @@
+<!doctype html>
+<html lang="en">
+
+
+<%- include("common/header")%>
+
+<!-- script -->
+<%- include("common/script")%>
+<!-- script -->
+
+<body>
+  <!-- Header -->
+  <%- include("common/Topheader")%>
+  <!-- Header -->
+  <!-- inner_banner -->
+  <section class="inner_benner">
+    <h2>Buddy List</h2>
+    <p>Home / Buddy List</p>
+    <div class="top_arr inner_benner1">
+      <a href="#"><img src="/webassets/images/top_arro.png" alt="" /></a>
+    </div>
+
+  </section>
+  <!-- inner_banner -->
+
+  <!-- chat -->
+
+  <section class="py-5">
+    <div class="container">
+      <div class="row justify-content-center h-100">
+        <div class="col-md-4 col-xl-5 chat">
+          <div class="card mb-sm-3 mb-md-0 contacts_card">
+            <div class="card-header">
+              <div class="btns_top">
+                <span> Messages
+                  <img src="/webassets/images/inbox.png" alt="" style="width: 44px">[<%=chat_count%>]
+                </span>
+              </div>
+              <div class="search">
+                <span class="fa fa-search" id="searching" style="cursor: pointer;"></span>
+                <input placeholder="Search term" id="searchUser">
+              </div>
+            </div>
+            <div class="card-body contacts_body">
+              <ui class="contacts">
+                <%chat?.forEach((val)=>{%>
+                <li>
+                  <div class="d-flex bd-highlight gap-2 align-items-center">
+                    <div class="img_cont">
+                      <%if(val?.image!=""){%>
+                      <a style="cursor: pointer;" onclick='readmessage("<%=val.id%>")'>
+                        <img src="/images/<%=val.image%>" class="rounded-circle user_img">
+                      </a>
+                      <%}else{%>
+                      <a style="cursor: pointer;" onclick='readmessage("<%=val.id%>")'>
+                        <img src="/unknown/person.png" class="rounded-circle user_img">
+                      </a>
+                      <%}%>
+
+                                    <span class="online_icon offline"></span>
+                            </div>
+                            <div class="user_info w-100">
+                              <span>
+                                <a onclick='readmessage("<%=val.id%>")' style="cursor: pointer;">
+                      <%=val.name%>
+                      </a>
+                      <!-- <time> 01:00 AM</time> -->
+                      </span>
+                      <%if(val.chattiming?.online=="1" ){%>
+                      <p>online</p>
+                      <%}else{%>
+                      <p>
+                        offline
+                      </p>
+                      <%}%>
+                            </div>
+                          </div>
+                        </li>
+                        <%})%>
+              </ui>
+            </div>
+            <div class="card-footer"></div>
+          </div>
+        </div>
+        <div class="col-md-8 col-xl-7 chat">
+          <div class="card">
+            <div class="card-header msg_head">
+              <div class="d-flex bd-highlight align-items-center gap-1">
+                <div class="img_cont">
+
+                  <%if(selected_user?.image!=""){%>
+                  <img src="/images/<%=selected_user.image%>" class="rounded-circle user_img">
+                  <%}else{%>
+                  <img src="/unknown/person.png" class="rounded-circle user_img">
+                  <%}%>
+
+                              <span class="online_icon "></span>
+                      </div>
+                      <div class="user_info d-flex align-items-center">
+                        <span>
+                          <%=selected_user?.name%>
+                  </span>
+                  <div class="btns_top">
+                    <span class="w-100" id="ratenow"><a href="/rate/?id=<%=receiver_id%>" class="float-end"><i class="fa-solid fa-star text-warning"></i> Rate now</a></span>
+                  </div>
+                </div>
+                <div class="dropdown ms-auto">
+                  <button class="  dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="/webassets/images/dots.png" width="15" alt="">
+                  </button>
+                  <ul class="dropdown-menu cards border-0 px-3 py-4">
+                    <li>
+                      <%if(all_messages.length != 0){%>
+                      <a class="dropdown-item d-flex align-items-center" href="#" data-bs-toggle="modal" data-bs-target="#block"> <i class="chat_icon"> <img src="/webassets/images/block_icon.png" alt=""></i>
+                        Block
+                      </a>
+                      <%}%>
+                          </li>
+                          <li><a class="dropdown-item d-flex align-items-center" href="#" data-bs-toggle="modal"
+                              data-bs-target="#del"> <i class="chat_icon"> <img src="/webassets/images/delete_icon.png"
+                                  alt=""></i>Delete chat history
+                            </a>
+                          </li>
+                          <li><a class="dropdown-item d-flex align-items-center" href="#"> <i class="chat_icon"> <img
+                                  src="/webassets/images/ball.png" alt=""></i> Mute
+                              Notification
+                            </a>
+                          </li>
+                          <li><a class="dropdown-item d-flex align-items-center" href="#" data-bs-toggle="modal"
+                              data-bs-target="#report"> <i class="chat_icon"> <img src="/webassets/images/repot.png"
+                                  alt=""></i>Report
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-body msg_card_body">
+                    <%all_messages.forEach((val)=>{%>
+                      <%if(val.from !=session.users.id){%>
+                      <div class="message incoming">
+                        <p class="mb-0">
+                          <%=val.msg%>
+                        </p>
+                      </div>
+                      <%}else{%>
+                      <div class="message outgoing">
+                        <p class="mb-0">
+                          <%=val.msg%>
+                        </p>
+                      </div>
+                      <%}%>
+                            <%})%>
+
+                </div>
+                <div class="card_footer border-top py-2 px-2">
+
+                  <%if( ischatted.length != 0 && isBlocked.length == 0){%>
+                  <div class="input-group d-flex align-items-center justify-content-around">
+                    <textarea name="message" readonly id="sendMessage" class="form-control d-flex align-items-end type_msg" placeholder="You have blocked this user"></textarea>
+                    <div class="input-group-append">
+                      <button type="button" name="" class="input-group-text send_btn" data-bs-toggle="modal" data-bs-target="#unblock">Unblock</button>
+                    </div>
+                  </div>
+                  <%}else{%>
+                  <div class="input-group d-flex align-items-center justify-content-around">
+                    <textarea name="message" id="sendMessage" class="form-control d-flex align-items-end type_msg" placeholder="Enter the message"></textarea>
+                    <div class="input-group-append">
+                      <button type="button" name="" id="sendMsg" class="input-group-text send_btn">Send</button>
+                    </div>
+                  </div>
+                  <%}%>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- chat -->
+
+
+        <!-- Footer -->
+        <footer>
+          <%-include("common/footer")%>
+                  </footer>
+                  <!-- Footer -->
+
+</body>
+
+
+
+<!-- delete Modal -->
+
+<div class="modal fade login_model delete_modal" id="del" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog d-flex align-items-center h-100" role="document">
+    <div class="modal-content bg-transparent border-0">
+      <div class="modal-body p-0">
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true"><i class="fa fa-close"></i></span>
+        </button>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="cards text-center py-5 bg-white">
+              <img src="/webassets/images/delete_img02.png" alt="">
+              <p>Are you sure you want to <br> delete this chat.</p>
+              <div class="del_btn d-flex justify-content-center">
+                <a href="#" class="btn text-decoration-none text-white me-3" data-bs-dismiss="modal">No</a>
+                <a href="#" id="dltChat" class="btn text-decoration-none text-white" data-bs-dismiss="modal">Yes</a>
+
+
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- delete Modal -->
+<!-- block Modal -->
+<div class="modal fade login_model block_modal" id="block" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog d-flex align-items-center h-100" role="document">
+    <div class="modal-content bg-transparent border-0">
+      <div class="modal-body p-0">
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true"><i class="fa fa-close"></i></span>
+        </button>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="cards text-center py-5 bg-white">
+              <img src="/webassets/images/block_icon02.png" alt="">
+              <p>Are you sure you want to <br> block this user.</p>
+              <div class="del_btn d-flex justify-content-center">
+                <a href="#" class="btn text-decoration-none text-white me-3" data-bs-dismiss="modal">No</a>
+                <a href="#" class="btn text-decoration-none text-white" data-bs-dismiss="modal" id="yesBlock">Yes</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- block Modal -->
+
+<!-- un block Modal -->
+
+<div class="modal fade login_model block_modal" id="unblock" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog d-flex align-items-center h-100" role="document">
+    <div class="modal-content bg-transparent border-0">
+      <div class="modal-body p-0">
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true"><i class="fa fa-close"></i></span>
+        </button>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="cards text-center py-5 bg-white">
+              <img src="/webassets/images/block_icon02.png" alt="">
+              <p>Are you sure you want to <br> unblock this user.</p>
+              <div class="del_btn d-flex justify-content-center">
+                <a href="#" class="btn text-decoration-none text-white me-3" data-bs-dismiss="modal">No</a>
+                <a href="#" class="btn text-decoration-none text-white" data-bs-dismiss="modal" id="noBlock">Yes</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- un block Modal -->
+
+<!-- report Modal -->
+<div class="modal fade login_model delete_modal" id="report" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog d-flex align-items-center h-100" role="document">
+    <div class="modal-content bg-transparent border-0">
+      <div class="modal-body p-0">
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true"><i class="fa fa-close"></i></span>
+        </button>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="cards px-3 text-center py-5 bg-white">
+              <img src="/webassets/images/delete_img02.png" alt="">
+              <p>Why do you want to report <br>
+                this user?</p>
+              <form method="post" id="reportForm" action="javascript:void(0);">
+                <textarea name="reportmsg" id="reporttext" rows="3" class="p-3 shadow-0 border my-3" placeholder="Write here..."></textarea>
+                <div class="del_btn d-flex gap-2 justify-content-center">
+                  <button type="submit" id="confirmReport" class="btn_blue">Ok</button>
+
+                  <!-- <a href="#" id="confirmReport" class="btn text-decoration-none text-white me-3">Ok</a> -->
+                  <a href="#" class="btn text-decoration-none text-white" data-bs-dismiss="modal">Cancel</a>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- report Modal -->
+
+</html>
+
+
+<script>
+  $("#yesBlock").on("click", () => {
+    let from = "<%=session.users.id%>"
+    let to = "<%=receiver_id%>"
+    $.ajax({
+      url: "/users/blockuser",
+      type: "POST",
+      data: {
+        from,
+        to,
+        type: "1"
+      },
+      cache: false,
+      success: async function(dataResult) {
+        if (dataResult.status_code == 1) {
+          await toastMsg("success", dataResult.message);
+          window.location.href = "/message/?id=<%=receiver_id%>"
+        }
+        if (dataResult.status_code == 0) {
+          await toastMsg("error", dataResult.message)
+        }
+
+      }
+    });
+  })
+
+
+  $("#noBlock").on("click", () => {
+    let from = "<%=session.users.id%>"
+    let to = "<%=receiver_id%>"
+    $.ajax({
+      url: "/users/blockuser",
+      type: "POST",
+      data: {
+        from,
+        to,
+        type: "0"
+      },
+      cache: false,
+      success: async function(dataResult) {
+        if (dataResult.status_code == 1) {
+          await toastMsg("success", dataResult.message);
+          window.location.href = "/message/?id=<%=receiver_id%>"
+        }
+        if (dataResult.status_code == 0) {
+          await toastMsg("error", dataResult.message)
+        }
+
+      }
+    });
+  })
+
+  function readmessage(id) {
+    let from = id
+    let to = "<%=session.users.id%>"
+    $.ajax({
+      url: "/users/read-msg",
+      type: "POST",
+      data: {
+        from,
+        to
+      },
+      cache: false,
+      success: async function(dataResult) {
+        if (dataResult.status_code == 1) {
+          window.location.href = `/message/?id=${id}`
+        }
+        if (dataResult.status_code == 0) {
+          await toastMsg("error", dataResult.message)
+        }
+
+      }
+    });
+  }
+
+
+  let search = "";
+  $('#searchUser').on('keyup change', function() {
+    search = $(this).val();
+    if (search != '' && search != undefined) {
+      $(this).keypress(function(event) {
+        if (event.keyCode != 13) {
+          return;
+        }
+        window.location.href = `/message/?id=<%=receiver_id%>&search=${search}`
+      });
+    }
+  });
+
+  $('#searching').on('click', function() {
+    window.location.href = `/message/?id=<%=receiver_id%>&search=${search}`
+
+  })
+
+  $(function() {
+
+    var socket = io();
+
+    let message_area = document.querySelector('.msg_card_body')
+    let textarea = document.getElementById("sendMessage");
+
+    let sender_id = "<%=session.users.id%>"
+    let receiver_id = "<%=receiver_id%>"
+
+    function appendMessage(msg, type) {
+      let mainDiv = document.createElement('div');
+      let className = type;
+      mainDiv.classList.add(className, 'message');
+
+
+      let markup = `<p>${msg}</p>`
+
+      mainDiv.innerHTML = markup
+
+      message_area.appendChild(mainDiv)
+
+    }
+
+    let first_id = sender_id < receiver_id ? sender_id : receiver_id;
+    let second_id = sender_id > receiver_id ? sender_id : receiver_id;
+
+
+    socket.emit('connectChatRoom', first_id, second_id);
+
+    $('#sendMsg').on('click', function() {
+
+      let msg = $("#sendMessage").val();
+
+      let data = {
+        to: receiver_id,
+        from: sender_id,
+        msg
+      }
+      socket.emit('send-msg', data);
+
+      let from = sender_id;
+      let to = receiver_id;
+
+      if (from != "" && to != "" && msg.trim() != "") {
+        appendMessage(msg, 'outgoing');
+        textarea.value = ''
+      }
+    })
+
+    socket.on('msg-recieve', function(data) {
+      if (data?.msg.trim() != "") {
+        if (data.from_self != sender_id) {
+          appendMessage(data.msg, 'incoming');
+        }
+        scrollToBottom();
+
+      }
+    });
+
+    $("#dltChat").on("click", function() {
+      $.ajax({
+        url: "/users/deletechat",
+        type: "POST",
+        data: {
+          from: sender_id,
+          to: receiver_id
+        },
+        cache: false,
+        success: async function(dataResult) {
+          if (dataResult.status_code == 1) {
+            console.log("entrer");
+            await toastMsg("success", dataResult.message)
+            window.location.href = "/message/?id=<%=receiver_id%>"
+          }
+          if (dataResult.status_code == 0) {
+            await toastMsg("error", dataResult.message)
+          }
+
+        }
+      });
+    })
+
+    jQuery(document).ready(function() {
+      console.log("sfdnnfsldn");
+      let rules = {
+        reportmsg: {
+          required: true
+        },
+
+      };
+      let messages = {
+        reportmsg: {
+          required: "Please enter some words",
+        },
+
+      }
+
+      jQuery("#reportForm").validate({
+        rules,
+        messages,
+        submitHandler: function(form) {
+          submitReport();
+          form.submit();
+          // $("#add_lesson").modal('hide');
+        }
+      });
+    });
+
+
+    function submitReport() {
+      let msg = $("#reporttext").val();
+      console.log(msg);
+      $.ajax({
+        url: "/users/createreport",
+        type: "POST",
+        data: {
+          report_from: sender_id,
+          report_to: receiver_id,
+          msg: msg
+        },
+        cache: false,
+        success: async function(dataResult) {
+          if (dataResult.status_code == 1) {
+            await toastMsg("success", dataResult.message);
+            window.location.href = "/message/?id=<%=receiver_id%>"
+          }
+          if (dataResult.status_code == 0) {
+            await toastMsg("error", dataResult.message)
+          }
+
+        }
+      });
+    }
+
+    function scrollToBottom() {
+      message_area.scrollTop = message_area.scrollHeight
+    }
+
+
+  });
+</script>
+<style>
+  .incoming {
+    background: grey;
+    color: #fff;
+  }
+
+  .outgoing {
+    background: #3aaa33;
+    color: #ffffff;
+    margin-left: auto;
+  }
+
+
+  .message {
+    padding: 5px 20px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    width: fit-content;
+    min-width: 120px;
+    position: relative;
+  }
+
+  .message p {
+    max-width: 450px;
+    width: fit-content;
+  }
+
+
+  .message h4 {
+    position: absolute;
+    top: -20px;
+    left: 0;
+    color: #333;
+    font-size: 14px;
+  }
+</style>

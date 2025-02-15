@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("common/header")%> <%- include("common/script")%>
+
+<body>
+  <!-- Header -->
+  <%- include("common/Topheader")%>
+  <!-- Header -->
+  <!-- inner_banner -->
+  <section class="inner_benner">
+    <h2>My Account</h2>
+    <p>Home / My Account</p>
+    <div class="top_arr inner_benner1">
+      <a href="#my_acc"><img src="/webassets/images/top_arro.png" alt="" /></a>
+    </div>
+  </section>
+  <!-- inner_banner -->
+
+  <!-- my account -->
+  <section class="my_account" id="my_acc">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3 col-sm-12">
+          <div class="tab_shadow tab_menu rounded-4">
+            <div class="user_image w-100 text-center">
+              <%if(user.image!=""){%>
+              <img src="/images/<%=user.image %>" width="197.16" height="197.16" class="rounded-circle mb-4" alt="" />
+
+              <%} else{%>
+              <img src="/unknown/person.png" width="197.16" height="197.16" class="rounded-circle mb-4" alt="" />
+              <%}%>
+                          <i style="font-size: 24px; cursor: pointer" data-bs-toggle="modal" data-bs-target="#editphoto"
+                            class="fa-solid fa-pen-to-square"></i>
+                          <!-- <img src="/images/<%=user.image %>" width="197.16" height="197.16"
+              class="rounded-circle mb-4" alt=""> -->
+              <h2>
+                <%=user.name %>
+              </h2>
+              <p>
+                <%=user.email %>
+              </p>
+            </div>
+
+            <div class="nav d-md-flex flex-wrap justify-content-lg-start justify-content-center d-block text-start nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+              <a href="#" class="nav-link active" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="true">
+                <span class="tab_icon"><i class="fa-solid fa-user text-white"></i>
+                </span>
+                Player Profile</a>
+              <a href="#" class="nav-link" id="v-pills-edit_profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-edit_profile" role="tab" aria-controls="v-pills-edit_profile" aria-selected="false">
+                <span class="tab_icon">
+                  <img class="" src="./icon/user_icon02.png" alt="" /> </span>Edit Profile</a>
+
+              <!-- <a
+                  href="#"
+                  class="nav-link"
+                  id="v-pills-Favorite-tab"
+                  data-bs-toggle="pill"
+                  data-bs-target="#v-pills-Favorite"
+                  role="tab"
+                  aria-controls="v-pills-Favorite"
+                  aria-selected="false"
+                  tabindex="-1"
+                >
+                  <span class="tab_icon"
+                    ><i class="fa-solid fa-heart"></i> </span
+                  >My Favorite Sports</a
+                > -->
+              <a href="#" class="nav-link" id="v-pills-change_password-tab" data-bs-toggle="pill" data-bs-target="#v-pills-change_password" role="tab" aria-controls="v-pills-change_password" aria-selected="false">
+                <span class="tab_icon">
+                  <img class="" src="./icon/flower_icon.png" alt="" /> </span>Sports Played</a>
+              <a href="#" class="nav-link" id="v-pills-delivery_addresses-tab" data-bs-toggle="pill" data-bs-target="#v-pills-delivery_addresses" role="tab" aria-controls="v-pills-delivery_addresses" aria-selected="false">
+                <span class="tab_icon">
+                  <img class="" src="./icon/pack_icon.png" alt="" /> </span>Packages</a>
+              <a href="#" class="nav-link" id="v-pills-payment_methods-tab" data-bs-toggle="pill" data-bs-target="#v-pills-payment_methods" role="tab" aria-controls="v-pills-payment_methods" aria-selected="false">
+                <span class="tab_icon">
+                  <img class="" src="./icon/lock_icon.png" alt="" />
+                </span>
+                Change Password</a>
+              <a href="#" class="nav-link" id="v-pills-my_orders-tab" data-bs-toggle="pill" data-bs-target="#v-pills-my_orders" role="tab" aria-controls="v-pills-my_orders" aria-selected="false">
+                <span class="tab_icon">
+                  <img class="" src="./icon/pay_icon.png" alt="" />
+                </span>
+                Payment Methods</a>
+              <a class="nav-link" id="v-pills-logout-tab" data-bs-toggle="modal" data-bs-target="#logout">
+                <span class="tab_icon">
+                  <img class="" src="./icon/logout_icon.png" alt="" />
+                </span>
+                Logout</a>
+              <a class="nav-link" id="v-pills-switch-tab" data-bs-toggle="modal" data-bs-target="#switchProfile">
+                <span class="tab_icon">
+                  <img class="" src="./icon/logout_icon.png" alt="" />
+                </span>
+                Become Instructor</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-9 col-sm-12 mt-lg-0 mt-4">
+          <div class="tab-content tab_shadow rounded-4 h-100" id="v-pills-tabContent">
+            <!-- Profile Tab -->
+
+            <div class="tab-pane fade show active" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab" tabindex="0">
+              <div class="row">
+                <div class="col-md-5 col-sm-12">
+                  <h2 class="mb-4">Player Profile</h2>
+                  <h4>Name</h4>
+                  <p>
+                    <%=user.name %>
+                  </p>
+                  <h4>Email</h4>
+                  <p>
+                    <%=user.email %>
+                  </p>
+                  <h4>Phone Number</h4>
+                  <p>
+                    <%=user.phone_number %>
+                  </p>
+                </div>
+                <div class="col-md-7 col-sm-12">
+                  <img src="/webassets/images/user_profile_sideimg01.png" class="w-100 h-100" alt="" />
+                </div>
+              </div>
+            </div>
+
+            <div class="tab-pane fade" id="v-pills-Favorite" role="tabpanel" aria-labelledby="v-pills-Favorite-tab" tabindex="0">
+              <div class="row">
+                <!--  -->
+
+                <div class="col-md-6 col-sm-12">
+                  <h2 class="mb-4">Favorite Sports</h2>
+                  <form action="#">
+                    <div class="add_sport">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <label for="name">Sports name</label> <br />
+                          <select class="form-control">
+                            <option>Tennis</option>
+                            <option>Golf</option>
+                            <option>Running</option>
+                            <option>Rock Climbing</option>
+                          </select>
+                        </div>
+                        <div class="col-md-6">
+                          <label for="name">Expertise</label> <br />
+                          <select class="form-control">
+                            <option>Beginner</option>
+                            <option>Intermediate</option>
+                            <option>Expert</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <label for="name">Sports name</label> <br />
+                          <select class="form-control">
+                            <option>Tennis</option>
+                            <option>Golf</option>
+                            <option>Running</option>
+                            <option>Rock Climbing</option>
+                          </select>
+                        </div>
+                        <div class="col-md-6">
+                          <label for="name">Expertise</label> <br />
+                          <select class="form-control">
+                            <option>Beginner</option>
+                            <option>Intermediate</option>
+                            <option>Expert</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="row mt-3 justify-content-end">
+                        <div class="col-md-12">
+                          <a href="#" class="add_bank_bnt float-end">
+                            <i aria-hidden="true" class="fa fa-plus"></i> Add
+                            More</a>
+                        </div>
+                      </div>
+                    </div>
+
+                    <button type="submit" class="tab_btn mt-3">Update</button>
+                  </form>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                  <img src="./images/user_profile_sideimg01.png" class="w-100" alt="" />
+                </div>
+              </div>
+            </div>
+            <!-- Edit Profile tab -->
+            <div class="tab-pane fade" id="v-pills-edit_profile" role="tabpanel" aria-labelledby="v-pills-edit_profile-tab" tabindex="0">
+              <div class="row">
+                <div class="col-md-5 col-sm-12">
+                  <h2 class="mb-4">Edit Player Profile</h2>
+
+                  <form method="post" id="updateProfileForm" action="javascript:void(0);">
+                    <label for="name">Name</label> <br />
+                    <input type="text" class="form-control" name="name" id="updatename" value="<%=user.name %>" placeholder="<%=user.name %>" onkeypress="return /^[A-Za-z\s]*$/i.test(event.key)" />
+                    <label for="email">Email</label> <br />
+                    <input type="email" class="form-control" readonly name="email" value="<%=user.email %>" id="updateemail" placeholder="<%=user.email %>" />
+                    <label for="phone_noumber">Phone Number</label> <br />
+                    <input type="text" class="form-control" name="phone_number" value="<%=user.phone_number %>" id="updatephone" placeholder="<%=user.phone_number %>" onkeypress="return /[0-9]/i.test(event.key)" />
+                    <button type="submit" id="updateData" class="tab_btn mt-3">
+                      Update
+                    </button>
+                  </form>
+                </div>
+                <div class="col-md-7 col-sm-12">
+                  <img src="/webassets/images/user_profile_sideimg01.png" class="w-100 h-100" alt="" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Player Profile tab -->
+            <div class="tab-pane fade player_profile" id="v-pills-change_password" role="tabpanel" aria-labelledby="v-pills-change_password-tab" tabindex="0">
+              <div class="row gy-3">
+                <div class="col-12">
+                  <h2 class="mb-4">My Sports</h2>
+                </div>
+                <%games.forEach((val)=>{%>
+                <div class="col-lg-4 col-md-6">
+                  <div class="cards">
+                    <div class="card_img">
+                      <img src="/games/<%=val.game?.image%>" alt="" />
+                    </div>
+                    <div class="card_body">
+                      <h3>
+                        <%=val.game?.name%>
+                      </h3>
+                      <h4>Skill Level</h4>
+                    </div>
+                    <div class="card_footer d-flex align-items-center px-3">
+                      <!-- <div class="progress">
+                          <div
+                            class="progress-bar"
+                            role="progressbar"
+                            aria-label="Basic example"
+                            style="width: 75%"
+                            aria-valuenow="75"
+                            aria-valuemin="0"
+                            aria-valuemax="100"
+                          ></div>
+                        </div> -->
+                      <h3>
+                        <%=val.levels%>
+                      </h3>
+                    </div>
+                  </div>
+                </div>
+                <%})%>
+                <%if(games.length==0){%>
+                <div class="col-12">
+                  <p class="mb-4">You Didn't Played Any Sport Yet</p>
+                </div>
+                <%}%>
+                              <!-- <div class="col-lg-4 col-md-6">
+                                                <div class="cards">
+                                                    <div class="card_img">
+                                                        <img src="/webassets/images/spor_img12.png" alt="">
+                                                    </div>
+                                                    <div class="card_body">
+                                                        <h3>Bedminton</h3>
+                                                        <h4>Skill Level</h4>
+                                                    </div>
+                                                    <div class="card_footer d-flex align-items-center px-3">
+                                                        <div class="progress">
+                                                            <div class="progress-bar" role="progressbar"
+                                                                aria-label="Basic example" style="width: 75%"
+                                                                aria-valuenow="75" aria-valuemin="0"
+                                                                aria-valuemax="100">
+                                                            </div>
+                                                        </div>
+                                                        <h3>
+                                                            70%
+                                                        </h3>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-6">
+                                                <div class="cards">
+                                                    <div class="card_img">
+                                                        <img src="/webassets/images/off7.png" alt="">
+                                                    </div>
+                                                    <div class="card_body">
+                                                        <h3>Basketball</h3>
+                                                        <h4>Skill Level</h4>
+                                                    </div>
+                                                    <div class="card_footer d-flex align-items-center px-3">
+                                                        <div class="progress">
+                                                            <div class="progress-bar" role="progressbar"
+                                                                aria-label="Basic example" style="width: 75%"
+                                                                aria-valuenow="75" aria-valuemin="0"
+                                                                aria-valuemax="100">
+                                                            </div>
+                                                        </div>
+                                                        <h3>
+                                                            70%
+                                                        </h3>
+                                                    </div>
+                                                </div>
+                                            </div> -->
+                    </div>
+                  </div>
+
+                  <!-- Packages -->
+                  <div class="tab-pane fade packs" id="v-pills-delivery_addresses" role="tabpanel"
+                    aria-labelledby="v-pills-delivery_addresses-tab" tabindex="0">
+                    <div class="row">
+                      <div class="col-md-12 mb-4">
+                        <h2>Packages</h2>
+                      </div>
+                      <%subscription.forEach((val)=>{%>
+                <div class="col-lg-4 col-md-6">
+                  <div class="cards text-center pt-5 pb-2">
+                    <h3>
+                      <%=val.game?.name%> Package
+                    </h3>
+                    <span>$<%=val.package_amount%></span>
+                    <p>
+                      Up to 1 Expots <br />
+                      <%=val.package_duration%> Days Validity <br />
+                      5 Leasson <br />
+                      24/7 Support
+                    </p>
+                    <a href="/videos/?inst_id=<%=val.instructor_id%>&game_id=<%=val.game_id%>" class="text-white text-decoration-none mx-auto mt-3">
+                      View
+                    </a>
+                    <h6>Expiry <%=Math.floor((val.expired_at - todayDt) / 86400)%> days</h6>
+                  </div>
+                </div>
+                <%})%>
+                <%if(subscription.length==0){%>
+                <div class="col-lg-4 col-md-6">
+                  No Packages Were Found
+                </div>
+                <%}%>
+                    </div>
+                  </div>
+                  <!-- Change Password tab -->
+                  <div class="tab-pane fade change_pin" id="v-pills-payment_methods" role="tabpanel"
+                    aria-labelledby="v-pills-payment_methods-tab" tabindex="0">
+                    <div class="row pay_method">
+                      <div class="col-md-12">
+                        <h2>Change Password</h2>
+                      </div>
+                      <div class="col-lg-5 col-md-6">
+                        <form method="post" action="javascript:void(0);" id="passwordUpdateForm">
+                          <div class="form-group">
+                            <label for="text">Old Password</label>
+                            <input type="password" name="oldpassword" id="oldPass" placeholder="Abc@123"
+                              class="form-control" />
+                            <i class="bi bi-eye-slash" id="oldPassword"></i>
+                          </div>
+
+
+                          <div class="form-group">
+                            <label for="text">New Password</label>
+                            <input type="password" id="newPass" name="newpassword" placeholder="Abc@123"
+                              class="form-control" />
+                            <i class="bi bi-eye-slash" id="newPassword"></i>
+                          </div>
+
+                          <div class="form-group">
+                            <label for="text">Confirm New Password</label>
+                            <input type="password" id="confirmPass" name="confirmpassword" placeholder="Abc@123"
+                              class="form-control" />
+                            <i class="bi bi-eye-slash" id="confirmPassword"></i>
+                          </div>
+                          <div class="form-group">
+                            <button type="submit" id="updatepass" class="tab_btn mt-3">
+                              Update
+                            </button>
+                          </div>
+
+                        </form>
+                      </div>
+                      <div class="col-lg-7 col-md-6 overflow-hidden">
+                        <img src="/webassets/images/./change_password.png" alt="" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- payment tab -->
+                  <div class="tab-pane fade pay_tab" id="v-pills-my_orders" role="tabpanel"
+                    aria-labelledby="v-pills-my_orders-tab" tabindex="0">
+                    <div class="row d-none">
+                      <div class="col-12">
+                        <h2>Add New Card</h2>
+                      </div>
+
+                      <div class="col-md-6">
+                        <div class="add_cart">
+                          <form action="">
+                            <div class="form-group">
+                              <label for=""> Name On Card </label>
+                              <input type="text" placeholder="Enter Name" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                              <label for=""> Card Number </label>
+                              <input type="text" placeholder="Enter Card Number" class="form-control" />
+                            </div>
+
+                            <div class="row mt-3 gy-2">
+                              <div class="col-9 d-flex justify-content-between align-items-center">
+                                <label for="text" class="m-0"> Expiry </label>
+                              </div>
+                              <div class="col-3">
+                                <label for="text" class="m-0 m"> CVV </label>
+                              </div>
+                              <div class="col-3">
+                                <div class="input-group">
+                                  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    MM
+                                  </button>
+                                  <ul class="dropdown-menu">
+                                    <li>
+                                      <a class="dropdown-item" href="#">Action</a>
+                                    </li>
+                                    <li>
+                                      <a class="dropdown-item" href="#">Another action</a>
+                                    </li>
+                                    <li>
+                                      <a class="dropdown-item" href="#">Something else here</a>
+                                    </li>
+                                    <li>
+                                      <a class="dropdown-item" href="#">Separated link</a>
+                                    </li>
+                                  </ul>
+                                </div>
+                              </div>
+                              <div class="col-3">
+                                <div class="input-group">
+                                  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    YY
+                                  </button>
+                                  <ul class="dropdown-menu">
+                                    <li>
+                                      <a class="dropdown-item" href="#">Action</a>
+                                    </li>
+                                    <li>
+                                      <a class="dropdown-item" href="#">Another action</a>
+                                    </li>
+                                    <li>
+                                      <a class="dropdown-item" href="#">Something else here</a>
+                                    </li>
+                                    <li>
+                                      <a class="dropdown-item" href="#">Separated link</a>
+                                    </li>
+                                  </ul>
+                                </div>
+                              </div>
+                              <div class="col-3 ms-auto">
+                                <input type="text" placeholder="XXX" class="form-control" />
+                              </div>
+                            </div>
+
+                            <a href="#" class="submit text-decoration-none text-white mb-5 mt-3">
+                              Submit
+                            </a>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-12">
+                        <h2>Payment Methods</h2>
+                      </div>
+                      <%payment.forEach((val)=>{%>
+                <div class="col-md-6">
+                  <form action="#">
+                    <ul class="cards p-4">
+                      <li>
+                        <div class="row align-items-center w-100">
+                          <div class="col-6 d-flex align-items-center">
+                            <p>Name:<%=val?.name %>
+                            </p>
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <p>Card Number:<%=val?.card_number %>
+                        </p>
+                      </li>
+                      <li>
+                        <div class="row w-100">
+                          <div class="col-6">
+                            <p>Expiry:<%=val?.expiry %>
+                            </p>
+                          </div>
+                          <div class="col-6 d-flex align-items-center justify-content-end">
+                            <!-- <a class="edit_btn me-3 " data-bs-toggle="modal"
+                                                                        data-bs-target="#edit">
+                                                                        <img src="/webassets/images/edit_btn.png"
+                                                                            alt="">
+                                                                    </a> -->
+                            <a href="#" class="delete_btn" id="deleteBtn" onclick='dltcard("<%=val?.id %>")'>
+                              <img src="/webassets/images/delete_btn.png" alt="" />
+                            </a>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                  </form>
+                </div>
+                <%})%>
+                <%if(payment.length==0){%>
+                <div class="col-md-6">
+                  You Didn't Have Add Any Bank Details
+                </div>
+                <%}%>
+                              <div class="col-md-12">
+                                <a href="#" class="card_submit text-decoration-none text-white mt-3 mb-5"
+                                  data-bs-toggle="modal" data-bs-target="#edit">
+                                  Add New Card
+                                </a>
+                              </div>
+
+                    </div>
+                  </div>
+                  <!-- Logout tab -->
+                  <div class="tab-pane fade" id="v-pills-logout" role="tabpanel" aria-labelledby="v-pills-logout-tab"
+                    tabindex="0">
+                    ...
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- switch profile modal -->
+        <div class="modal fade login_model delete_modal" id="switchProfile" data-bs-backdrop="static" data-bs-keyboard="false"
+          tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog d-flex align-items-center h-100" role="document">
+            <div class="modal-content bg-transparent border-0">
+              <div class="modal-body p-0">
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true"><i class="fa fa-close"></i></span>
+                </button>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="cards text-center py-5 bg-white">
+                      <img src="/webassets/images/logout.png" alt="">
+                      <h4>Switch To Instructor</h4>
+                      <p>Are you sure you want to switch your profile as Instructor.</p>
+                      <div class="del_btn d-flex justify-content-center">
+                        <a href="#" class="btn text-decoration-none text-white me-3" data-bs-dismiss="modal">No</a>
+                        <a href="./index.html" id="confirmSwitch" class="btn text-decoration-none text-white">Yes</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <!-- my account -->
+
+        <!-- Edit Photo Modal-->
+        <%- include("common/photoupload")%>
+                <!-- Edit Photo Modal-->
+
+                <!-- Footer -->
+                <footer><%- include("common/footer")%></footer>
+                <!-- Footer -->
+</body>
+
+<div class="modal fade login_model delete_modal" id="del" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog d-flex align-items-center h-100" role="document">
+    <div class="modal-content bg-transparent mx-auto border-0">
+      <div class="modal-body p-0">
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true"><i class="fa fa-close"></i></span>
+        </button>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="cards text-center py-5 bg-white">
+              <img src="/webassets/images/delete_img.png" alt="" />
+              <p>
+                Are you sure you want to <br />
+                remove this card?
+              </p>
+              <div class="del_btn d-flex justify-content-center">
+                <a href="#" class="btn text-decoration-none text-white me-3" data-bs-dismiss="modal">No</a>
+                <a href="#" id="delete_card_url" class="btn text-decoration-none text-white">Yes</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- delete Modal -->
+<!-- edit Modal -->
+
+<div class="modal fade login_model payments" id="edit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog d-flex align-items-center h-100" role="document">
+    <div class="modal-content bg-transparent mx-auto border-0">
+      <div class="modal-body p-0">
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true"><i class="fa fa-close"></i></span>
+        </button>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="cards rounded-3 bg-white px-4 py-5">
+              <div class="add_cart">
+                <h3>Add Card</h3>
+                <form method="post" id="addCard" action="javascript:void(0);">
+                  <div class="form-group p-0">
+                    <label for=""> Name On Card </label>
+                    <input type="text" name="nameoncard" placeholder="Enter Name" class="form-control" onkeypress="return /^[A-Za-z\s]*$/i.test(event.key)" />
+                  </div>
+
+                  <div class="form-group p-0">
+                    <label for=""> Your Name* </label>
+                    <input type="text" name="yourname" placeholder="Your Name*" class="form-control" />
+                  </div>
+                  <div class="form-group p-0">
+                    <label for=""> Card Number* </label>
+                    <input type="text" name="cardnumber" placeholder="**** **** **** 1234" class="form-control" />
+                  </div>
+
+                  <div class="row mt-3 gy-2">
+                    <div class="col-9 d-flex justify-content-between align-items-center">
+                      <label for="text" class="m-0"> Expiry </label>
+                    </div>
+                    <div class="col-3">
+                      <label for="text" class="m-0 m"> CVV </label>
+                    </div>
+                    <div class="col-3">
+                      <input type="text" name="expiry" placeholder="MM/YYYY" class="form-control" />
+
+                      <!-- <div class="input-group  ">
+                                                        <button class="btn dropdown-toggle" type="button"
+                                                            data-bs-toggle="dropdown" aria-expanded="false">MM</button>
+                                                        <ul class="dropdown-menu">
+                                                            <li><a class="dropdown-item" href="#">Action</a></li>
+                                                            <li><a class="dropdown-item" href="#">Another action</a>
+                                                            </li>
+                                                            <li><a class="dropdown-item" href="#">Something else
+                                                                    here</a></li>
+                                                            <li><a class="dropdown-item" href="#">Separated link</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div> -->
+                    </div>
+                    <div class="col-3">
+                      <!-- <div class="input-group ">
+                                                        <button class="btn dropdown-toggle" type="button"
+                                                            data-bs-toggle="dropdown" aria-expanded="false">YY</button>
+                                                        <ul class="dropdown-menu">
+                                                            <li><a class="dropdown-item" href="#">Action</a></li>
+                                                            <li><a class="dropdown-item" href="#">Another action</a>
+                                                            </li>
+                                                            <li><a class="dropdown-item" href="#">Something else
+                                                                    here</a></li>
+                                                            <li><a class="dropdown-item" href="#">Separated link</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div> -->
+                    </div>
+                    <div class="col-3 ms-auto">
+                      <input type="text" name="cvv" placeholder="XXX" class="form-control" />
+                    </div>
+                  </div>
+                  <button type="submit" id="addCardData" class="submit text-decoration-none text-white mt-3">
+                    Update
+                  </button>
+                  <!-- <a href="#" class="submit text-decoration-none text-white mt-3"
+                                                data-bs-toggle="modal" data-bs-target="#deno">
+                                                Update
+                                            </a> -->
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- edit Modal -->
+<!-- done Modal -->
+<div class="modal fade login_model done_modal" id="deno" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog d-flex align-items-center h-100" role="document">
+    <div class="modal-content bg-transparent mx-auto border-0">
+      <div class="modal-body p-0">
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true"><i class="fa fa-close"></i></span>
+        </button>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="cards text-center py-5 bg-white">
+              <img src="/webassets/images/done.png" alt="" />
+
+              <h3 class="mt-4">Thanks!</h3>
+              <p>
+                Your $200 payment has been <br />
+                processed successfully
+              </p>
+              <button class="btn text-decoration-none text-white mx-auto mb-4" data-bs-dismiss="modal">
+                OK
+              </button>
+              <a href="./rate.html" class="text-dark">Rate Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- done Modal -->
+
+<script>
+  const oldpassword = document.querySelector("#oldPassword");
+  const newpassword = document.querySelector("#newPassword");
+  const confirmpassword = document.querySelector("#confirmPassword");
+
+  oldpassword.addEventListener("click", function() {
+    const type =
+      oldPass.getAttribute("type") === "password" ? "text" : "password";
+    oldPass.setAttribute("type", type);
+    this.classList.toggle("bi-eye");
+  });
+  newpassword.addEventListener("click", function() {
+    const type =
+      newPass.getAttribute("type") === "password" ? "text" : "password";
+    newPass.setAttribute("type", type);
+    this.classList.toggle("bi-eye");
+  });
+  confirmpassword.addEventListener("click", function() {
+    const type =
+      confirmPass.getAttribute("type") === "password" ? "text" : "password";
+    confirmPass.setAttribute("type", type);
+    this.classList.toggle("bi-eye");
+  });
+
+  imgInp.onchange = (evt) => {
+    const [file] = imgInp.files;
+    console.log(file);
+    if (file) {
+      blah.src = URL.createObjectURL(file);
+      blah.style.display = "block";
+    }
+  };
+</script>
+<script>
+  function dltcard(id) {
+    let card_id = id;
+    $("#del").modal("show");
+    $("#delete_card_url").on("click", function() {
+      $.ajax({
+        url: "/users/deletecard",
+        type: "POST",
+        data: {
+          id: card_id
+        },
+        cache: false,
+        success: async function(dataResult) {
+          if (dataResult.status_code == 1) {
+            await toastMsg("success", dataResult.message);
+            window.location.href = "/myaccount";
+          }
+          if (dataResult.status_code == 0) {
+            await toastMsg("error", dataResult.message);
+          }
+        },
+      });
+    });
+  }
+</script>
+<script>
+
+$(document).ready(function() {
+    $('#confirmSwitch').click(function(e) {
+      e.preventDefault();
+      $.ajax({
+        url: '/users/switch-profile',
+        type: 'POST',
+        cache: false,
+        success: async function(dataResult) {
+          if (dataResult.status_code == 1) {
+            await toastMsg("success", dataResult.message)
+            window.location.href = "/myaccount"
+          }
+          if (dataResult.status_code == 0) {
+            await toastMsg("error", dataResult.message)
+          }
+
+        }
+      })
+    });
+  });
+
+  jQuery(document).ready(function() {
+    let rules = {
+      name: {
+        required: true,
+      },
+      phone_number: {
+        required: true,
+        maxlength: 10,
+      },
+    };
+    let messages = {
+      name: {
+        required: "Please enter your name",
+      },
+      phone_number: {
+        required: "Please enter your phone number",
+        maxlength: "Please enter valid phone number",
+      },
+    };
+
+    jQuery("#updateProfileForm").validate({
+      rules,
+      messages,
+      submitHandler: function(form) {
+        updateProfile();
+      },
+    });
+  });
+
+  function updateProfile() {
+    let name = $("#updateProfileForm input[name='name']").val();
+    let phone_number = $(
+      "#updateProfileForm input[name='phone_number']"
+    ).val();
+
+    let formdata = {
+      name,
+      phone_number,
+    };
+
+    $.ajax({
+      url: "/users/updateprofile",
+      type: "POST",
+      data: formdata,
+      cache: false,
+      success: async function(dataResult) {
+        if (dataResult.status_code == 1) {
+          await toastMsg("success", dataResult.message);
+          window.location.href = "/myaccount";
+        }
+        if (dataResult.status_code == 0) {
+          await toastMsg("error", dataResult.message);
+        }
+      },
+    });
+  }
+  // update password
+  jQuery(document).ready(function() {
+    let value = $("#passwordUpdateForm input[name='newpassword']").val();
+
+    $.validator.addMethod("checklower", function(value) {
+      return /[a-z]/.test(value);
+    });
+    $.validator.addMethod("checkupper", function(value) {
+      return /[A-Z]/.test(value);
+    });
+    $.validator.addMethod("checkdigit", function(value) {
+      return /[0-9]/.test(value);
+    });
+    $.validator.addMethod("pwcheck", function(value) {
+      return /[#?!@$%^&*-]/.test(value);
+    });
+
+    let rules = {
+      oldpassword: {
+        required: true,
+        remote: "/users/passwordcompare",
+      },
+      newpassword: {
+        required: true,
+        minlength: 8,
+        checklower: true,
+        checkupper: true,
+        checkdigit: true,
+        pwcheck: true,
+      },
+      confirmpassword: {
+        required: true,
+        equalTo: "#newPass",
+      },
+    };
+    let messages = {
+      oldpassword: {
+        required: "Please provide a old password",
+        remote: "You entered the wrong password",
+      },
+      newpassword: {
+        required: "Please provide a new password",
+        minlength: "Your password must be at least 8 characters long",
+        pwcheck: "Need atleast 1 special character",
+        checklower: "Need atleast 1 lowercase alphabet",
+        checkupper: "Need atleast 1 uppercase alphabet",
+        checkdigit: "Need atleast 1 digit",
+      },
+      confirmpassword: {
+        required: "Please provide a confirm password",
+        equalTo: "Your confirm password should be same as your new password",
+      },
+    };
+
+    jQuery("#passwordUpdateForm").validate({
+      rules,
+      messages,
+      submitHandler: function(form) {
+        updatePassword();
+      },
+    });
+  });
+
+  function updatePassword() {
+    let old_password = $(
+      "#passwordUpdateForm input[name='oldpassword']"
+    ).val();
+    let new_password = $(
+      "#passwordUpdateForm input[name='newpassword']"
+    ).val();
+    let confirm_password = $(
+      "#passwordUpdateForm input[name='confirmpassword']"
+    ).val();
+
+    let formdata = {
+      old_password,
+      new_password,
+      confirm_password,
+    };
+
+    $.ajax({
+      url: "/users/updatepassword",
+      type: "POST",
+      data: formdata,
+      cache: false,
+      success: async function(dataResult) {
+        if (dataResult.status_code == 1) {
+          await toastMsg("success", dataResult.message);
+          window.location.href = "/myaccount";
+        }
+        if (dataResult.status_code == 0) {
+          await toastMsg("error", dataResult.message);
+        }
+      },
+    });
+  }
+  //logout user....
+  $(document).ready(function() {
+    $("#confirmLogout").click(function(e) {
+      e.preventDefault();
+      $.ajax({
+        url: "users/userlogout",
+        type: "POST",
+        cache: false,
+        success: async function(dataResult) {
+          if (dataResult.status_code == 1) {
+            await toastMsg("success", dataResult.message);
+            window.location.href = "/register";
+          }
+          if (dataResult.status_code == 0) {
+            await toastMsg("error", dataResult.message);
+          }
+        },
+      });
+    });
+  });
+
+  /////////ADD CARD DETAILS//////////
+  /////////ADD CARD DETAILS//////////
+  jQuery(document).ready(function() {
+    let value = $("#addCard input[name='expiry']").val();
+
+    // return /(0[1-9]|1[012])[\/]((201)[6-9]|(202)[0-9])/.test(value);
+
+    $.validator.addMethod("datechk", function(value) {
+      return /^\d{1,2}\/\d{4}$/.test(value);
+    });
+
+    $.validator.addMethod("minDate", function(value, element) {
+      var now = new Date();
+      let exp_time = value;
+      let month = exp_time.slice(0, 2);
+      let year = exp_time.slice(3);
+      var myDate = new Date(year, month);
+      return this.optional(element) || myDate > now;
+    });
+
+    let rules = {
+      nameoncard: {
+        required: true,
+      },
+      yourname: {
+        required: true,
+      },
+      cardnumber: {
+        required: true,
+        maxlength: 16,
+        remote: "/users/getuserCard",
+      },
+      expiry: {
+        required: true,
+        datechk: true,
+        minDate: true,
+      },
+      cvv: {
+        required: true,
+        maxlength: 4,
+      },
+    };
+    let messages = {
+      nameoncard: {
+        required: "Please enter your name on card",
+      },
+      yourname: {
+        required: "Please enter your name",
+      },
+      cardnumber: {
+        required: "Please enter your card number",
+        maxlength: "Please enter valid card number",
+        remote: "This card number is already exist",
+      },
+      expiry: {
+        required: "Please enter expiry of your card",
+        datechk: "Please enter the valid date",
+        minDate: "Your card is already expired",
+      },
+      cvv: {
+        required: "Please enter your cvv",
+        maxlength: "Please enter valid cvv",
+      },
+    };
+
+    jQuery("#addCard").validate({
+      rules,
+      messages,
+      submitHandler: function(form) {
+        addCardDetails();
+      },
+    });
+  });
+
+  function addCardDetails() {
+    let name_on_card = $("#addCard input[name='nameoncard']").val();
+    let name = $("#addCard input[name='yourname']").val();
+    let card_number = $("#addCard input[name='cardnumber']").val();
+    let expiry = $("#addCard input[name='expiry']").val();
+    let cvv = $("#addCard input[name='cvv']").val();
+
+    let formdata = {
+      name_on_card,
+      name,
+      card_number,
+      expiry,
+      cvv,
+    };
+
+    $.ajax({
+      url: "/users/addcarddetails",
+      type: "POST",
+      data: formdata,
+      cache: false,
+      success: async function(dataResult) {
+        if (dataResult.status_code == 1) {
+          await toastMsg("success", dataResult.message);
+          window.location.href = "/myaccount";
+        }
+        if (dataResult.status_code == 0) {
+          await toastMsg("error", dataResult.message);
+        }
+      },
+    });
+  }
+</script>
+
+</html>
+
+<style>
+  .error {
+    color: #ff0000;
+  }
+</style>

@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("common/header")%>
+
+  <!-- script -->
+  <%- include("common/script")%>
+    <!-- script -->
+
+    <body>
+      <!-- Header -->
+      <%- include("common/Topheader")%>
+
+        <!-- Header -->
+        <!-- home slider -->
+        <section class="home_slider">
+          <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
+              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                aria-label="Slide 2"></button>
+              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="/webassets/images/sl1.png" class="d-block w-100" alt="..." />
+                <div class="slider_content">
+                  <div class="container">
+                    <h2>
+                      Players Wanted:<br />
+                      Connect with people near<br />
+                      you to play sports
+                    </h2>
+                    <p>
+                      Lorem Ipsum is simply dummy text of the printing and
+                      typesetting industry. Lorem Ipsum<br />
+                      has been the industry's standard dummy text
+                    </p>
+                    <a href="#" class="banner_btn text-white text-decoration-none">Read More</a>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <img src="/webassets/images/sl1.png" class="d-block w-100" alt="..." />
+                <div class="slider_content">
+                  <div class="container">
+                    <h2>
+                      Players Wanted:<br />
+                      Connect with people near<br />
+                      you to play sports
+                    </h2>
+                    <p>
+                      Lorem Ipsum is simply dummy text of the printing and
+                      typesetting industry. Lorem Ipsum<br />
+                      has been the industry's standard dummy text
+                    </p>
+                    <a href="#" class="banner_btn text-white text-decoration-none">Read More</a>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <img src="/webassets/images/sl1.png" class="d-block w-100" alt="..." />
+                <div class="slider_content">
+                  <div class="container">
+                    <h2>
+                      Players Wanted:<br />
+                      Connect with people near<br />
+                      you to play sports
+                    </h2>
+                    <p>
+                      Lorem Ipsum is simply dummy text of the printing and
+                      typesetting industry. Lorem Ipsum<br />
+                      has been the industry's standard dummy text
+                    </p>
+                    <a href="#" class="banner_btn text-white text-decoration-none">Read More</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+              data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+              data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+          <div class="top_arr">
+            <a href="#offerd"><img src="/webassets/images/top_arro.png" alt="" /></a>
+          </div>
+        </section>
+        <!-- home slider -->
+         <!-- map -->
+         <%if(session.users){%>
+          <div id="map" class="map_view mt-4">
+
+          </div>
+          <%}%>
+
+            <!-- map -->
+        <!-- sports offered -->
+
+        <section class="offered" id="offerd">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-12">
+                <h2 class="heading">
+                  Sports Offered
+                  <figure><img src="/webassets/images/hnd.png" alt="" /></figure>
+                </h2>
+              </div>
+
+              <%sportsOffered.forEach((val)=>{%>
+                <div class="col-xl-3 col-lg-4 col-md-6">
+                  <div class="col_in">
+                    <a href="/Sportsofferedtwo/?id=<%=val?.id%>" id="selectCard">
+                      <div class="col_img">
+                        <img src="/games/<%=val?.image%>" alt="" />
+                      </div>
+                      <div class="col_content">
+                        <h1>
+                          <%=val?.name%>
+                        </h1>
+                        <p>
+                          Lorem Ipsum is simply dummy text of the printing and
+                          typesetting industry.
+                        </p>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+                <%})%>
+                  <div class="col-md-12 text-center View">
+                    <a style="display: none; cursor: pointer; color: white;" id="showMore">View More</a>
+                  </div>
+            </div>
+          </div>
+        </section>
+        <!-- sports offered -->
+        <!-- our instructors -->
+        <section class="ourinstructors">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <h2 class="heading">
+                  <small>About</small>
+                  Our Instructors
+                  <figure><img src="/webassets/images/hnd.png" alt="" /></figure>
+                </h2>
+              </div>
+              <div class="col-12 mb-3">
+                <div class="py-1 px-3 rounded-2 d-flex justify-content-end align-items-center">
+                  <div class="btn-group filter_drop">
+                    <a class="dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-auto-close="outside"
+                      aria-expanded="false">
+                      Filter<i class="fa-solid fa-sliders"></i>
+                    </a>
+                    <div class="dropdown-menu p-0">
+                      <div class="card">
+                        <h4>By Expertise</h4>
+                        <div class="form-check">
+                          <input class="form-check-input" value="beginner" type="radio" name="flexRadioDefault"
+                            id="flexRadioDefault1" />
+                          <label class="form-check-label" for="flexRadioDefault1">
+                            Beginner
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" value="intermediate" type="radio" name="flexRadioDefault"
+                            id="flexRadioDefault2" />
+                          <label class="form-check-label" for="flexRadioDefault2">
+                            Intermediate
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" value="expert" type="radio" name="flexRadioDefault"
+                            id="flexRadioDefault3" />
+                          <label class="form-check-label" for="flexRadioDefault3">
+                            Expert
+                          </label>
+                        </div>
+
+                        <h4>By Rating</h4>
+                        <div class="form-check">
+                          <input class="form-check-input" name="rate" type="checkbox" value="4" id="flex" />
+                          <label class="form-check-label" for="flex">
+                            4 Star &amp; above</label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" name="rate" type="checkbox" value="3" id="flex1" />
+                          <label class="form-check-label" for="flex1">
+                            3 Star &amp; above</label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" name="rate" type="checkbox" value="2" id="flex2" />
+                          <label class="form-check-label" for="flex2">
+                            2 Star &amp; above</label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" name="rate" type="checkbox" value="1" id="flex3" />
+                          <label class="form-check-label" for="flex3">
+                            1 Star &amp; above</label>
+                        </div>
+
+                        <h4>Gender</h4>
+                        <div class="form-check">
+                          <input class="form-check-input" name="gender" type="radio" value="male" id="selectGender" />
+                          <label class="form-check-label" for="selectGender">
+                            Male</label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" name="gender" type="radio" value="female"
+                            id="selectGender1" />
+                          <label class="form-check-label" for="selectGender1">
+                            Female</label>
+                        </div>
+
+                        <h4>Age</h4>
+                        <div class="form-check">
+                          <input class="form-check-input" name="age" type="radio" value="16,25" id="selectage1" />
+                          <label class="form-check-label" for="selectage1">
+                            16yrs to 25yrs</label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" name="age" type="radio" value="26,40"
+                            id="selectage2" />
+                          <label class="form-check-label" for="selectage2">
+                            26yrs to 40yrs</label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" name="age" type="radio" value="41,55"
+                            id="selectage3" />
+                          <label class="form-check-label" for="selectage3">
+                            41yrs to 55yrs</label>
+                        </div>
+                        <div class="form-group d-flex justify-content-between align-items-center mt-3">
+                          <button type="button" onclick="homeFilter()">
+                            Apply
+                          </button>
+                          <button type="button" onclick="rmvFilter()">Clear</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div id="Instructors" class="owl-carousel">
+                  <%instructors.forEach((val,index)=>{%>
+                    <div class="item">
+                      <div class="item_in">
+                        <div class="item_img">
+                          <a href="/inst_profile/?id=<%=val.id%>">
+                            <%if(val.image){%>
+                              <img src="/images/<%=val?.image%>" />
+                              <%} else{%>
+                                <img src="/unknown/person.png" />
+                                <%}%>
+                          </a>
+                        </div>
+                        <div style="cursor: pointer;" onclick='insProfile("<%=val.id%>")' class="item_cnt">
+                          <h1>
+                            <%=val?.name%>
+                          </h1>
+                          <div class="star_read my-3">
+                            <span id="stars<%=index %>"></span>
+                            <%if(val.averagerate?.rate){%>
+                              <h6 class="mb-0 ms-1">
+                                <%=parseFloat(val?.averagerate?.rate).toFixed(1)%>/5
+                              </h6>
+                              <%}else{%>
+                                <h6 class="mb-0 ms-1">0/5</h6>
+                                <%}%>
+                          </div>
+                          <p>Age: <%=val?.age%>years%></p>
+                          <p>Experience: 8years</p>
+                          <p>Specialization: <%=val.sports[0]?.game?.name%>
+                          </p>
+                          <p>Location: <%=val?.location%>
+                          </p>
+
+                          <ul class="social">
+                            <li>
+                              <a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                            </li>
+                            <li>
+                              <a href=""><i class="fa-brands fa-facebook-f"></i></a>
+                            </li>
+                            <li>
+                              <a href=""><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <%})%>
+                </div>
+              </div>
+              <%if(instructors.length==0){%>
+                <div class="col-md-12">No Data Found</div>
+                <%}%>
+            </div>
+          </div>
+        </section>
+        <!-- our instructors -->
+
+        <!-- Testimonial -->
+        <section class="testimonial">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <h2 class="heading">
+                  <small>More Than Just Business</small>
+                  Great Clients Awesome Reviews
+                  <figure><img src="/webassets/images/hnd.png" alt="" /></figure>
+                </h2>
+              </div>
+              <div class="col-md-12">
+                <div id="testimonial" class="owl-carousel">
+                  <div class="item">
+                    <div class="testimonial_in">
+                      <div class="test_content">
+                        Lorem Ipsum is simply dummy text of the printing and
+                        typesetting industry. Lorem Ipsum has been the industry's
+                        standard dummy. Lorem Ipsum is simply dummy text of the
+                        printing and typesetting industry. Lorem Ipsum has been the
+                        industry's standard dummy.
+                      </div>
+                      <div class="test_pro">
+                        <div class="test_img">
+                          <img src="/webassets/images/test.png" alt="" />
+                        </div>
+                        <div class="test_cnt">
+                          <strong>Mark Deo</strong>
+                          <p>McIntire Industries</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="item">
+                    <div class="testimonial_in">
+                      <div class="test_content">
+                        Lorem Ipsum is simply dummy text of the printing and
+                        typesetting industry. Lorem Ipsum has been the industry's
+                        standard dummy. Lorem Ipsum is simply dummy text of the
+                        printing and typesetting industry. Lorem Ipsum has been the
+                        industry's standard dummy.
+                      </div>
+                      <div class="test_pro">
+                        <div class="test_img">
+                          <img src="/webassets/images/test1.png" alt="" />
+                        </div>
+                        <div class="test_cnt">
+                          <strong>Mark Deo</strong>
+                          <p>McIntire Industries</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="item">
+                    <div class="testimonial_in">
+                      <div class="test_content">
+                        Lorem Ipsum is simply dummy text of the printing and
+                        typesetting industry. Lorem Ipsum has been the industry's
+                        standard dummy. Lorem Ipsum is simply dummy text of the
+                        printing and typesetting industry. Lorem Ipsum has been the
+                        industry's standard dummy.
+                      </div>
+                      <div class="test_pro">
+                        <div class="test_img">
+                          <img src="/webassets/images/test2.png" alt="" />
+                        </div>
+                        <div class="test_cnt">
+                          <strong>Mark Deo</strong>
+                          <p>McIntire Industries</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="item">
+                    <div class="testimonial_in">
+                      <div class="test_content">
+                        Lorem Ipsum is simply dummy text of the printing and
+                        typesetting industry. Lorem Ipsum has been the industry's
+                        standard dummy. Lorem Ipsum is simply dummy text of the
+                        printing and typesetting industry. Lorem Ipsum has been the
+                        industry's standard dummy.
+                      </div>
+                      <div class="test_pro">
+                        <div class="test_img">
+                          <img src="/webassets/images/test.png" alt="" />
+                        </div>
+                        <div class="test_cnt">
+                          <strong>Mark Deo</strong>
+                          <p>McIntire Industries</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- Testimonial -->
+       
+
+            <!-- Footer -->
+            <footer><%-include("common/footer")%></footer>
+            <!-- Footer -->
+
+
+            <script
+              src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxACBGU07tn2sg_nEmNVcw4Z6lQoe2BHQ&callback=initMap&v=weekly"
+              defer></script>
+    </body>
+
+
+
+    <!-- MAP SCRIPT -->
+
+    <Script>
+      function initMap() {
+
+        const center = new google.maps.LatLng(
+          "<%=session.users?.latitude%>",
+          "<%=session.users?.longitude%>"
+        );
+
+        const map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 9,
+          center: center,
+        });
+
+        console.log(map);
+        const svgMarker = {
+          path: "M-1.547 12l6.563-6.609-1.406-1.406-5.156 5.203-2.063-2.109-1.406 1.406zM0 0q2.906 0 4.945 2.039t2.039 4.945q0 1.453-0.727 3.328t-1.758 3.516-2.039 3.070-1.711 2.273l-0.75 0.797q-0.281-0.328-0.75-0.867t-1.688-2.156-2.133-3.141-1.664-3.445-0.75-3.375q0-2.906 2.039-4.945t4.945-2.039z",
+          fillColor: "blue",
+          fillOpacity: 0.6,
+          strokeWeight: 0,
+          rotation: 0,
+          scale: 2,
+          anchor: new google.maps.Point(0, 20),
+        };
+
+        let marker;
+        "<%nearBy.forEach((val)=>{%>"
+        marker = new google.maps.Marker({
+          position: new google.maps.LatLng("<%=val.latitude%>", "<%=val.longitude%>"),
+          map: map,
+          label: {
+            fontSize: "8pt",
+            text: "<%=val.name%>"
+          },
+          url: '/message/?id=<%=val.id%>'
+        });
+        google.maps.event.addListener(marker, 'click', function () {
+          window.location.href = this.url;
+        });
+        "<%})%>"
+
+      }
+
+      window.initMap = initMap;
+    </Script>
+
+
+
+    <!-- MAP SCRIPT -->
+
+    <script>
+      "<% instructors.forEach(function(val,index){ %>"
+      document.getElementById("stars<%= index %>").innerHTML = getStars("<%=val?.averagerate?.rate%>");
+
+      function getStars(rating) {
+
+        // Round to nearest half
+        rating = Math.round(rating * 2) / 2;
+
+        let output = [];
+
+        // Append all the filled whole stars
+        for (var i = rating; i >= 1; i--)
+          output.push('<i class=" fa fa-star" aria-hidden="true"  ></i>&nbsp;');
+
+        // If there is a half a star, append it
+        if (i == .5) output.push('<i  class=" fa fa-star-half-o" aria-hidden="true" style="color: #ffbe00 !important" ></i>&nbsp;');
+
+        // Fill the empty stars
+        for (let i = (5 - rating); i >= 1; i--)
+          output.push('<i class="ratings_stars fa fa-star" aria-hidden="true" ></i>&nbsp;');
+
+        return output.join('');
+
+      }
+      "<% }); %>  "
+    </script>
+
+    <script>
+
+      function insProfile(id) {
+        window.location.href = `/inst_profile/?id=${id}`
+
+      }
+
+      $("#showMore").on('click', () => {
+        console.log("enter");
+        window.location.href = "/home/?view_more=true"
+      })
+
+      if ("<%=game_length.length%>" > 4) {
+        showMore.style.display = "block";
+        if ("<%=sportsOffered.length%>" > 4) {
+          showMore.style.display = "none";
+        }
+      }
+
+      function rmvFilter(){
+        let rate_ele = document.getElementsByName("rate");
+        let exp_ele = document.getElementsByName("flexRadioDefault");
+        let gender_ele = document.getElementsByName("gender");
+        let age_ele = document.getElementsByName("age");
+
+        
+        for (let i = 0; i < rate_ele.length; i++) {
+          if (rate_ele[i].checked) {
+            rate_ele[i].checked = false;
+          }
+        }
+
+        for (let l = 0; l < exp_ele.length; l++) {
+          if (exp_ele[l].checked) {
+            exp_ele[l].checked = false;
+          }
+        }
+        for (let j = 0; j < gender_ele.length; j++) {
+          if (gender_ele[j].checked) {
+            gender_ele[j].checked = false;
+          }
+        }
+
+        for (let k = 0; k< age_ele.length; k++) {
+          if (age_ele[k].checked) {
+             age_ele[k].checked = false;
+          }
+        }
+
+      }
+
+      function homeFilter() {
+        let rate_ele = document.getElementsByName("rate");
+        let exp_ele = document.getElementsByName("flexRadioDefault");
+        let gender_ele = document.getElementsByName("gender");
+        let age_ele = document.getElementsByName("age");
+
+        let rate = "";
+        let exp = "";
+        let gender = "";
+        let age = "";
+
+        for (let i = 0; i < rate_ele.length; i++) {
+          if (rate_ele[i].checked) {
+            rate = rate_ele[i].value;
+          }
+        }
+
+        for (let l = 0; l < exp_ele.length; l++) {
+          if (exp_ele[l].checked) {
+            exp = exp_ele[l].value;
+          }
+        }
+        for (let j = 0; j < gender_ele.length; j++) {
+          if (gender_ele[j].checked) {
+            gender = gender_ele[j].value;
+          }
+        }
+
+        for (let k = 0; k< age_ele.length; k++) {
+          if (age_ele[k].checked) {
+            age = age_ele[k].value;
+          }
+        }
+
+        let query_url = "/Sportsoffered/";
+
+        if (exp != "") {
+          query_url = `${query_url}?exp=${exp}`;
+        }
+        if (rate != "") {
+          if (exp == "" && gender == "") {
+            query_url = `${query_url}?rate=${rate}`;
+          } else {
+            query_url = `${query_url}&rate=${rate}`;
+          }
+        }
+        if (gender != "") {
+          if (exp == "" && rate == "") {
+            query_url = `${query_url}?gender=${gender}`;
+          } else {
+            query_url = `${query_url}&gender=${gender}`;
+          }
+        }
+        if (age != "") {
+          if (exp == "" && rate == "" && gender == "") {
+            query_url = `${query_url}?age=${age}`;
+          } else {
+            query_url = `${query_url}&age=${age}`;
+          }
+        }
+
+        if (rate != "" || exp != "" || gender != "" || age!="") {
+          window.location.href = query_url;
+        }
+
+      }
+    </script>
+
+</html>
+
+<style>
+  .ratings_stars {
+    color: rgba(112, 111, 111, 0.856) !important;
+  }
+
+  #map {
+    height: 100%;
+  }
+
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+</style>

@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("common/header")%>
+
+  <!-- script -->
+  <%- include("common/script")%>
+  <!-- script -->
+
+  <body>
+    <!-- Header -->
+    <%- include("common/Topheader")%>
+
+    <!-- Header -->
+    <!-- inner_banner -->
+    <section class="inner_benner">
+      <h2>Payment</h2>
+      <p>Home / Payment</p>
+      <div class="top_arr inner_benner1">
+        <a href="/web/paymento1"
+          ><img src="/webassets./images/top_arro.png" alt=""
+        /></a>
+      </div>
+    </section>
+    <!-- inner_banner -->
+    <!-- Payment  -->
+
+    <section id="payment">
+      <div class="container">
+        <div class="row gy-3">
+          <div class="row">
+            <div class="col-12">
+              <h2>Payment Methods</h2>
+            </div>
+            <div class="col-md-6">
+              <div class="cards rounded saved_cards h-100 px-3 py-5">
+                <h3>Saved Cards</h3>
+                <%if(payment.length==0){%>
+                <div class="col-md-6">
+                  <div
+                    class="cards h-100 rounded d-flex justify-content-center align-items-center"
+                  >
+                    <div class="text-center pay_card_img">
+                      <img src="/webassets/images/pay_card.png" alt="" />
+                      <h6 class="mt-4">There is no saved card.</h6>
+                    </div>
+                  </div>
+                </div>
+                <%}else{%>
+                <form
+                  method="post"
+                  id="updateProfileForm"
+                  action="javascript:void(0);"
+                >
+                  <%payment.forEach((val)=>{%>
+                  <ul class="cards p-4">
+                    <li>
+                      <div class="row align-items-center w-100">
+                        <div class="col-6 d-flex align-items-center">
+                          <p id="cardname"><%=val?.name %></p>
+                        </div>
+                        <div
+                          class="col-6 d-flex align-items-center justify-content-end"
+                        >
+                          <label class="radio-button m-0">
+                            <input
+                              type="radio"
+                              class="radio-button__input"
+                              id="choice1-1"
+                              name="choice1"
+                              onchange='checkOut("<%=val.cvv%>", "<%=val.name%>", "<%=val.card_number%>", "<%=val.expiry%>")'
+                            />
+                            <span class="radio-button__control"></span>
+                          </label>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <p id="cardnumber"><%=val?.card_number %></p>
+                    </li>
+                    <li>
+                      <div class="row w-100">
+                        <div class="col-6">
+                          <p id="expirydate"><%=val?.expiry %></p>
+                        </div>
+                        <div
+                          class="col-6 d-flex align-items-center justify-content-end"
+                        >
+                          <!-- <a class="edit_btn me-3 " data-bs-toggle="modal"
+                                                        data-bs-target="#edit">
+                                                        <img src="/webassets/images/edit_btn.png"
+                                                            alt="">
+                                                    </a> -->
+                          <a
+                            class="delete_btn"
+                            id="deleteBtn"
+                            onclick='dltcard("<%=val?.id %>")'
+                          >
+                            <img
+                              src="/webassets/images/delete_btn.png"
+                              alt=""
+                            />
+                          </a>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                  <%})%>
+                  <button
+                    style="display: none"
+                    class="submit text-decoration-none text-white mt-3 mb-5"
+                    type="button"
+                    id="loadpayment"
+                    disabled
+                  >
+                    <span
+                      class="spinner-grow spinner-grow-sm"
+                      role="status"
+                      aria-hidden="true"
+                    ></span>
+                    Loading...
+                  </button>
+
+                  <button
+                    type="button"
+                    style="display: block"
+                    class="submit text-decoration-none text-white mt-3 mb-5"
+                    id="proceedPayment"
+                  >
+                    Continue
+                  </button>
+                </form>
+                <%}%>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="cards rounded px-5 py-5">
+                <div class="add_cart">
+                  <h3>Add Card</h3>
+                  <form method="post" id="addCard" action="javascript:void(0);">
+                    <div class="form-group p-0">
+                      <label for=""> Name On Card </label>
+                      <input
+                        type="text"
+                        name="nameoncard"
+                        placeholder="Enter Name"
+                        class="form-control"
+                      />
+                    </div>
+
+                    <div class="form-group p-0">
+                      <label for=""> Your Name* </label>
+                      <input
+                        type="text"
+                        name="yourname"
+                        placeholder="Your Name*"
+                        class="form-control"
+                      />
+                    </div>
+                    <div class="form-group p-0">
+                      <label for=""> Card Number* </label>
+                      <input
+                        type="text"
+                        name="cardnumber"
+                        placeholder="**** **** **** 1234"
+                        class="form-control"
+                      />
+                    </div>
+
+                    <div class="row mt-3 gy-2">
+                      <div
+                        class="col-9 d-flex justify-content-between align-items-center"
+                      >
+                        <label for="text" class="m-0"> Expiry </label>
+                      </div>
+                      <div class="col-3">
+                        <label for="text" class="m-0 m"> CVV </label>
+                      </div>
+                      <div class="col-3">
+                        <input
+                          type="text"
+                          name="expiry"
+                          placeholder="MM/YYYY"
+                          class="form-control"
+                        />
+
+                        <!-- <div class="input-group  ">
+                                <button class="btn dropdown-toggle" type="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">MM</button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="#">Something else
+                                            here</a></li>
+                                    <li><a class="dropdown-item" href="#">Separated link</a>
+                                    </li>
+                                </ul>
+                            </div> -->
+                      </div>
+                      <div class="col-3">
+                        <!-- <div class="input-group ">
+                                <button class="btn dropdown-toggle" type="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">YY</button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="#">Something else
+                                            here</a></li>
+                                    <li><a class="dropdown-item" href="#">Separated link</a>
+                                    </li>
+                                </ul>
+                            </div> -->
+                      </div>
+                      <div class="col-3 ms-auto">
+                        <input
+                          type="text"
+                          name="cvv"
+                          placeholder="XXX"
+                          class="form-control"
+                        />
+                      </div>
+                    </div>
+                    <button
+                      type="submit"
+                      id="addCardData"
+                      class="submit text-decoration-none text-white mt-3"
+                    >
+                      Add
+                    </button>
+                    <!-- <a href="#" class="submit text-decoration-none text-white mt-3"
+                        data-bs-toggle="modal" data-bs-target="#deno">
+                        Update
+                    </a> -->
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Payment  -->
+
+    <!-- Footer -->
+    <footer><%- include("common/footer")%></footer>
+    <!-- Footer -->
+
+    <div
+      class="modal fade login_model delete_modal"
+      id="del"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog d-flex align-items-center h-100" role="document">
+        <div class="modal-content bg-transparent mx-auto border-0">
+          <div class="modal-body p-0">
+            <button
+              type="button"
+              class="close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true"><i class="fa fa-close"></i></span>
+            </button>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="cards text-center py-5 bg-white">
+                  <img
+                    src=".
+                /webassets/images/delete_img.png"
+                    alt=""
+                  />
+                  <p>
+                    Are you sure you want to <br />
+                    remove this card?
+                  </p>
+                  <div class="del_btn d-flex justify-content-center">
+                    <a
+                      href="#"
+                      class="btn text-decoration-none text-white me-3"
+                      data-bs-dismiss="modal"
+                      >No</a
+                    >
+                    <a
+                      href="#"
+                      id="delete_card_url"
+                      class="btn text-decoration-none text-white"
+                      >Yes</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    function dltcard(id) {
+      let card_id = id;
+      $("#del").modal("show");
+      $("#delete_card_url").on("click", function () {
+        $.ajax({
+          url: "/users/deletecard",
+          type: "POST",
+          data: { id: card_id },
+          cache: false,
+          success: async function (dataResult) {
+            if (dataResult.status_code == 1) {
+              await toastMsg("success", dataResult.message);
+              window.location.href =
+                "/payment01/?user_id=<%=user_id%>&game_id=<%=game_id%>&amount=<%=amount%>&type=<%=pac_type%>";
+            }
+            if (dataResult.status_code == 0) {
+              await toastMsg("error", dataResult.message);
+            }
+          },
+        });
+      });
+    }
+
+    async function createSubsciption() {
+      let formdata = {};
+
+      if ("<%=pac_type%>") {
+        formdata.instructor_id = "<%=instructor_id%>";
+        formdata.user_id = "<%=user_id%>";
+        formdata.game_id = "<%=game_id%>";
+        formdata.package_amount = "<%=amount%>";
+
+        if ("<%=pac_type%>" == "month") {
+          formdata.package_duration = 30;
+        }
+        if ("<%=pac_type%>" == "halfyear") {
+          formdata.package_duration = 180;
+        }
+        if ("<%=pac_type%>" == "year") {
+          formdata.package_duration = 365;
+        }
+
+        $.ajax({
+          url: "/users/createsubscription",
+          type: "POST",
+          data: formdata,
+          cache: false,
+          success: async function (dataResult) {
+            if (dataResult.status_code == 1) {
+              console.log(dataResult.message);
+            }
+            if (dataResult.status_code == 0) {
+              await toastMsg("error", dataResult.message);
+            }
+          },
+        });
+      } else {
+        formdata.instructor_id = "<%=instructor_id%>";
+        formdata.package_amount = "<%=amount%>";
+        $.ajax({
+          url: "/users/instSubscription",
+          type: "POST",
+          data: formdata,
+          cache: false,
+          success: async function (dataResult) {
+            if (dataResult.status_code == 1) {
+              console.log(dataResult.message);
+            }
+            if (dataResult.status_code == 0) {
+              await toastMsg("error", dataResult.message);
+            }
+          },
+        });
+      }
+    }
+
+    let saved_data = {};
+    function checkOut(cvv, name, number, expiry) {
+      let card_name = name;
+      let email = "<%=login_user.email%>";
+      let card_number = number;
+      let exp_time = expiry;
+      let expire_month = exp_time.slice(0, 2);
+      let expire_year = exp_time.slice(3);
+      let cvc = cvv;
+      let total_price = "<%=amount%>";
+      let account_id = "<%=account_id%>";
+
+      saved_data = {
+        card_name,
+        email,
+        card_number,
+        expire_month,
+        expire_year,
+        cvc,
+        total_price,
+        account_id,
+      };
+
+      console.log(saved_data);
+
+      return saved_data;
+    }
+
+    $("#proceedPayment").on("click", () => {
+      console.log(saved_data);
+      proceedPayment.style.display = "none";
+      loadpayment.style.display = "block";
+      $.ajax({
+        url: "/users/createpayment",
+        type: "POST",
+        data: saved_data,
+        cache: false,
+        success: async function (dataResult) {
+          if (dataResult.status_code == 1) {
+            await createSubsciption();
+            await toastMsg("success", dataResult.message);
+            window.location.href = "/home";
+          }
+          if (dataResult.status_code == 0) {
+            await toastMsg("error", dataResult.message);
+          }
+          proceedPayment.style.display = "block";
+          loadpayment.style.display = "none";
+        },
+      });
+    });
+
+    /////////ADD CARD DETAILS//////////
+    jQuery(document).ready(function () {
+      let value = $("#addCard input[name='expiry']").val();
+
+      $.validator.addMethod("datechk", function (value) {
+        return /^\d{1,2}\/\d{4}$/.test(value);
+      });
+
+      $.validator.addMethod("minDate", function (value, element) {
+        var now = new Date();
+        let exp_time = value;
+        let month = exp_time.slice(0, 2);
+        let year = exp_time.slice(3);
+        var myDate = new Date(year, month);
+        return this.optional(element) || myDate > now;
+      });
+
+      let rules = {
+        nameoncard: {
+          required: true,
+        },
+        yourname: {
+          required: true,
+        },
+        cardnumber: {
+          required: true,
+          maxlength: 16,
+          // remote: "/users/getuserCard",
+        },
+        expiry: {
+          required: true,
+          datechk: true,
+          minDate: true,
+        },
+        cvv: {
+          required: true,
+          maxlength: 4,
+        },
+      };
+      let messages = {
+        nameoncard: {
+          required: "Please enter your name on card",
+        },
+        yourname: {
+          required: "Please enter your name",
+        },
+        cardnumber: {
+          required: "Please enter your card number",
+          maxlength: "Please enter valid card number",
+          // remote: "This card number is already exist",
+        },
+        expiry: {
+          required: "Please enter expiry of your card",
+          datechk: "Please enter the valid date",
+          minDate: "Your card is already expired",
+        },
+        cvv: {
+          required: "Please enter your cvv",
+          maxlength: "Please enter valid cvv",
+        },
+      };
+
+      jQuery("#addCard").validate({
+        rules,
+        messages,
+        submitHandler: function (form) {
+          addCardDetails();
+          form.submit();
+        },
+      });
+    });
+
+    function addCardDetails() {
+      let name_on_card = $("#addCard input[name='nameoncard']").val();
+      let name = $("#addCard input[name='yourname']").val();
+      let card_number = $("#addCard input[name='cardnumber']").val();
+      let expiry = $("#addCard input[name='expiry']").val();
+      let cvv = $("#addCard input[name='cvv']").val();
+
+      let formdata = {
+        name_on_card,
+        name,
+        card_number,
+        expiry,
+        cvv,
+      };
+
+      $.ajax({
+        url: "/users/addcarddetails",
+        type: "POST",
+        data: formdata,
+        cache: false,
+        success: async function (dataResult) {
+          if (dataResult.status_code == 1) {
+            await toastMsg("success", dataResult.message);
+            window.location.href =
+              "/payment01/?user_id=<%=user_id%>&game_id=<%=game_id%>&amount=<%=amount%>&type=<%=pac_type%>";
+          }
+          if (dataResult.status_code == 0) {
+            await toastMsg("error", dataResult.message);
+          }
+        },
+      });
+    }
+  </script>
+</html>

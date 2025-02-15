@@ -1,0 +1,56 @@
+<div
+  class="modal fade add_sport_modal"
+  id="editphoto"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-sm modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="text-end">
+          <button
+            type="button"
+            class="btn-close ms-auto"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal_heading">Edit Profile Photo</div>
+        <form
+          method="post"
+          class="row"
+          id="updateprofilephoto"
+          action="javascript:void(0);"
+        >
+          <div class="form-group">
+            <div class="mb-3">
+              <label for="flexCheckDefault" class="form-label">
+                Upload Photo</label
+              >
+              <input
+                class="form-control h-auto text-dark"
+                type="file"
+                value=""
+                name="profilephoto"
+                id="imgInp"
+              />
+              <img
+                style="display: none"
+                src=""
+                id="blah"
+                class="player_profile w-100"
+                alt=""
+              />
+            </div>
+          </div>
+          <div class="form-group">
+            <button type="submit" class="form-control" id="SaveModal">
+              Save
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
